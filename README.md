@@ -3,6 +3,8 @@
 > 임영욱 (LIM YOUNGUK) — Integrated Intelligence Agent AI Builder
 > 15+ years senior engineer (C++ 8y + C# 7y → Agent AI environment)
 
+**🌐 배포 URL**: https://younguk-lim-portfolio.vercel.app
+
 ## 소개
 
 본 레포는 개인 포트폴리오 정적 사이트(`index.html`)입니다. Vercel을 통해 배포됩니다.
