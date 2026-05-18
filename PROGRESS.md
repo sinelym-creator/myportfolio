@@ -22,6 +22,7 @@
 
 | ID | 설명 | 완료일 | 산출물 |
 |----|------|--------|--------|
+| **T-pao-i18n-toggle** | **KO/EN 토글 + 영문 풀 번역** — 헤더 KO/EN UI 정적 → 기능화. W3C 표준 `lang` attribute 토글 (html[lang="ko"]/[lang="en"] 셀렉터) + localStorage 영속 + 87 inline 병행 span pairs. index.html 1945 → 2138줄 (+193). 10 섹션 전부 커버 (hero·the_shift·timeline·5 project cards·tech_stack·lab·credentials·external_signals·contact·footer). 라이브 사이트 raw curl + WebFetch 양 언어 정상 노출 검증 ✅ | **2026-05-18** | **PR #4 (`c8ef5aa`), https://younguk-lim-portfolio.vercel.app (i18n live)** |
 | **T-pao-static-v0.5-deploy** | **정적 HTML v0.5 첫 배포** — 사용자 공유 portfolio-final-v0.5.html (1945줄, 다크 + yellow-green accent + 터미널 chrome) GitHub `myportfolio` + Vercel 자동 배포 ✅ | **2026-05-18** | **PR #1 (`068f6f4`), https://younguk-lim-portfolio.vercel.app, AH REGISTRY 6번째 등재** |
 
 ## 대기 (Ready) — 우선순위 순
