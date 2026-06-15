@@ -1230,17 +1230,19 @@
   <section class="section" id="projects">
     <div class="section-head">
       <h2>featured_work</h2>
-      <span class="count">(5 selected)</span>
-      <div class="edit-info"><span class="edit-dot"></span>v0.5 · just now</div>
+      <span class="count">(7 selected)</span>
+      <div class="edit-info"><span class="edit-dot"></span>v0.6 · just now</div>
     </div>
-    
-    <!-- ★ SLOT A — FEATURED (Intelligence Builder) -->
+
+    <div class="field-label" style="margin: 1.5rem 0 0.75rem; opacity: 0.75;">// <span lang="ko">AI work — 최신순</span><span lang="en">AI work — newest first</span></div>
+
+    <!-- ★ SLOT 1 — FEATURED (autoflowagent · AI work, newest) -->
     <div class="project featured">
       <div class="project-head">
-        <span class="project-title"><span lang="ko">통합 Agent AI 운영 환경 — 1인 풀스택 운영 패러다임</span><span lang="en">Integrated Agent AI Ops Environment — A Solo Full-stack Operating Paradigm</span></span>
+        <span class="project-title"><span lang="ko">autoflowagent (AF) — 멀티에이전트 오케스트레이션 프레임워크 · 통합 Agent AI 운영 환경</span><span lang="en">autoflowagent (AF) — A Multi-Agent Orchestration Framework · Integrated Agent AI Ops</span></span>
         <div class="project-meta">
-          <span class="slot">slot · intelligence-builder</span>
-          <span class="period">2026</span>
+          <span class="slot">slot · agent-ai-platform</span>
+          <span class="period">2025.11 — now</span>
           <span class="status in-progress">in-progress</span>
         </div>
       </div>
@@ -1249,82 +1251,85 @@
         <div class="project-field">
           <div class="field-label">context</div>
           <div class="field-content ko" lang="ko">
-            스마트팜(애그리테크) 도메인의 통합 운영 플랫폼을 .NET Clean Architecture (Domain / Application / Infrastructure / API / Blazor Server / Edge IoT) + 시계열 DB 풀스택으로 1인이 끌고 가는 환경. 동시에 외부 다중 벤더(AMR 로봇 · HVAC PLC · 외부 API · 보안팀) 통합 코디네이션과 회귀 baseline 유지를 단일 인력이 부담. 전통 SI 패턴으로는 분량 · 추적성 · 문서 SSOT 동시 유지가 불가능하다는 가설에서 출발해, <strong>Agent AI 운영 환경 자체를 직접 설계 · 구축</strong>.
+            자율 AI 에이전트들이 한 프로젝트의 SW 라이프사이클 전체를 협업 수행하도록 직접 설계·구축 중인 <strong>멀티에이전트 오케스트레이션 프레임워크</strong>. 오케스트레이터(chair) 1기 + 8개 도메인 마스터 에이전트가 <strong>거버넌스된 상호-비신뢰 peer</strong>로 협업한다. 핵심은 "단순 LLM 호출"이 아니라 에이전트들을 <strong>어떻게 깨우고·인증하고·통신·기억시킬지를 1급 아키텍처로 다루는 에이전트 경험(AX) 설계</strong>. 이 환경 자체가 다수 프로젝트를 병행 운영하기 위한 본인의 핵심 운영 인프라다.
           </div>
           <div class="field-content" lang="en">
-            A solo operator driving an integrated ops platform in the smart-farm (AgriTech) domain — full-stack across .NET Clean Architecture (Domain / Application / Infrastructure / API / Blazor Server / Edge IoT) + time-series DB. In parallel, the same single operator absorbs coordination with multiple external vendors (AMR robots · HVAC PLC · external APIs · security team) and regression-baseline upkeep. Starting from the hypothesis that traditional SI patterns can't sustain volume · traceability · doc SSOT simultaneously, I instead <strong>design and build the Agent AI ops environment itself</strong>.
+            A <strong>multi-agent orchestration framework</strong> I'm designing and building so that autonomous AI agents collaborate across a project's entire software lifecycle. One orchestrator (chair) + 8 domain master agents work as <strong>governed, mutually-untrusted peers</strong>. The discipline is not "calling an LLM" but <strong>agent-experience (AX) design — treating how agents wake, are authorized, communicate, and remember as first-class architecture</strong>. This environment is my core operational infrastructure for running multiple projects in parallel.
           </div>
         </div>
 
         <div class="project-field">
           <div class="field-label">problem</div>
           <div class="field-content ko" lang="ko">
-            (1) 1인 풀스택 분량 한계 — 모든 레이어 동시 진행 (도메인 진화 · EF migration · OpenAPI adapter · UI · Edge gRPC · CI/CD). (2) 사이클 인지 부담 — 누적 사이클 · ADR · lessons-learned가 인간 인지 한계 초과 시 routine 추적 불가. (3) 다중 PC · 다중 세션 race — 동일 worktree 침투 · SSOT 충돌 · 리스너 단절 등 충돌 회피 게이트 자동화 필요. (4) 외부 응답 트랙 누락 — 다영역 무응답 항목 시간 base reminder 없이 추적 불가. (5) 회귀 baseline 유지 — 코드 변경 1건당 다단 게이트 누락 시 사고 발현.
+            (1) 자율 LLM 에이전트 다수를 <strong>안전하게 협업</strong>시키는 거버넌스 부재 — 권한 · 신원 · 루프 · 감사. (2) 에이전트 간 통신을 신뢰 경계 위에서 설계 (발언권 ≠ 실행권). (3) 작업 분배 · 소유권 race — claim · lease · 중복 실행 방지. (4) 세션을 넘는 <strong>기억 영속 · 검색</strong>. (5) 1인이 다중 도메인 풀스택을 끌면서 추적성 · SSOT · 회귀 baseline을 동시 유지.
           </div>
           <div class="field-content" lang="en">
-            (1) Solo full-stack volume ceiling — every layer advances simultaneously (domain evolution · EF migrations · OpenAPI adapters · UI · Edge gRPC · CI/CD). (2) Cycle cognitive load — once accumulated cycles · ADRs · lessons-learned exceed human cognitive limits, routines stop being traceable. (3) Multi-PC · multi-session races — same-worktree intrusion · SSOT conflicts · listener dropouts force collision-avoidance gates to be automated. (4) External-response tracking gaps — multi-domain no-response items can't be tracked without time-based reminders. (5) Regression-baseline maintenance — missing a single gate per code change surfaces as a production incident.
+            (1) No governance to make many autonomous LLM agents <strong>collaborate safely</strong> — permissions · identity · loops · audit. (2) Designing inter-agent communication on a trust boundary (speech-right ≠ execution-right). (3) Work distribution · ownership races — claim · lease · double-run prevention. (4) <strong>Memory persistence · search</strong> across sessions. (5) A single operator driving multi-domain full-stack while preserving traceability · SSOT · regression baselines.
           </div>
         </div>
-        
+
         <div class="project-field">
-          <div class="field-label">approach — 8 patterns</div>
+          <div class="field-label">approach — 7 patterns</div>
           <div class="field-content ko" lang="ko" style="margin-bottom: 0.5rem;">
-            Claude Code (Opus 4.7) + Telegram listener 기반 다층 Agent AI 운영 체계를 직접 설계 · 구축. 핵심 8 패턴:
+            위협모델 기반의 문서화된 설계 결정 34건 위에 설계한 핵심 7 패턴:
           </div>
           <div class="field-content" lang="en" style="margin-bottom: 0.5rem;">
-            Designed and built a layered Agent AI ops system on Claude Code (Opus 4.7) + a Telegram listener. The 8 core patterns:
+            7 core patterns, built on 34 documented design decisions (threat-model-based):
           </div>
           <ul class="pattern-list" lang="ko">
-            <li><span class="pattern-tag">A.</span> <strong>마스터-워커 병렬 처리 (2가지 방식)</strong> — 분량 1.5x 초과 검출 시 (a) <strong>sub-agent 방식</strong> (Agent SDK 단일 세션 내 sub-agent 병렬 spawn) 또는 (b) <strong>병렬 세션 에이전트 방식</strong> (별도 Claude Code 세션을 독립 spawn해 도메인 분담) 중 작업 특성에 따라 선택 후 마스터 통합</li>
-            <li><span class="pattern-tag">B.</span> <strong>MCP 서버 통합</strong> — Telegram (모바일 원격 · 첨부 양방향) + Atlassian Rovo (Confluence · Jira · JQL/CQL) 운영</li>
-            <li><span class="pattern-tag">C.</span> <strong>다층 SSOT 자동 라우팅</strong> — PROGRESS · checkpoint · backlog (Jira 표준 4영역) · retrospective · handoffs · lessons-learned · decisions를 글로벌 · 워크스페이스 · 프로젝트 3계층으로 분리, 세션 시작 시 8단 컨텍스트 로드 routine 자동 답습</li>
-            <li><span class="pattern-tag">D.</span> <strong>17개 dev-planning 모듈</strong> — architect / security / devops / governance / orchestrator / observability / data / api / qa 등을 격리 컨텍스트에서 호출</li>
-            <li><span class="pattern-tag">E.</span> <strong>자율 사이클 마감 패턴</strong> — 사전 측정 → 결정 매트릭스 → 구현 → PR → CI 검증 → SSOT 9단 갱신 → 다음 사이클 진입까지 단일 텔레그램 지시로 자율 처리</li>
-            <li><span class="pattern-tag">F.</span> <strong>신설 routine 자동 정식화</strong> — 8단 절차 + 임계값 게이트 base 자동 등재 + 회고 자동 sync + 사고 학습 자동 등재</li>
-            <li><span class="pattern-tag">G.</span> <strong>δ 하이브리드 백업</strong> — git delta packing + 주 1회 snapshot + retention 정책</li>
-            <li><span class="pattern-tag">H.</span> <strong>검증 게이트</strong> — race 6영역 측정 · 외부 응답 trace · 빌드 사고 zero 누적 trace</li>
+            <li><span class="pattern-tag">A.</span> <strong>Deny-by-default 권한 매트릭스 + append-only 감사</strong> — 3 거버넌스 티어 · 리스크 클래스 R0–R3 · TTL grant, 거부(deny)도 보안 신호로 영구 기록</li>
+            <li><span class="pattern-tag">B.</span> <strong>Taint-intersection 권한</strong> — 트리거 체인 전체의 권한 교집합으로 confused-deputy(권한 세탁) 차단, taint 리셋은 인간만</li>
+            <li><span class="pattern-tag">C.</span> <strong>상호-비신뢰 에이전트 모델</strong> — 서버측 신원 확정(클라이언트 주장 무시 · token 검증) · 발언권 ≠ 실행권 · 무방향 참가자집합 루프 가드</li>
+            <li><span class="pattern-tag">D.</span> <strong>MCP "전령(herald)"</strong> — LLM-free 씬 게이트웨이, 11개 도구로 에이전트가 실제 백엔드에 작업 push/pull · 요청마다 토큰 재로딩(무중단 회전)</li>
+            <li><span class="pattern-tag">E.</span> <strong>하이브리드 워커 오케스트레이션</strong> — 작업 큐 SSOT · CAS claim · lease-TTL(idempotent 갱신) · fencing token(stale 워커 덮어쓰기 차단) · 만료 sweeper</li>
+            <li><span class="pattern-tag">F.</span> <strong>File-SSOT + 재생성 가능한 파생 인덱스 메모리</strong> — 로컬 마크다운 = 권위 SSOT, 검색 인덱스는 파일에서 재생성 가능한 파생물(단방향 file→DB로 drift 제거). 인덱스 구현은 벡터 임베딩 → 비-RAG 렉시컬·그래프 방향으로 재설계 진행 중</li>
+            <li><span class="pattern-tag">G.</span> <strong>유휴-실패 통합 신뢰성 계층</strong> — credential keep-warm · SSE 재인증 · monotonic seq 커서 catch-up(at-least-once 전달)</li>
           </ul>
           <ul class="pattern-list" lang="en">
-            <li><span class="pattern-tag">A.</span> <strong>Master-worker parallelism (two modes)</strong> — when 1.5× volume is detected, pick (a) <strong>sub-agent mode</strong> (parallel sub-agents spawned via the Agent SDK in one session) or (b) <strong>parallel-session agent mode</strong> (independent Claude Code sessions per domain), then integrate at the master</li>
-            <li><span class="pattern-tag">B.</span> <strong>MCP server integration</strong> — Telegram (mobile remote · two-way attachments) + Atlassian Rovo (Confluence · Jira · JQL/CQL)</li>
-            <li><span class="pattern-tag">C.</span> <strong>Layered SSOT auto-routing</strong> — PROGRESS · checkpoint · backlog (4-state Jira-standard) · retrospective · handoffs · lessons-learned · decisions split across global · workspace · project tiers; an 8-step context load routine auto-runs on session start</li>
-            <li><span class="pattern-tag">D.</span> <strong>17 dev-planning modules</strong> — architect / security / devops / governance / orchestrator / observability / data / api / qa, etc., invoked in isolated contexts</li>
-            <li><span class="pattern-tag">E.</span> <strong>Autonomous cycle-closing pattern</strong> — pre-measure → decision matrix → implement → PR → CI verify → 9-step SSOT update → enter next cycle, all from a single Telegram instruction</li>
-            <li><span class="pattern-tag">F.</span> <strong>New-routine auto-formalization</strong> — 8-step procedure + threshold gates auto-registered + retrospective auto-synced + incident learnings auto-recorded</li>
-            <li><span class="pattern-tag">G.</span> <strong>Hybrid δ-backup</strong> — git delta packing + weekly snapshots + retention policy</li>
-            <li><span class="pattern-tag">H.</span> <strong>Verification gates</strong> — 6-area race measurement · external-response trace · zero-incident cumulative build trace</li>
+            <li><span class="pattern-tag">A.</span> <strong>Deny-by-default permission matrix + append-only audit</strong> — 3 governance tiers · risk classes R0–R3 · TTL grants; denials are permanently logged as a security signal too</li>
+            <li><span class="pattern-tag">B.</span> <strong>Taint-intersection authority</strong> — effective permission = the intersection across the whole trigger chain, blocking confused-deputy privilege laundering; only a human resets taint</li>
+            <li><span class="pattern-tag">C.</span> <strong>Mutually-untrusted agent model</strong> — server-determined identity (ignore client-claimed sender · verify token) · speech-right ≠ execution-right · undirected participant-set loop guard</li>
+            <li><span class="pattern-tag">D.</span> <strong>MCP "herald"</strong> — an LLM-free thin gateway; 11 tools let agents push/pull work into a real backend · per-request token reload (zero-downtime rotation)</li>
+            <li><span class="pattern-tag">E.</span> <strong>Hybrid worker orchestration</strong> — task queue as SSOT · CAS claim · lease-TTL (idempotent renew) · fencing token (stale worker can't overwrite) · expiry sweeper</li>
+            <li><span class="pattern-tag">F.</span> <strong>File-SSOT + regenerable derived-index memory</strong> — local markdown = authoritative SSOT; the search index is a regenerable derivative of the files (one-way file→DB eliminates drift). Index implementation is being redesigned from vector embeddings toward a non-RAG lexical + link-graph approach</li>
+            <li><span class="pattern-tag">G.</span> <strong>Unified idle-failure reliability layer</strong> — credential keep-warm · SSE re-auth · monotonic seq-cursor catch-up (at-least-once delivery)</li>
           </ul>
           <div class="tech-decision" lang="ko">
-            <strong>// key technical decisions</strong> Interactive 전용 (headless 영구 금지) · PowerShell 7+ enforce · 1 PC = 1 Claude Code 보장 · SSOT 단방향 + 피드백 역방향 루프 · 모든 자산에 SemVer + MIGRATION + 9 필드 frontmatter 의무
+            <strong>// key technical decisions</strong> Interactive 전용 · 다중 LLM 중립 North Star · 위협모델 기반 설계 결정 34건 문서화 · 시스템이 자기 자신을 dogfooding (AF를 만드는 에이전트 팀이 AF의 패턴 위에서 동작)
           </div>
           <div class="tech-decision" lang="en">
-            <strong>// key technical decisions</strong> Interactive-only (headless permanently banned) · PowerShell 7+ enforced · 1 PC = 1 Claude Code guaranteed · one-way SSOT + reverse feedback loop · every asset must carry SemVer + MIGRATION + 9-field frontmatter
+            <strong>// key technical decisions</strong> Interactive-only · multi-LLM-neutral North Star · 34 documented threat-model design decisions · the system dogfoods itself (the agent fleet that builds AF runs on AF's own patterns)
           </div>
         </div>
-        
+
         <div class="project-field">
           <div class="field-label">result</div>
           <div class="field-content ko" lang="ko">
-            1인이 다중 도메인을 풀스택으로 병행 운영하면서도 운영 안정성 · 정합성 · 회귀 baseline을 유지하는 패러다임을 실증 중. 자율 사이클 마감 패턴이 정착되면서 단일 텔레그램 지시만으로 사이클이 흐름. routine 정식화가 누적될수록 인간 인지 부담은 줄고 패턴 답습 비율이 늘어남. 검증 게이트는 <strong>build incident 0건 누적</strong>을 유지해 사고 회피 트랙을 누적.
+            멀티에이전트 <strong>거버넌스 · 안전 · 오케스트레이션 · 메모리</strong>를 1급 아키텍처로 설계 · 문서화(설계 결정 34건). 봇간 통신 체계 운영 중 · NestJS + PostgreSQL 36 모델 백엔드 가동 · MCP 전령 11 도구 운영. 이 환경이 다수 프로젝트의 병행 운영을 실제로 떠받치는 <strong>운영 엔진</strong>으로 작동.
           </div>
           <div class="field-content" lang="en">
-            Actively proving out a paradigm where a single operator runs multiple full-stack domains in parallel while preserving ops stability · integrity · regression baselines. As the autonomous cycle-closing pattern matures, entire cycles flow from a single Telegram instruction. The more routines are formalized, the lower the human cognitive load and the higher the pattern-replay ratio. Verification gates sustain a <strong>cumulative zero build-incident track record</strong>.
+            Designed and documented multi-agent <strong>governance · safety · orchestration · memory</strong> as first-class architecture (34 documented design decisions). Bot-to-bot comms operational · NestJS + PostgreSQL 36-model backend running · MCP herald with 11 tools. This environment is the <strong>operational engine</strong> behind running multiple projects in parallel.
           </div>
           <div class="metrics">
             <div class="metric">
-              <div class="metric-label"><span lang="ko">운영 패턴</span><span lang="en">Operating pattern</span></div>
-              <div class="metric-value ko">Solo full-stack + Multi-domain parallel</div>
-              <div class="metric-context"><span lang="ko">AgriTech + Sports-Media AI 도메인 병행, 외부 다중 벤더 동시 조율</span><span lang="en">AgriTech + Sports-Media AI domains in parallel, multi-vendor coordination concurrent</span></div>
+              <div class="metric-label"><span lang="ko">에이전트 조직</span><span lang="en">Agent org</span></div>
+              <div class="metric-value ko"><span lang="ko">오케스트레이터 + 8 도메인 마스터</span><span lang="en">Orchestrator + 8 domain masters</span></div>
+              <div class="metric-context"><span lang="ko">거버넌스된 상호-비신뢰 peer로 협업</span><span lang="en">Collaborating as governed, mutually-untrusted peers</span></div>
             </div>
             <div class="metric">
-              <div class="metric-label"><span lang="ko">Agent AI 운영 체계</span><span lang="en">Agent AI ops system</span></div>
-              <div class="metric-value ko">8 patterns</div>
-              <div class="metric-context"><span lang="ko">직접 설계·구축. 별도 메타 자산(automation-hub)에 영구 누적 운영 — 의도적 접근 통제</span><span lang="en">Designed and built end-to-end. Accumulated in a separate meta-asset (automation-hub) — kept under deliberate access control</span></div>
+              <div class="metric-label"><span lang="ko">설계 깊이</span><span lang="en">Design depth</span></div>
+              <div class="metric-value"><span lang="ko">설계 결정 34건</span><span lang="en">34 design decisions</span></div>
+              <div class="metric-context"><span lang="ko">위협모델 · 권한 · 통신 · 메모리 의사결정 기록</span><span lang="en">Threat-model · permission · comms · memory decision records</span></div>
             </div>
             <div class="metric">
-              <div class="metric-label"><span lang="ko">검증 게이트</span><span lang="en">Verification gates</span></div>
-              <div class="metric-value">build incident: 0</div>
-              <div class="metric-context"><span lang="ko">솔루션 전체 빌드 + 회귀 + API 스펙 검증 + 빌드 출력 다단 게이트</span><span lang="en">Full-solution build + regression + API-spec verification + multi-stage build-output gates</span></div>
+              <div class="metric-label"><span lang="ko">운영 백엔드</span><span lang="en">Operating backend</span></div>
+              <div class="metric-value ko"><span lang="ko">NestJS + Postgres 36모델 · MCP 전령 11도구</span><span lang="en">NestJS + Postgres 36 models · MCP herald 11 tools</span></div>
+              <div class="metric-context"><span lang="ko">봇간 통신 체계 운영 중</span><span lang="en">Bot-to-bot comms operational</span></div>
+            </div>
+            <div class="metric">
+              <div class="metric-label"><span lang="ko">AI/AX 핵심 역량</span><span lang="en">Core AI/AX capability</span></div>
+              <div class="metric-value ko"><span lang="ko">멀티에이전트 거버넌스 · 안전 · 오케스트레이션 · 메모리</span><span lang="en">Multi-agent governance · safety · orchestration · memory</span></div>
+              <div class="metric-context"><span lang="ko">Agent-AI Platform / AI Eng Lead 직무의 희귀 역량</span><span lang="en">A rare skill set for Agent-AI Platform / AI Eng Lead roles</span></div>
             </div>
           </div>
         </div>
@@ -1332,29 +1337,282 @@
         <div class="project-field">
           <div class="field-label">stack</div>
           <div class="stack-chips">
-            <span class="chip">Claude Code (Opus 4.7)</span>
-            <span class="chip">MCP — Telegram</span>
-            <span class="chip">MCP — Atlassian Rovo</span>
+            <span class="chip">Claude Code (Opus 4.8)</span>
+            <span class="chip">MCP — herald (custom)</span>
             <span class="chip">Agent SDK</span>
-            <span class="chip">dev-planning (17 modules)</span>
-            <span class="chip">.NET 10</span>
-            <span class="chip">.NET Core</span>
-            <span class="chip">.NET Web API</span>
-            <span class="chip">Clean Architecture</span>
-            <span class="chip">MudBlazor + Blazor Server</span>
-            <span class="chip">EF Core</span>
-            <span class="chip">Time-series DB</span>
-            <span class="chip">xUnit · Playwright</span>
-            <span class="chip">GitHub Actions</span>
-            <span class="chip">PowerShell 7+</span>
-            <span class="chip">Git worktree + δ-backup</span>
+            <span class="chip">NestJS</span>
+            <span class="chip">Prisma · PostgreSQL</span>
+            <span class="chip">TypeScript</span>
+            <span class="chip">Event-sourced design</span>
+            <span class="chip">Discord / Telegram bots</span>
+          </div>
+        </div>
+
+        <div class="project-field">
+          <div class="field-label">live</div>
+          <div class="field-content ko" lang="ko">
+            <a href="https://harry.tail488f52.ts.net" style="color: var(--accent);">라이브 시스템 열기 →</a> · Tailscale 연결 시 직접 시연 (개인 시연용 · 외부 공개 아님)
+          </div>
+          <div class="field-content" lang="en">
+            <a href="https://harry.tail488f52.ts.net" style="color: var(--accent);">open the live system →</a> · demoed directly over Tailscale (private demo · not publicly exposed)
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- SLOT B — System Depth -->
+    <!-- SLOT C — Proprietary Meta-Asset (Agent-Friendly Env) -->
+    <div class="project">
+      <div class="project-head">
+        <span class="project-title"><span lang="ko">automation-hub — Agent AI 운영 환경의 누적 메타 자산</span><span lang="en">automation-hub — Cumulative Meta-Asset for an Agent AI Ops Environment</span></span>
+        <div class="project-meta">
+          <span class="slot">slot · agent-friendly-env</span>
+          <span class="period">2026 (live)</span>
+          <span class="status proprietary">proprietary, kept private by design</span>
+        </div>
+      </div>
+      <div class="project-body">
+
+        <div class="project-field">
+          <div class="field-label">context</div>
+          <div class="field-content ko" lang="ko">
+            다년간 누적해온 Claude Code Agent AI 운영 자산을 single source of truth로 통합한 메타 자산. 글로벌 지침 · 에이전트 · 스킬 · 커맨드 · 템플릿 · 자동화 스크립트 · 정책을 단일 git 레포에서 관리하며, post-commit hook이 모든 PC · 프로젝트로 자동 배포. 정적 1회성 보강이 아닌 SemVer + MIGRATION + 9-field frontmatter 기반의 <strong>살아있는 시스템(Evolving System) 패러다임</strong>을 실증.
+          </div>
+          <div class="field-content" lang="en">
+            A meta-asset that consolidates years of accumulated Claude Code Agent AI ops assets into a single source of truth. Global instructions · agents · skills · commands · templates · automation scripts · policies all live in one git repo, with a post-commit hook auto-deploying to every PC · project. Not a one-shot static reinforcement — instead, it proves out an <strong>Evolving System paradigm</strong> built on SemVer + MIGRATION + 9-field frontmatter.
+          </div>
+          <div class="access-notice" lang="ko">
+            <strong>// access policy ·</strong> 자산의 가치와 누적성을 보호하기 위해 의도적으로 접근 통제 운영 중이며, <strong>진지한 채용 검토나 협업 engagement에 한해 선별적 접근을 허용</strong>합니다.
+          </div>
+          <div class="access-notice" lang="en">
+            <strong>// access policy ·</strong> The asset is kept under deliberate access control to protect its value and cumulative depth. <strong>Selective access is granted only for serious hiring evaluations or collaboration engagements.</strong>
+          </div>
+        </div>
+
+        <div class="project-field">
+          <div class="field-label">problem</div>
+          <div class="field-content ko" lang="ko">
+            1인 운영자가 다중 프로젝트에서 Claude Code Agent 환경을 운영할 때 (1) 자산 드리프트 — 글로벌 지침 변경이 N 프로젝트에 자동 전파되지 않으면 일관성 깨짐. (2) 정적 자산 한계 — 1회 작성한 스킬 · 에이전트가 진화하지 않으면 새 패러다임(Agent AI 시대)에 뒤처짐. (3) 메타 시각 부재 — 다중 프로젝트의 비전 · 로드맵 · 유기적 연계가 한 문서로 통합되지 않으면 cross-project 의사결정이 어려움. (4) <strong>자산 보호</strong> — 누적된 운영 자산이 무분별하게 노출되면 그 자체의 차별 가치를 잃음.
+          </div>
+          <div class="field-content" lang="en">
+            When a solo operator runs Claude Code Agent environments across multiple projects: (1) asset drift — without auto-propagation of global instructions across N projects, consistency breaks. (2) Static-asset ceiling — skills · agents written once and never evolved fall behind the new paradigm (the Agent AI era). (3) Missing meta-view — without consolidating vision · roadmap · organic interlinks across projects into one document, cross-project decisions get hard. (4) <strong>Asset protection</strong> — accumulated ops assets indiscriminately exposed lose their differentiating value.
+          </div>
+        </div>
+
+        <div class="project-field">
+          <div class="field-label">approach</div>
+          <ul class="pattern-list" lang="ko">
+            <li><span class="pattern-tag">A.</span> <strong>Git SSOT + 자동 배포</strong> — <code style="color:var(--accent);background:transparent;">automation-hub/global/</code>을 single source of truth로, post-commit hook이 모든 PC의 <code style="color:var(--accent);background:transparent;">~/.claude/</code>에 자동 sync</li>
+            <li><span class="pattern-tag">B.</span> <strong>project-curator 에이전트 + 4 도구</strong> — setup-new-project / drift-check / migrate / version 인터페이스 정의</li>
+            <li><span class="pattern-tag">C.</span> <strong>Evolving Template Architecture</strong> — 모든 자산에 SemVer · MIGRATION · 9 필드 frontmatter 의무 적용</li>
+            <li><span class="pattern-tag">D.</span> <strong>master-ecosystem-overview</strong> — 활성 생태계 다중 프로젝트의 다층 정체성 8축 + 유기적 연계 4 관점 매트릭스 + Phase 진화 로드맵을 단일 문서로 정의</li>
+            <li><span class="pattern-tag">E.</span> <strong>PC별 어시스턴트 정체성 운영</strong> — ops1=제니퍼, ops2=Nova처럼 PC별로 어시스턴트 이름을 분리해 멀티 PC 컨텍스트를 명확히</li>
+            <li><span class="pattern-tag">F.</span> <strong>자체 자산 진화 사례 누적</strong> — 본 cycle만 해도 master-ecosystem v0.2 → v1.0 major 갱신을 PR 머지로 영구 기록</li>
+            <li><span class="pattern-tag">G.</span> <strong>접근 통제 정책</strong> — 자산의 차별 가치를 보호하기 위한 의도적 비공개 운영. 진지한 engagement(채용 검토 · 전략 협업)에 한해 선별적 invite 가능</li>
+          </ul>
+          <ul class="pattern-list" lang="en">
+            <li><span class="pattern-tag">A.</span> <strong>Git SSOT + auto-deploy</strong> — <code style="color:var(--accent);background:transparent;">automation-hub/global/</code> as the single source of truth; a post-commit hook auto-syncs to every PC's <code style="color:var(--accent);background:transparent;">~/.claude/</code></li>
+            <li><span class="pattern-tag">B.</span> <strong>project-curator agent + 4 tools</strong> — setup-new-project / drift-check / migrate / version interface definitions</li>
+            <li><span class="pattern-tag">C.</span> <strong>Evolving Template Architecture</strong> — every asset must carry SemVer · MIGRATION · 9-field frontmatter</li>
+            <li><span class="pattern-tag">D.</span> <strong>master-ecosystem-overview</strong> — one document defining the 8-axis multi-layer identity, 4-perspective interlink matrix, and Phase evolution roadmap across the active project ecosystem</li>
+            <li><span class="pattern-tag">E.</span> <strong>Per-PC assistant identity</strong> — ops1 = Jennifer, ops2 = Nova: assistant names split per machine to keep multi-PC context unambiguous</li>
+            <li><span class="pattern-tag">F.</span> <strong>Self-asset evolution log</strong> — this very cycle permanently records the master-ecosystem v0.2 → v1.0 major bump as a merged PR</li>
+            <li><span class="pattern-tag">G.</span> <strong>Access-control policy</strong> — deliberately kept private to protect the asset's differentiating value. Selective invite available only for serious engagements (hiring evaluation · strategic collaboration)</li>
+          </ul>
+        </div>
+        
+        <div class="project-field">
+          <div class="field-label">result</div>
+          <div class="field-content ko" lang="ko">
+            1인 단독 기획 · 설계 · 구현 · 운영. 살아있는 자산이 정적 자기소개보다 강력하다는 사실을 자기 자신으로 증명 — 자산의 진화는 내부 git log로 영속 기록되며, 진지한 검토 단계에서 선별 공유 가능. <strong>본 포트폴리오 사이트 또한 automation-hub의 다음 사용 사례로 진화 중</strong> — 사이트 자체가 비공개 자산의 첫 공개 산출물이라는 메타 구조.
+          </div>
+          <div class="field-content" lang="en">
+            Solo planning · design · implementation · ops. Proves on itself that a living asset is stronger than a static résumé — asset evolution is permanently recorded in the internal git log and can be selectively shared during serious evaluation. <strong>This portfolio site itself is evolving as the next use-case of automation-hub</strong> — a meta-structure where the site stands as the first public deliverable of the private asset.
+          </div>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-label"><span lang="ko">운영 상태</span><span lang="en">Operating status</span></div>
+              <div class="metric-value ko">proprietary, private by design</div>
+              <div class="metric-context"><span lang="ko">1인 단독 운영. 자산의 차별 가치 보호를 위한 의도적 접근 통제 · 진지한 engagement 시 선별적 invite 가능</span><span lang="en">Solo operation. Deliberate access control protects the asset's differentiating value — selective invite available for serious engagement</span></div>
+            </div>
+            <div class="metric">
+              <div class="metric-label"><span lang="ko">본 cycle major 갱신</span><span lang="en">Major bump this cycle</span></div>
+              <div class="metric-value">master-ecosystem v0.2 → v1.0</div>
+              <div class="metric-context"><span lang="ko">2026-05-18 PR #28 머지 — §1.5 8축 신설 + §3.5 4 관점 매트릭스 + 5 Phase 로드맵</span><span lang="en">PR #28 merged 2026-05-18 — added §1.5 8-axis identity + §3.5 4-perspective matrix + 5-Phase roadmap</span></div>
+            </div>
+            <div class="metric">
+              <div class="metric-label"><span lang="ko">메타 시너지</span><span lang="en">Meta synergy</span></div>
+              <div class="metric-value ko"><span lang="ko">이 사이트 = 자산의 첫 공개 산출물</span><span lang="en">This site = the asset's first public deliverable</span></div>
+              <div class="metric-context"><span lang="ko">비공개 자산이 살아 움직이는 모습을 사이트 자체가 시연</span><span lang="en">The site itself demonstrates the private asset in motion</span></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-field">
+          <div class="field-label">stack</div>
+          <div class="stack-chips">
+            <span class="chip">Git (SSOT, internal)</span>
+            <span class="chip">PowerShell 7+ / Bash</span>
+            <span class="chip">Claude Code CLI</span>
+            <span class="chip">MCP — Telegram plugin</span>
+            <span class="chip">Markdown + YAML 9-field</span>
+            <span class="chip">post-commit hook auto-sync</span>
+            <span class="chip">Windows Task Scheduler</span>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- SLOT — claude-ops (CO · AI work) -->
+    <div class="project">
+      <div class="project-head">
+        <span class="project-title"><span lang="ko">claude-ops (CO) — Claude Code 에이전트 브로커 · 실행 컨트롤 플레인</span><span lang="en">claude-ops (CO) — A Broker / Execution Control-plane for Claude Code Agent Fleets</span></span>
+        <div class="project-meta">
+          <span class="slot">slot · agent-control-plane</span>
+          <span class="period">2026</span>
+          <span class="status in-progress">impl complete · tested</span>
+        </div>
+      </div>
+      <div class="project-body">
+
+        <div class="project-field">
+          <div class="field-label">context</div>
+          <div class="field-content ko" lang="ko">
+            Claude Code 에이전트 fleet을 위한 자작 <strong>브로커 / 실행 컨트롤 플레인</strong>. 단일 채팅 채널을 <strong>DB 기반 order · task 라이프사이클 엔진</strong>으로 전환해, 작업을 ephemeral · persistent AI 코딩 세션에 디스패치하고 결과를 이벤트 기반 NOTIFY 스트림으로 팬아웃한다. <strong>provider-neutral</strong> 설계로 특정 LLM 벤더에 종속되지 않는다. (역할 구분 — automation-hub = 규칙 · 컨벤션 정의 / autoflowagent = 에이전트 조율 / <strong>claude-ops = 실제 작업을 라우팅 · 영속화하는 인프라 · 런타임 계층</strong>)
+          </div>
+          <div class="field-content" lang="en">
+            A self-built <strong>broker / execution control-plane</strong> for Claude Code agent fleets. It turns a single chat channel into a <strong>DB-backed order · task lifecycle engine</strong>, dispatching work to ephemeral · persistent AI coding sessions and fanning results back over event-driven NOTIFY streams. A <strong>provider-neutral</strong> design avoids lock-in to any single LLM vendor. (Layering — automation-hub = rules · conventions / autoflowagent = agent coordination / <strong>claude-ops = the infra · runtime layer that actually routes · persists the work</strong>)
+          </div>
+        </div>
+
+        <div class="project-field">
+          <div class="field-label">approach</div>
+          <ul class="pattern-list" lang="ko">
+            <li><span class="pattern-tag">A.</span> <strong>Provider-neutral 컨트롤 플레인</strong> — Order→Task(DAG)→Worker 도메인 + LLM-agnostic targetEngine 추상화(interactive_claude / ollama / openai / gemini), 브로커 코드는 특정 엔진을 하드코딩하지 않음</li>
+            <li><span class="pattern-tag">B.</span> <strong>Dispatch-pull 워커 모델 (실증 기반)</strong> — 백그라운드 CLI spawn이 TTY 의존으로 단명함을 PoC로 반증 → 워커를 브로커 task로 등록하고 persistent 세션이 LISTEN/NOTIFY로 pull</li>
+            <li><span class="pattern-tag">C.</span> <strong>MCP-native 세션 통합</strong> — 표준 Model Context Protocol을 에이전트↔브로커 계약으로 사용 (fetch_pending → metadata 재수화 → complete/fail/cancel), 커스텀 폴링 X</li>
+            <li><span class="pattern-tag">D.</span> <strong>이벤트 기반 팬아웃</strong> — Postgres LISTEN/NOTIFY 트리거 → long-running listener → pluggable broadcaster, 능동 폴링 제로</li>
+            <li><span class="pattern-tag">E.</span> <strong>Dual-SSOT 데이터 아키텍처</strong> — 휴먼 산출물 = 파일 · Git-SSOT, 운영 상태(session · task · feedback · audit) = DB-SSOT, file→DB는 파생 캐시 + 일일 drift 조정</li>
+            <li><span class="pattern-tag">F.</span> <strong>Clean-Architecture + 멀티 엔트리포인트</strong> — 동일 BrokerService를 MCP stdio · REST(OpenAPI) · orchestrator에서 재사용, 스토리지 swappable(InMemory ↔ Prisma)</li>
+          </ul>
+          <ul class="pattern-list" lang="en">
+            <li><span class="pattern-tag">A.</span> <strong>Provider-neutral control plane</strong> — Order→Task(DAG)→Worker domain + an LLM-agnostic targetEngine abstraction (interactive_claude / ollama / openai / gemini); broker code hard-references no single engine</li>
+            <li><span class="pattern-tag">B.</span> <strong>Dispatch-pull worker model (evidence-driven)</strong> — a PoC disproved background CLI spawn (dies on TTY dependence) → workers register as broker tasks and persistent sessions pull over LISTEN/NOTIFY</li>
+            <li><span class="pattern-tag">C.</span> <strong>MCP-native session integration</strong> — the standard Model Context Protocol as the agent↔broker contract (fetch_pending → rehydrate metadata → complete/fail/cancel), no custom polling</li>
+            <li><span class="pattern-tag">D.</span> <strong>Event-driven fan-out</strong> — Postgres LISTEN/NOTIFY triggers → a long-running listener → pluggable broadcasters; zero active polling</li>
+            <li><span class="pattern-tag">E.</span> <strong>Dual-SSOT data architecture</strong> — human artifacts = file · Git-SSOT, operational state (session · task · feedback · audit) = DB-SSOT; file→DB is a derived cache with daily drift reconciliation</li>
+            <li><span class="pattern-tag">F.</span> <strong>Clean-Architecture + multi-entrypoint reuse</strong> — one BrokerService reused from MCP stdio · REST (OpenAPI) · orchestrator; storage swappable (InMemory ↔ Prisma)</li>
+          </ul>
+        </div>
+
+        <div class="project-field">
+          <div class="field-label">result</div>
+          <div class="field-content ko" lang="ko">
+            브로커 코어 <strong>구현 완료 · 테스트 통과</strong> (unit ~392 / e2e ~258 green). 런타임 검증으로 full path 실증 — 서버 부팅 → DB 영속(Prisma/Postgres) → LISTEN/NOTIFY fire+receive. 다수 AI 에이전트의 병렬 실행을 production화하는 <strong>인프라 계층</strong>.
+          </div>
+          <div class="field-content" lang="en">
+            Broker core <strong>implemented · tested</strong> (unit ~392 / e2e ~258 green). Runtime validation proved the full path — server boot → DB persistence (Prisma/Postgres) → LISTEN/NOTIFY fire+receive. The <strong>infrastructure layer</strong> that productionizes parallel execution across many AI agents.
+          </div>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-label"><span lang="ko">검증</span><span lang="en">Verification</span></div>
+              <div class="metric-value ko"><span lang="ko">unit ~392 / e2e ~258 green</span><span lang="en">unit ~392 / e2e ~258 green</span></div>
+              <div class="metric-context"><span lang="ko">런타임 사이클로 DB 영속 + NOTIFY 실증</span><span lang="en">Runtime cycle proved DB persistence + NOTIFY</span></div>
+            </div>
+            <div class="metric">
+              <div class="metric-label"><span lang="ko">인터페이스</span><span lang="en">Interfaces</span></div>
+              <div class="metric-value ko"><span lang="ko">MCP 12 도구 · REST(OpenAPI)</span><span lang="en">MCP 12 tools · REST (OpenAPI)</span></div>
+              <div class="metric-context"><span lang="ko">에이전트↔브로커 표준 계약</span><span lang="en">Standards-based agent↔broker contract</span></div>
+            </div>
+            <div class="metric">
+              <div class="metric-label"><span lang="ko">핵심 설계</span><span lang="en">Core design</span></div>
+              <div class="metric-value ko"><span lang="ko">provider-neutral · 이벤트 기반 dispatch-pull</span><span lang="en">provider-neutral · event-driven dispatch-pull</span></div>
+              <div class="metric-context"><span lang="ko">LLM 벤더 forward-compat · 능동 폴링 제로</span><span lang="en">LLM-vendor forward-compat · zero active polling</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-field">
+          <div class="field-label">stack</div>
+          <div class="stack-chips">
+            <span class="chip">NestJS 10</span>
+            <span class="chip">TypeScript</span>
+            <span class="chip">Prisma · PostgreSQL 17</span>
+            <span class="chip">pgvector</span>
+            <span class="chip">LISTEN / NOTIFY</span>
+            <span class="chip">MCP (stdio · JSON-RPC 2.0)</span>
+            <span class="chip">BullMQ + Redis</span>
+            <span class="chip">Socket.IO</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="field-label" style="margin: 1.5rem 0 0.75rem; opacity: 0.75;">// <span lang="ko">현재 회사 업무</span><span lang="en">current company work</span></div>
+
+    <!-- SLOT — Sports Media AI (brief, company work) -->
+    <div class="project">
+      <div class="project-head">
+        <span class="project-title"><span lang="ko">AI 기반 스포츠 영상 아카이빙 플랫폼 — 풀스택 통합 미디어 파이프라인</span><span lang="en">AI-driven Sports Video Archiving Platform — A Full-stack Integrated Media Pipeline</span></span>
+        <div class="project-meta">
+          <span class="slot">slot · company work</span>
+          <span class="period">2025.11 — now</span>
+          <span class="status in-progress">in-progress</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-field">
+          <div class="field-label">summary</div>
+          <div class="field-content ko" lang="ko">
+            대학 스포츠 영상을 수집 · 가공 · 서비스하는 AI 미디어 플랫폼. 본인 역할 — <strong>PM 겸 핵심 인코딩 서비스 단독 개발자</strong>로, 4인 팀 리딩과 코어 개발 · DB 설계를 동시 수행. 현재 회사 진행 업무로, 상세 기술스택 · 사양은 공개에서 제외한다.
+          </div>
+          <div class="field-content" lang="en">
+            An AI media platform that captures · processes · serves collegiate sports video. My role — <strong>PM and sole developer of the core encoding service</strong>, leading a 4-person team while writing core code and designing the DB. As current company work, detailed tech stack · specifics are kept out of public copy.
+          </div>
+          <div class="access-notice" lang="ko">
+            <strong>// confidentiality ·</strong> 회사 업무 — 상세 기술 · 아키텍처 · 사양은 비공개. 진지한 검토 단계에서 제한된 범위로 공유 가능합니다.
+          </div>
+          <div class="access-notice" lang="en">
+            <strong>// confidentiality ·</strong> Company work — detailed tech · architecture · specs are private. Limited disclosure is possible during serious evaluation.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLOT — Insect Smart-Farm (brief, company work) -->
+    <div class="project">
+      <div class="project-head">
+        <span class="project-title"><span lang="ko">곤충 스마트팜 통합 솔루션 — 1인 전 단계 풀스택 운영</span><span lang="en">Insect Smart-Farm Integrated Solution — Solo End-to-End Full-stack Ops</span></span>
+        <div class="project-meta">
+          <span class="slot">slot · company work</span>
+          <span class="period">2025.11 — now</span>
+          <span class="status in-progress">in-progress</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-field">
+          <div class="field-label">summary</div>
+          <div class="field-content ko" lang="ko">
+            산업용 곤충 사육 · 생산을 위한 통합 관제 솔루션을 <strong>1인이 기획부터 유지보수까지 전 과정 단독 운영</strong>. 현재 회사 진행 업무로, 상세 사양 · 기술스택 · 공정 내용은 공개에서 제외한다.
+          </div>
+          <div class="field-content" lang="en">
+            An integrated control solution for industrial insect breeding · production, <strong>run solo end-to-end from planning through maintenance</strong>. As current company work, detailed specs · tech stack · process content are kept out of public copy.
+          </div>
+          <div class="access-notice" lang="ko">
+            <strong>// confidentiality ·</strong> 회사 업무 — 상세 공정 · 기술 · 사양은 비공개. 진지한 검토 단계에서 제한된 범위로 공유 가능합니다.
+          </div>
+          <div class="access-notice" lang="en">
+            <strong>// confidentiality ·</strong> Company work — detailed process · tech · specs are private. Limited disclosure is possible during serious evaluation.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-label" style="margin: 1.5rem 0 0.75rem; opacity: 0.75;">// <span lang="ko">시니어 트랙 — 기반</span><span lang="en">senior track — foundation</span></div>
+
+    <!-- SLOT B — System Depth (moved to END) -->
     <div class="project">
       <div class="project-head">
         <span class="project-title"><span lang="ko">엔터프라이즈 SI 시니어 트랙 — 다영역 8년 누적 검증</span><span lang="en">Enterprise SI Senior Track — 8 Years of Multi-domain Accumulation</span></span>
@@ -1413,7 +1671,7 @@
             Carried PM or integration roles on 7+ additional projects, plus BEMS · smart collaboration systems. Title progression <strong>Manager → Senior Manager → Director</strong> serves as proof of a senior leadership track inside a single company.
           </div>
         </div>
-        
+
         <div class="project-field">
           <div class="field-label"><span lang="ko">result — 정량보다 두드러진 신뢰 신호</span><span lang="en">result — trust signals beyond raw metrics</span></div>
           <div class="metrics">
@@ -1439,7 +1697,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="project-field">
           <div class="field-label">stack</div>
           <div class="stack-chips">
@@ -1455,18 +1713,18 @@
             <span class="chip">Windows Server · Linux</span>
           </div>
         </div>
-        
+
       </div>
     </div>
-    
-    <!-- SLOT C — Proprietary Meta-Asset (Agent-Friendly Env) -->
+
+    <!-- SLOT — First Company: Telecom Infra C++ (senior track foundation) -->
     <div class="project">
       <div class="project-head">
-        <span class="project-title"><span lang="ko">automation-hub — Agent AI 운영 환경의 누적 메타 자산</span><span lang="en">automation-hub — Cumulative Meta-Asset for an Agent AI Ops Environment</span></span>
+        <span class="project-title"><span lang="ko">통신 인프라 SI — C++ 시스템 SW 7.5년 연속 트랙</span><span lang="en">Telecom Infrastructure SI — 7.5 Years of Continuous C++ System SW</span></span>
         <div class="project-meta">
-          <span class="slot">slot · agent-friendly-env</span>
-          <span class="period">2026 (live)</span>
-          <span class="status proprietary">proprietary, kept private by design</span>
+          <span class="slot">slot · system-sw-foundation</span>
+          <span class="period">2009.10 — 2017.04</span>
+          <span class="status shipped">shipped · 7y 6m</span>
         </div>
       </div>
       <div class="project-body">
@@ -1474,180 +1732,44 @@
         <div class="project-field">
           <div class="field-label">context</div>
           <div class="field-content ko" lang="ko">
-            다년간 누적해온 Claude Code Agent AI 운영 자산을 single source of truth로 통합한 메타 자산. 글로벌 지침 · 에이전트 · 스킬 · 커맨드 · 템플릿 · 자동화 스크립트 · 정책을 단일 git 레포에서 관리하며, post-commit hook이 모든 PC · 프로젝트로 자동 배포. 정적 1회성 보강이 아닌 SemVer + MIGRATION + 9-field frontmatter 기반의 <strong>살아있는 시스템(Evolving System) 패러다임</strong>을 실증.
+            첫 직장 — 통신 인프라 SI 벤더에서 <strong>글로벌 전자 대기업 발주의 산업 통신시설(EES · HDI 등) 응용 SW</strong>를 한국·중국 cross-site 팀으로 7년 6개월 개발. <strong>C++ 기반 시스템 SW 깊이를 7.5년 연속 누적</strong>하며 사원 → 대리 → 과장으로 성장. 현 15년+ 시니어 트랙의 기술적 토대가 된 시기.
           </div>
           <div class="field-content" lang="en">
-            A meta-asset that consolidates years of accumulated Claude Code Agent AI ops assets into a single source of truth. Global instructions · agents · skills · commands · templates · automation scripts · policies all live in one git repo, with a post-commit hook auto-deploying to every PC · project. Not a one-shot static reinforcement — instead, it proves out an <strong>Evolving System paradigm</strong> built on SemVer + MIGRATION + 9-field frontmatter.
-          </div>
-          <div class="access-notice" lang="ko">
-            <strong>// access policy ·</strong> 자산의 가치와 누적성을 보호하기 위해 의도적으로 접근 통제 운영 중이며, <strong>진지한 채용 검토나 협업 engagement에 한해 선별적 접근을 허용</strong>합니다.
-          </div>
-          <div class="access-notice" lang="en">
-            <strong>// access policy ·</strong> The asset is kept under deliberate access control to protect its value and cumulative depth. <strong>Selective access is granted only for serious hiring evaluations or collaboration engagements.</strong>
-          </div>
-        </div>
-
-        <div class="project-field">
-          <div class="field-label">problem</div>
-          <div class="field-content ko" lang="ko">
-            1인 운영자가 다중 프로젝트에서 Claude Code Agent 환경을 운영할 때 (1) 자산 드리프트 — 글로벌 지침 변경이 N 프로젝트에 자동 전파되지 않으면 일관성 깨짐. (2) 정적 자산 한계 — 1회 작성한 스킬 · 에이전트가 진화하지 않으면 새 패러다임(Agent AI 시대)에 뒤처짐. (3) 메타 시각 부재 — 다중 프로젝트의 비전 · 로드맵 · 유기적 연계가 한 문서로 통합되지 않으면 cross-project 의사결정이 어려움. (4) <strong>자산 보호</strong> — 누적된 운영 자산이 무분별하게 노출되면 그 자체의 차별 가치를 잃음.
-          </div>
-          <div class="field-content" lang="en">
-            When a solo operator runs Claude Code Agent environments across multiple projects: (1) asset drift — without auto-propagation of global instructions across N projects, consistency breaks. (2) Static-asset ceiling — skills · agents written once and never evolved fall behind the new paradigm (the Agent AI era). (3) Missing meta-view — without consolidating vision · roadmap · organic interlinks across projects into one document, cross-project decisions get hard. (4) <strong>Asset protection</strong> — accumulated ops assets indiscriminately exposed lose their differentiating value.
+            First job — at a telecom infrastructure SI vendor, developed <strong>industrial telecom-facility application SW (EES · HDI, etc.) commissioned by a global electronics conglomerate</strong> across Korea·China cross-site teams for 7 years 6 months. <strong>Accumulated 7.5 continuous years of C++ system-SW depth</strong>, progressing Staff → Assistant Manager → Manager. The technical foundation of the current 15+ year senior track.
           </div>
         </div>
 
         <div class="project-field">
           <div class="field-label">approach</div>
           <ul class="pattern-list" lang="ko">
-            <li><span class="pattern-tag">A.</span> <strong>Git SSOT + 자동 배포</strong> — <code style="color:var(--accent);background:transparent;">automation-hub/global/</code>을 single source of truth로, post-commit hook이 모든 PC의 <code style="color:var(--accent);background:transparent;">~/.claude/</code>에 자동 sync</li>
-            <li><span class="pattern-tag">B.</span> <strong>project-curator 에이전트 + 4 도구</strong> — setup-new-project / drift-check / migrate / version 인터페이스 정의</li>
-            <li><span class="pattern-tag">C.</span> <strong>Evolving Template Architecture (ADR-002)</strong> — 모든 자산에 SemVer · MIGRATION · 9 필드 frontmatter 의무 적용</li>
-            <li><span class="pattern-tag">D.</span> <strong>master-ecosystem-overview</strong> — 활성 생태계 다중 프로젝트의 다층 정체성 8축 + 유기적 연계 4 관점 매트릭스 + Phase 진화 로드맵을 단일 문서로 정의</li>
-            <li><span class="pattern-tag">E.</span> <strong>PC별 어시스턴트 정체성 운영</strong> — ops1=제니퍼, ops2=Nova처럼 PC별로 어시스턴트 이름을 분리해 멀티 PC 컨텍스트를 명확히</li>
-            <li><span class="pattern-tag">F.</span> <strong>자체 자산 진화 사례 누적</strong> — 본 cycle만 해도 master-ecosystem v0.2 → v1.0 major 갱신을 PR 머지로 영구 기록</li>
-            <li><span class="pattern-tag">G.</span> <strong>접근 통제 정책</strong> — 자산의 차별 가치를 보호하기 위한 의도적 비공개 운영. 진지한 engagement(채용 검토 · 전략 협업)에 한해 선별적 invite 가능</li>
+            <li><span class="pattern-tag">a.</span> <strong>C++ 시스템 SW 개발</strong> — 산업 통신 인프라(EES · HDI) 응용 SW의 안정성·성능 중심 구현</li>
+            <li><span class="pattern-tag">b.</span> <strong>한·중 cross-site 협업</strong> — 한국·중국 분산 팀 환경에서 통합 개발·연동</li>
+            <li><span class="pattern-tag">c.</span> <strong>대기업 발주 프로젝트 수행</strong> — 글로벌 전자 대기업 발주 요건에 맞춘 산업용 SW 납품</li>
           </ul>
           <ul class="pattern-list" lang="en">
-            <li><span class="pattern-tag">A.</span> <strong>Git SSOT + auto-deploy</strong> — <code style="color:var(--accent);background:transparent;">automation-hub/global/</code> as the single source of truth; a post-commit hook auto-syncs to every PC's <code style="color:var(--accent);background:transparent;">~/.claude/</code></li>
-            <li><span class="pattern-tag">B.</span> <strong>project-curator agent + 4 tools</strong> — setup-new-project / drift-check / migrate / version interface definitions</li>
-            <li><span class="pattern-tag">C.</span> <strong>Evolving Template Architecture (ADR-002)</strong> — every asset must carry SemVer · MIGRATION · 9-field frontmatter</li>
-            <li><span class="pattern-tag">D.</span> <strong>master-ecosystem-overview</strong> — one document defining the 8-axis multi-layer identity, 4-perspective interlink matrix, and Phase evolution roadmap across the active project ecosystem</li>
-            <li><span class="pattern-tag">E.</span> <strong>Per-PC assistant identity</strong> — ops1 = Jennifer, ops2 = Nova: assistant names split per machine to keep multi-PC context unambiguous</li>
-            <li><span class="pattern-tag">F.</span> <strong>Self-asset evolution log</strong> — this very cycle permanently records the master-ecosystem v0.2 → v1.0 major bump as a merged PR</li>
-            <li><span class="pattern-tag">G.</span> <strong>Access-control policy</strong> — deliberately kept private to protect the asset's differentiating value. Selective invite available only for serious engagements (hiring evaluation · strategic collaboration)</li>
+            <li><span class="pattern-tag">a.</span> <strong>C++ system-SW development</strong> — stability·performance-focused implementation of industrial telecom infrastructure (EES · HDI) application SW</li>
+            <li><span class="pattern-tag">b.</span> <strong>Korea·China cross-site collaboration</strong> — integrated development across distributed Korea·China teams</li>
+            <li><span class="pattern-tag">c.</span> <strong>Enterprise-commissioned delivery</strong> — industrial SW delivered to a global electronics conglomerate's requirements</li>
           </ul>
         </div>
-        
+
         <div class="project-field">
           <div class="field-label">result</div>
-          <div class="field-content ko" lang="ko">
-            1인 단독 기획 · 설계 · 구현 · 운영. 살아있는 자산이 정적 자기소개보다 강력하다는 사실을 자기 자신으로 증명 — 자산의 진화는 내부 git log로 영속 기록되며, 진지한 검토 단계에서 선별 공유 가능. <strong>본 포트폴리오 사이트 또한 automation-hub의 다음 사용 사례로 진화 중</strong> — 사이트 자체가 비공개 자산의 첫 공개 산출물이라는 메타 구조.
-          </div>
-          <div class="field-content" lang="en">
-            Solo planning · design · implementation · ops. Proves on itself that a living asset is stronger than a static résumé — asset evolution is permanently recorded in the internal git log and can be selectively shared during serious evaluation. <strong>This portfolio site itself is evolving as the next use-case of automation-hub</strong> — a meta-structure where the site stands as the first public deliverable of the private asset.
-          </div>
           <div class="metrics">
             <div class="metric">
-              <div class="metric-label"><span lang="ko">운영 상태</span><span lang="en">Operating status</span></div>
-              <div class="metric-value ko">proprietary, private by design</div>
-              <div class="metric-context"><span lang="ko">1인 단독 운영. 자산의 차별 가치 보호를 위한 의도적 접근 통제 · 진지한 engagement 시 선별적 invite 가능</span><span lang="en">Solo operation. Deliberate access control protects the asset's differentiating value — selective invite available for serious engagement</span></div>
+              <div class="metric-label"><span lang="ko">연속 재직 / 진화</span><span lang="en">Continuous tenure / progression</span></div>
+              <div class="metric-value ko"><span lang="ko">7년 6개월 (사원 → 과장)</span><span lang="en">7 years 6 months (Staff → Manager)</span></div>
+              <div class="metric-context"><span lang="ko">통신 인프라 SI 벤더 (한·중 cross-site)</span><span lang="en">Telecom infrastructure SI vendor (Korea·China cross-site)</span></div>
             </div>
             <div class="metric">
-              <div class="metric-label"><span lang="ko">본 cycle major 갱신</span><span lang="en">Major bump this cycle</span></div>
-              <div class="metric-value">master-ecosystem v0.2 → v1.0</div>
-              <div class="metric-context"><span lang="ko">2026-05-18 PR #28 머지 — §1.5 8축 신설 + §3.5 4 관점 매트릭스 + 5 Phase 로드맵</span><span lang="en">PR #28 merged 2026-05-18 — added §1.5 8-axis identity + §3.5 4-perspective matrix + 5-Phase roadmap</span></div>
+              <div class="metric-label"><span lang="ko">기술 토대</span><span lang="en">Technical foundation</span></div>
+              <div class="metric-value ko"><span lang="ko">C++ 시스템 SW 7.5년</span><span lang="en">7.5 years of C++ system SW</span></div>
+              <div class="metric-context"><span lang="ko">EES · HDI 등 산업 통신시설 응용 SW</span><span lang="en">EES · HDI and other industrial telecom-facility application SW</span></div>
             </div>
             <div class="metric">
-              <div class="metric-label"><span lang="ko">메타 시너지</span><span lang="en">Meta synergy</span></div>
-              <div class="metric-value ko"><span lang="ko">이 사이트 = 자산의 첫 공개 산출물</span><span lang="en">This site = the asset's first public deliverable</span></div>
-              <div class="metric-context"><span lang="ko">비공개 자산이 살아 움직이는 모습을 사이트 자체가 시연</span><span lang="en">The site itself demonstrates the private asset in motion</span></div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="project-field">
-          <div class="field-label">stack</div>
-          <div class="stack-chips">
-            <span class="chip">Git (SSOT, internal)</span>
-            <span class="chip">PowerShell 7+ / Bash</span>
-            <span class="chip">Claude Code CLI</span>
-            <span class="chip">MCP — Telegram plugin</span>
-            <span class="chip">Markdown + YAML 9-field</span>
-            <span class="chip">post-commit hook auto-sync</span>
-            <span class="chip">Windows Task Scheduler</span>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-    
-    <!-- SLOT D — Sports Media AI -->
-    <div class="project">
-      <div class="project-head">
-        <span class="project-title"><span lang="ko">AI 기반 스포츠 영상 아카이빙 플랫폼 — 풀스택 통합 미디어 파이프라인</span><span lang="en">AI-driven Sports Video Archiving Platform — A Full-stack Integrated Media Pipeline</span></span>
-        <div class="project-meta">
-          <span class="slot">slot · sports-media-ai</span>
-          <span class="period">2025.11 — now</span>
-          <span class="status in-progress">in-progress</span>
-        </div>
-      </div>
-      <div class="project-body">
-
-        <div class="project-field">
-          <div class="field-label">context</div>
-          <div class="field-content ko" lang="ko">
-            대학 스포츠 통합 영상 데이터를 관리 · 가공 · 서비스하는 AI 미디어 플랫폼. 경기 원본 영상 수집 → HLS 기반 인코딩 → 메타데이터 관리 → AI 분석 → 자동 하이라이트 추출 → 클립 편집 → 아카이빙 → 서비스 자동화 전체 파이프라인 통합. 운영 안정성 · 자동화 · 확장성 중심의 인프라 분리 아키텍처. <strong>본인 역할 — PM이자 핵심 인코딩 서비스의 단독 개발자, 4인 팀 리딩과 코어 코드 작성 · DB 설계 구현을 동시 수행</strong>.
-          </div>
-          <div class="field-content" lang="en">
-            An AI media platform that manages · processes · serves integrated collegiate sports video. End-to-end pipeline: raw game capture → HLS encoding → metadata management → AI analysis → automatic highlight extraction → clip editing → archiving → service automation. Infrastructure-separation architecture centered on ops stability · automation · scalability. <strong>My role — PM and sole developer of the core encoding service, leading a 4-person team while personally writing core code and implementing the DB design</strong>.
-          </div>
-        </div>
-
-        <div class="project-field">
-          <div class="field-label">problem</div>
-          <div class="field-content ko" lang="ko">
-            (1) 대용량 스포츠 원본 영상을 서비스 가능한 스트리밍 포맷으로 안정적으로 변환 + AI 분석 기반 데이터 생성. (2) 선수 · 팀 · 학교 · 종목 · 리그 · 이벤트 메타데이터를 일관된 스키마로 통합 관리. (3) STT · OCR · 이벤트/액션 분석 · 하이라이트 추출 AI 파이프라인을 비동기로 안정 운영. (4) GPU 메모리 · Worker 재시작 · 대용량 디스크 · Queue 장애 · NAS 마운트 등 다영역 운영 이슈 동시 관리.
-          </div>
-          <div class="field-content" lang="en">
-            (1) Reliably convert large raw sports video into service-ready streaming formats and generate AI-derived data. (2) Manage player · team · school · sport · league · event metadata under one consistent schema. (3) Run the STT · OCR · event/action analysis · highlight-extraction AI pipeline asynchronously and stably. (4) Concurrently manage cross-cutting ops issues — GPU memory · worker restarts · large-disk capacity · queue failures · NAS mounts.
-          </div>
-        </div>
-
-        <div class="project-field">
-          <div class="field-label">approach</div>
-          <ul class="pattern-list" lang="ko">
-            <li><span class="pattern-tag">A.</span> <strong>인코딩 서비스 직접 설계 · 구현 · 배포</strong> — MP4 표준본이 아닌 TS 기반 운영(.m3u8 + .ts), 서비스 스트리밍 최적화 중심. 대용량 영상 처리 안정성을 우선한 의도적 의사결정</li>
-            <li><span class="pattern-tag">B.</span> <strong>클립/하이라이트 생성</strong> — 원본 영상 기준 시간 정보로 지정 구간 추출, TS/MP4 생성 후 HLS 재생용 변환</li>
-            <li><span class="pattern-tag">C.</span> <strong>하이라이트 병합</strong> — MP4 병합 후 최종 HLS 변환 패턴으로 재인코딩 최소화 (운영 + 안정성 우선 트레이드오프)</li>
-            <li><span class="pattern-tag">D.</span> <strong>AI 연계 파이프라인</strong> — FastAPI + Redis Queue + RQ Worker + GPU 분석 서버 + Docker 운영. 동기 · 비동기 경계 명확화</li>
-            <li><span class="pattern-tag">E.</span> <strong>운영 인프라 분리</strong> — 인코딩 · AI(GPU) · NAS · 운영 웹 · Redis 서버 분리 + 방화벽 기반 DMZ/내부망/SSL VPN 다층 보안</li>
-            <li><span class="pattern-tag">F.</span> <strong>메타데이터 DB 설계 · 구현</strong> — 선수 · 팀 · 학교 · 종목 · 리그 · 이벤트 통합 스키마, 추후 AI 분석 결과 연결성 우선</li>
-          </ul>
-          <ul class="pattern-list" lang="en">
-            <li><span class="pattern-tag">A.</span> <strong>Encoding service designed · implemented · deployed end-to-end</strong> — TS-based operation (.m3u8 + .ts) over MP4-master, optimized for streaming delivery. A deliberate trade-off prioritizing large-video processing stability</li>
-            <li><span class="pattern-tag">B.</span> <strong>Clip / highlight generation</strong> — extract spans by source-video timecode, generate TS/MP4 then convert to HLS for playback</li>
-            <li><span class="pattern-tag">C.</span> <strong>Highlight merging</strong> — merge MP4 first then convert to final HLS, minimizing re-encoding (ops + stability-first trade-off)</li>
-            <li><span class="pattern-tag">D.</span> <strong>AI integration pipeline</strong> — FastAPI + Redis Queue + RQ Worker + GPU analysis server + Docker, with clear sync · async boundaries</li>
-            <li><span class="pattern-tag">E.</span> <strong>Ops infrastructure separation</strong> — encoding · AI (GPU) · NAS · ops web · Redis on separate servers + firewall-based DMZ/intranet/SSL VPN multi-layer security</li>
-            <li><span class="pattern-tag">F.</span> <strong>Metadata DB design · implementation</strong> — unified schema across player · team · school · sport · league · event, prioritizing downstream AI-result connectivity</li>
-          </ul>
-          <div class="tech-decision" lang="ko">
-            <strong>// key technical decisions</strong> TS 우선 vs MP4 마스터 트레이드오프 · 재인코딩 최소화 vs 품질 균형 · 동기 vs 비동기 경계 · 인프라 분리 폭
-          </div>
-          <div class="tech-decision" lang="en">
-            <strong>// key technical decisions</strong> TS-first vs MP4-master trade-off · minimizing re-encoding vs quality balance · sync vs async boundaries · breadth of infrastructure separation
-          </div>
-        </div>
-        
-        <div class="project-field">
-          <div class="field-label">result</div>
-          <div class="field-content ko" lang="ko">
-            AI 기반 자동 편집 플랫폼 + 메타데이터 중심 아카이빙 + 자동 하이라이트 + 통합 데이터 허브 + AI 분석 서비스 + 대규모 영상 자동 처리 인프라가 동시에 형성되는 시스템 설계를 실증 중. <strong>곤충 스마트팜 솔루션 풀스택 운영과 병행</strong>하면서도 본 영상 플랫폼의 단계적 고도화 진행. 풀스택 단독 + 3인 팀 리딩 + Agile PM 패턴 동시 검증.
-          </div>
-          <div class="field-content" lang="en">
-            Actively proving out a system design that simultaneously stands up AI-driven auto-editing + metadata-centric archiving + auto highlights + unified data hub + AI analysis service + large-scale video processing infrastructure. The platform's staged hardening proceeds <strong>in parallel with full-stack ops of the insect smart-farm solution</strong>. Concurrently validating the solo full-stack + 3-person team-lead + Agile PM pattern.
-          </div>
-          <div class="metrics">
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">본인 역할 폭</span><span lang="en">Role breadth</span></div>
-              <div class="metric-value ko"><span lang="ko">PM + 코어 단독 개발 + DB 설계</span><span lang="en">PM + sole core developer + DB design</span></div>
-              <div class="metric-context"><span lang="ko">4인 팀 리딩과 코어 코드 작성을 동시 수행</span><span lang="en">Leading a 4-person team while writing core code in parallel</span></div>
-            </div>
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">병행 운영</span><span lang="en">Parallel ops</span></div>
-              <div class="metric-value ko"><span lang="ko">곤충 스마트팜 솔루션과 2 도메인 병행</span><span lang="en">Two-domain parallel with the insect smart-farm solution</span></div>
-              <div class="metric-context"><span lang="ko">2026.03부터 — 단일 직장 내 다중 도메인 풀스택</span><span lang="en">From 2026.03 — multi-domain full-stack inside a single workplace</span></div>
-            </div>
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">AI 파이프라인 영역</span><span lang="en">AI pipeline coverage</span></div>
-              <div class="metric-value"><span lang="ko">STT · OCR · 액션 · 하이라이트</span><span lang="en">STT · OCR · Action · Highlights</span></div>
-              <div class="metric-context">FastAPI + Redis Queue + RQ Worker + GPU <span lang="ko">비동기</span><span lang="en">async</span></div>
-            </div>
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">인프라 분리 폭</span><span lang="en">Infrastructure-separation breadth</span></div>
-              <div class="metric-value ko"><span lang="ko">5-tier + 방화벽 다층</span><span lang="en">5-tier + multi-layer firewall</span></div>
-              <div class="metric-context"><span lang="ko">인코딩 · AI(GPU) · NAS · 운영 웹 · Redis 분리 + DMZ/SSL VPN</span><span lang="en">Encoding · AI (GPU) · NAS · ops web · Redis on separate tiers + DMZ/SSL VPN</span></div>
+              <div class="metric-label"><span lang="ko">검증</span><span lang="en">Verification</span></div>
+              <div class="metric-value ko"><span lang="ko">한국SW산업협회 등록</span><span lang="en">Registered with KOSA</span></div>
+              <div class="metric-context"><span lang="ko">SW개발 &gt; 응용SW개발 부문</span><span lang="en">SW Development &gt; Application SW category</span></div>
             </div>
           </div>
         </div>
@@ -1655,144 +1777,17 @@
         <div class="project-field">
           <div class="field-label">stack</div>
           <div class="stack-chips">
-            <span class="chip">FastAPI</span>
-            <span class="chip">Redis Queue · RQ Worker</span>
-            <span class="chip"><span lang="ko">GPU AI (STT · OCR · 액션)</span><span lang="en">GPU AI (STT · OCR · Action)</span></span>
-            <span class="chip">HLS / TS / .m3u8</span>
-            <span class="chip">FFmpeg</span>
-            <span class="chip">Docker</span>
-            <span class="chip">NAS Storage</span>
-            <span class="chip"><span lang="ko">방화벽 (DMZ / SSL VPN)</span><span lang="en">Firewall (DMZ / SSL VPN)</span></span>
-            <span class="chip">PostgreSQL</span>
-            <span class="chip">Agile PM</span>
+            <span class="chip"><span lang="ko">C++ (시스템 SW)</span><span lang="en">C++ (System SW)</span></span>
+            <span class="chip"><span lang="ko">산업 통신 인프라</span><span lang="en">Industrial telecom infra</span></span>
+            <span class="chip">EES · HDI</span>
+            <span class="chip"><span lang="ko">Windows · Linux</span><span lang="en">Windows · Linux</span></span>
+            <span class="chip"><span lang="ko">한·중 cross-site</span><span lang="en">Korea·China cross-site</span></span>
           </div>
         </div>
-        
+
       </div>
     </div>
-    
-    <!-- SLOT E — Insect Smart-Farm (NEW in v0.4) -->
-    <div class="project">
-      <div class="project-head">
-        <span class="project-title"><span lang="ko">곤충 스마트팜 통합 솔루션 — 1인 전 단계 풀스택 운영</span><span lang="en">Insect Smart-Farm Integrated Solution — Solo End-to-End Full-stack Ops</span></span>
-        <div class="project-meta">
-          <span class="slot">slot · insect-smart-farm</span>
-          <span class="period">2025.11 — now</span>
-          <span class="status in-progress">in-progress</span>
-        </div>
-      </div>
-      <div class="project-body">
 
-        <div class="project-field">
-          <div class="field-label">context</div>
-          <div class="field-content ko" lang="ko">
-            산업용 곤충 사육·생산을 위한 <strong>AMR 물류로봇 연계 통합 관제 솔루션</strong>을 <strong>1인이 기획 · 디자인 · DB구축 · 설계 · 구현(진행 중) · 테스트 · 배포 · 유지보수 8단계 전 과정을 단독 운영</strong>. <strong>통합관제 · 공정관리 · 작업관리 · 생산관리</strong>를 단일 솔루션으로 통합 구축 중. 회사 비공개 원칙에 따라 상세 공정 내용은 추상화.
-          </div>
-          <div class="field-content" lang="en">
-            An <strong>integrated control solution with AMR logistics-robot integration</strong> for industrial insect breeding · production. <strong>A single person solely runs all 8 stages — planning · design · DB build · system design · implementation (in progress) · test · deploy · maintenance</strong>. <strong>Integrated control · process management · work management · production management</strong> are being unified inside one solution. Detailed process specifics are abstracted per the company's confidentiality policy.
-          </div>
-          <div class="access-notice" lang="ko">
-            <strong>// confidentiality ·</strong> 상세 공정 사양 · 곤충 종 · 생산 KPI 등은 회사 비공개 원칙에 따라 추상화되어 있으며, 진지한 검토 단계에서 제한된 범위로 공유 가능합니다.
-          </div>
-          <div class="access-notice" lang="en">
-            <strong>// confidentiality ·</strong> Detailed process specs · insect species · production KPIs are abstracted per company confidentiality policy. Limited disclosure is possible during serious evaluation.
-          </div>
-        </div>
-
-        <div class="project-field">
-          <div class="field-label">problem</div>
-          <div class="field-content ko" lang="ko">
-            (1) 1인이 기획부터 유지보수까지 <strong>8단계 전 과정을 단독 수행</strong>하면서도 운영 안정성과 시스템 정합성을 유지해야 함. (2) AMR 물류로봇 · 통합관제 · 공정관리 · 작업관리 · 생산관리 다영역 자동화를 단일 솔루션으로 통합. (3) Edge IoT 센서 · 액추에이터 · 외부 PLC · 로봇 시스템 간의 실시간 데이터 흐름 안정화. (4) 현장 환경 변수(전원 · 네트워크 · 물리 제약)와 솔루션 아키텍처의 정합성 유지. (5) 회사 비공개 원칙 하에서도 솔루션화 가능한 추상 계층 설계.
-          </div>
-          <div class="field-content" lang="en">
-            (1) A single person performs <strong>all 8 stages solo (planning → maintenance)</strong> while sustaining ops stability and system integrity. (2) Unify multi-domain automation across AMR logistics-robot · integrated control · process · work · production management into one solution. (3) Stabilize real-time data flow across Edge IoT sensors · actuators · external PLCs · robot systems. (4) Keep solution architecture aligned with on-site variables (power · network · physical constraints). (5) Design abstraction layers that allow productization under confidentiality.
-          </div>
-        </div>
-
-        <div class="project-field">
-          <div class="field-label">approach</div>
-          <ul class="pattern-list" lang="ko">
-            <li><span class="pattern-tag">A.</span> <strong>풀스택 단독 아키텍처</strong> — .NET 10 + Clean Architecture (Domain / Application / Infrastructure / Web API / MudBlazor + Blazor Server / Edge IoT) 6 레이어를 1인이 일관되게 끌고 가는 base</li>
-            <li><span class="pattern-tag">B.</span> <strong>4축 통합관제</strong> — 통합관제 · 공정관리 · 작업관리 · 생산관리 도메인을 단일 솔루션 내에서 정합성 유지하며 통합</li>
-            <li><span class="pattern-tag">C.</span> <strong>AMR 물류로봇 연계</strong> — 외부 로봇 시스템과의 API/프로토콜 통합으로 물류·공정 흐름 자동화</li>
-            <li><span class="pattern-tag">D.</span> <strong>Edge IoT 실시간 파이프라인</strong> — 센서 · 액추에이터 · PLC 간 gRPC 기반 통신, 시계열 DB 영속화</li>
-            <li><span class="pattern-tag">E.</span> <strong>Agent AI 운영 환경 연계</strong> — 별도 카드로 소개한 통합 Agent AI 운영 환경을 본 솔루션 개발 · 운영에 직접 적용해 1인 부담을 자동화로 분산</li>
-            <li><span class="pattern-tag">F.</span> <strong>현장 배포 표준화</strong> — 다중 사이트 배포 가능한 구조로 설계, 솔루션화 지향</li>
-          </ul>
-          <ul class="pattern-list" lang="en">
-            <li><span class="pattern-tag">A.</span> <strong>Solo full-stack architecture</strong> — a single operator coherently driving 6 layers (.NET 10 + Clean Architecture: Domain / Application / Infrastructure / Web API / MudBlazor + Blazor Server / Edge IoT)</li>
-            <li><span class="pattern-tag">B.</span> <strong>4-axis integrated control</strong> — unify integrated-control · process · work · production management while preserving integrity inside one solution</li>
-            <li><span class="pattern-tag">C.</span> <strong>AMR logistics-robot integration</strong> — automate logistics · process flow via API/protocol integration with external robot systems</li>
-            <li><span class="pattern-tag">D.</span> <strong>Edge IoT real-time pipeline</strong> — gRPC-based comms across sensors · actuators · PLCs, with persistence into a time-series DB</li>
-            <li><span class="pattern-tag">E.</span> <strong>Agent AI environment integration</strong> — apply the Integrated Agent AI environment (separate card) directly to this solution's development · ops, automating away the solo workload</li>
-            <li><span class="pattern-tag">F.</span> <strong>On-site deployment standardization</strong> — designed for multi-site deployment, productization-oriented</li>
-          </ul>
-          <div class="tech-decision" lang="ko">
-            <strong>// key signal</strong> <strong style="color: var(--accent);">1인이 8단계 전 과정 (기획→유지보수) 단독 운영</strong> + 산업용 자동화 영역 (AMR · PLC · IoT 통합관제) + Agent AI 환경 연계 = 단순 풀스택을 넘어선 통합 시스템 운영 능력의 직접 증거
-          </div>
-          <div class="tech-decision" lang="en">
-            <strong>// key signal</strong> <strong style="color: var(--accent);">A single person running all 8 stages solo (planning → maintenance)</strong> + an industrial-automation domain (AMR · PLC · IoT integrated control) + Agent AI environment integration = direct evidence of integrated systems operating capability beyond plain full-stack.
-          </div>
-        </div>
-        
-        <div class="project-field">
-          <div class="field-label">result</div>
-          <div class="field-content ko" lang="ko">
-            현재 <strong>구현 단계 진행 중 (진행률 ~70%)</strong>. 1인 기획부터 유지보수까지 8단계 단독 운영 모델 실증 중. 별도로 소개한 통합 Agent AI 운영 환경이 본 솔루션 개발의 실제 적용 사례 — 풀스택 단독 작업이 어떻게 살아있는 시스템으로 작동하는지의 직접 증명. 동시에 스포츠 영상 아카이빙 플랫폼과 병행 운영하며, 본인의 <strong>"1인 다도메인 풀스택"</strong> 정체성을 시간 위에서 증명 중.
-          </div>
-          <div class="field-content" lang="en">
-            Currently <strong>in the implementation stage (~70% progress)</strong>. Actively proving the solo 8-stage ops model from planning through maintenance. The Integrated Agent AI environment (separate card) is the real-world application case for this solution's development — direct proof of how solo full-stack work behaves as a living system. Run in parallel with the sports video archiving platform, proving the <strong>"solo multi-domain full-stack"</strong> identity continuously across time.
-          </div>
-          <div class="metrics">
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">본인 역할 범위</span><span lang="en">Role scope</span></div>
-              <div class="metric-value ko"><span lang="ko">1인 · 8단계 전 과정</span><span lang="en">Solo · all 8 stages</span></div>
-              <div class="metric-context"><span lang="ko">기획 → 디자인 → DB구축 → 설계 → 구현 → 테스트 → 배포 → 유지보수 (전 단계 단독 수행)</span><span lang="en">Planning → design → DB build → system design → implementation → test → deploy → maintenance (every stage solo)</span></div>
-            </div>
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">진행 상태</span><span lang="en">Progress</span></div>
-              <div class="metric-value">~70%</div>
-              <div class="metric-context"><span lang="ko">구현 단계 진행 중 (회사 비공개 원칙 하)</span><span lang="en">In implementation stage (under company confidentiality)</span></div>
-            </div>
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">자동화 통합 범위</span><span lang="en">Automation coverage</span></div>
-              <div class="metric-value ko"><span lang="ko">4축 + AMR 연계</span><span lang="en">4-axis + AMR integration</span></div>
-              <div class="metric-context"><span lang="ko">통합관제 · 공정관리 · 작업관리 · 생산관리 + AMR 물류로봇</span><span lang="en">Integrated control · process · work · production management + AMR logistics robots</span></div>
-            </div>
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">메타 시너지</span><span lang="en">Meta synergy</span></div>
-              <div class="metric-value ko"><span lang="ko">Agent AI 환경의 실제 적용</span><span lang="en">Real-world application of the Agent AI environment</span></div>
-              <div class="metric-context"><span lang="ko">통합 Agent AI 운영 환경이 1인 8단계 운영을 가능케 하는 base</span><span lang="en">The Integrated Agent AI environment is the base that makes solo 8-stage operation possible</span></div>
-            </div>
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">병행 운영</span><span lang="en">Parallel ops</span></div>
-              <div class="metric-value ko"><span lang="ko">스포츠 영상 플랫폼과 동시 진행</span><span lang="en">Concurrent with the sports video platform</span></div>
-              <div class="metric-context"><span lang="ko">2 도메인 풀스택 병행 — "1인 다도메인" 정체성의 직접 증거</span><span lang="en">Two-domain full-stack parallelism — direct evidence of the "solo multi-domain" identity</span></div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="project-field">
-          <div class="field-label">stack</div>
-          <div class="stack-chips">
-            <span class="chip">.NET 10</span>
-            <span class="chip">.NET Core</span>
-            <span class="chip">.NET Web API</span>
-            <span class="chip">Clean Architecture</span>
-            <span class="chip">MudBlazor + Blazor Server</span>
-            <span class="chip">EF Core · OpenAPI</span>
-            <span class="chip">Edge IoT (gRPC)</span>
-            <span class="chip">PLC Protocol</span>
-            <span class="chip">AMR Robot Integration</span>
-            <span class="chip">Time-series DB</span>
-            <span class="chip">PostgreSQL · SQLite (Edge)</span>
-            <span class="chip">Docker · CI/CD</span>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-    
   </section>
 
   <!-- ============ TECH STACK ============ -->
@@ -1859,6 +1854,14 @@
           <span class="stack-detail"><span class="level">advanced</span></span>
         </div>
         <div class="stack-item">
+          <span class="stack-name">NestJS</span>
+          <span class="stack-detail"><span class="level">advanced</span></span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">Next.js</span>
+          <span class="stack-detail"><span class="level">advanced</span></span>
+        </div>
+        <div class="stack-item">
           <span class="stack-name">FastAPI / Python</span>
           <span class="stack-detail"><span class="level">advanced</span></span>
         </div>
@@ -1875,7 +1878,7 @@
       <div class="stack-group ai">
         <div class="stack-group-title">— ai workflow ⭐</div>
         <div class="stack-item">
-          <span class="stack-name">Claude Code (Opus 4.7)</span>
+          <span class="stack-name">Claude Code (Opus 4.8)</span>
           <span class="stack-detail"><span class="level">expert</span></span>
         </div>
         <div class="stack-item">
@@ -1883,7 +1886,7 @@
           <span class="stack-detail"><span class="level">advanced</span></span>
         </div>
         <div class="stack-item">
-          <span class="stack-name">MCP — Atlassian Rovo</span>
+          <span class="stack-name">MCP — Discord plugin</span>
           <span class="stack-detail"><span class="level">advanced</span></span>
         </div>
         <div class="stack-item">
@@ -1897,6 +1900,22 @@
         <div class="stack-item">
           <span class="stack-name">automation-hub</span>
           <span class="stack-detail"><span class="level">expert · private</span></span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">autoflowagent · claude-ops</span>
+          <span class="stack-detail"><span class="level">expert · private</span></span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">MCP — custom server (herald)</span>
+          <span class="stack-detail"><span class="level">advanced</span></span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">NestJS · Prisma · Postgres · pgvector</span>
+          <span class="stack-detail"><span class="level">advanced</span></span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">LISTEN/NOTIFY · BullMQ · Socket.IO</span>
+          <span class="stack-detail"><span class="level">advanced</span></span>
         </div>
       </div>
       
@@ -2027,7 +2046,7 @@
         </div>
         <div class="access-row">
           <span class="access-key">scope</span>
-          <span class="access-val ko"><span lang="ko">automation-hub 메타 자산 · 비공개 운영 코드 · 상세 사례</span><span lang="en">automation-hub meta-asset · private ops code · detailed case studies</span></span>
+          <span class="access-val ko"><span lang="ko">automation-hub 메타 자산 · autoflowagent(AF) · claude-ops 시스템 · 비공개 운영 코드 · 상세 사례</span><span lang="en">automation-hub meta-asset · autoflowagent (AF) · claude-ops systems · private ops code · detailed case studies</span></span>
         </div>
         <div class="access-row">
           <span class="access-key">contact</span>
