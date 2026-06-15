@@ -1282,7 +1282,7 @@
             <li><span class="pattern-tag">C.</span> <strong>상호-비신뢰 에이전트 모델</strong> — 서버측 신원 확정(클라이언트 주장 무시 · token 검증) · 발언권 ≠ 실행권 · 무방향 참가자집합 루프 가드</li>
             <li><span class="pattern-tag">D.</span> <strong>MCP "전령(herald)"</strong> — LLM-free 씬 게이트웨이, 11개 도구로 에이전트가 실제 백엔드에 작업 push/pull · 요청마다 토큰 재로딩(무중단 회전)</li>
             <li><span class="pattern-tag">E.</span> <strong>하이브리드 워커 오케스트레이션</strong> — 작업 큐 SSOT · CAS claim · lease-TTL(idempotent 갱신) · fencing token(stale 워커 덮어쓰기 차단) · 만료 sweeper</li>
-            <li><span class="pattern-tag">F.</span> <strong>File-SSOT + pgvector 파생 메모리</strong> — 로컬 마크다운 = 권위 SSOT, Postgres + pgvector = 재생성 가능한 시맨틱 검색 인덱스, 단방향(file→DB)으로 drift 제거</li>
+            <li><span class="pattern-tag">F.</span> <strong>File-SSOT + 재생성 가능한 파생 인덱스 메모리</strong> — 로컬 마크다운 = 권위 SSOT, 검색 인덱스는 파일에서 재생성 가능한 파생물(단방향 file→DB로 drift 제거). 인덱스 구현은 벡터 임베딩 → 비-RAG 렉시컬·그래프 방향으로 재설계 진행 중</li>
             <li><span class="pattern-tag">G.</span> <strong>유휴-실패 통합 신뢰성 계층</strong> — credential keep-warm · SSE 재인증 · monotonic seq 커서 catch-up(at-least-once 전달)</li>
           </ul>
           <ul class="pattern-list" lang="en">
@@ -1291,7 +1291,7 @@
             <li><span class="pattern-tag">C.</span> <strong>Mutually-untrusted agent model</strong> — server-determined identity (ignore client-claimed sender · verify token) · speech-right ≠ execution-right · undirected participant-set loop guard</li>
             <li><span class="pattern-tag">D.</span> <strong>MCP "herald"</strong> — an LLM-free thin gateway; 11 tools let agents push/pull work into a real backend · per-request token reload (zero-downtime rotation)</li>
             <li><span class="pattern-tag">E.</span> <strong>Hybrid worker orchestration</strong> — task queue as SSOT · CAS claim · lease-TTL (idempotent renew) · fencing token (stale worker can't overwrite) · expiry sweeper</li>
-            <li><span class="pattern-tag">F.</span> <strong>File-SSOT + pgvector derived memory</strong> — local markdown = authoritative SSOT, Postgres + pgvector = a regenerable semantic-search index; one-way (file→DB) eliminates drift</li>
+            <li><span class="pattern-tag">F.</span> <strong>File-SSOT + regenerable derived-index memory</strong> — local markdown = authoritative SSOT; the search index is a regenerable derivative of the files (one-way file→DB eliminates drift). Index implementation is being redesigned from vector embeddings toward a non-RAG lexical + link-graph approach</li>
             <li><span class="pattern-tag">G.</span> <strong>Unified idle-failure reliability layer</strong> — credential keep-warm · SSE re-auth · monotonic seq-cursor catch-up (at-least-once delivery)</li>
           </ul>
           <div class="tech-decision" lang="ko">
@@ -1342,7 +1342,6 @@
             <span class="chip">Agent SDK</span>
             <span class="chip">NestJS</span>
             <span class="chip">Prisma · PostgreSQL</span>
-            <span class="chip">pgvector</span>
             <span class="chip">TypeScript</span>
             <span class="chip">Event-sourced design</span>
             <span class="chip">Discord / Telegram bots</span>
@@ -1774,6 +1773,10 @@
           <span class="stack-detail"><span class="level">advanced</span></span>
         </div>
         <div class="stack-item">
+          <span class="stack-name">NestJS</span>
+          <span class="stack-detail"><span class="level">advanced</span></span>
+        </div>
+        <div class="stack-item">
           <span class="stack-name">FastAPI / Python</span>
           <span class="stack-detail"><span class="level">advanced</span></span>
         </div>
@@ -1812,6 +1815,22 @@
         <div class="stack-item">
           <span class="stack-name">automation-hub</span>
           <span class="stack-detail"><span class="level">expert · private</span></span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">autoflowagent · claude-ops</span>
+          <span class="stack-detail"><span class="level">expert · private</span></span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">MCP — custom server (herald)</span>
+          <span class="stack-detail"><span class="level">advanced</span></span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">NestJS · Prisma · Postgres · pgvector</span>
+          <span class="stack-detail"><span class="level">advanced</span></span>
+        </div>
+        <div class="stack-item">
+          <span class="stack-name">LISTEN/NOTIFY · BullMQ · Socket.IO</span>
+          <span class="stack-detail"><span class="level">advanced</span></span>
         </div>
       </div>
       
