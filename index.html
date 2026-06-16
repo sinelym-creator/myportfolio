@@ -339,7 +339,7 @@
     border-color: var(--accent);
     box-shadow: 0 0 12px var(--accent);
     z-index: 1;
-    animation: timeline-pulse 2s ease-in-out infinite;
+    animation: timeline-pulse 1.8s ease-in-out infinite;
   }
   /* current 마커 ripple — 라임 glow가 퍼졌다 사라지는 동적 효과 */
   .timeline-item.current::after {
@@ -349,19 +349,19 @@
     width: 9px; height: 9px;
     border-radius: 50%;
     background: var(--accent);
-    animation: timeline-ripple 2s ease-out infinite;
+    animation: timeline-ripple 1.8s ease-out infinite;
     pointer-events: none;
   }
   .timeline-item.current { border-left-color: var(--accent); }
-  /* current dot: glow 강약 pulse */
+  /* current dot: glow 강약 pulse — 대비 강화로 또렷하게 */
   @keyframes timeline-pulse {
-    0%, 100% { box-shadow: 0 0 6px var(--accent); }
-    50%      { box-shadow: 0 0 16px var(--accent); }
+    0%, 100% { box-shadow: 0 0 4px var(--accent); }
+    50%      { box-shadow: 0 0 22px var(--accent); }
   }
-  /* current dot: ripple ring 확산 */
+  /* current dot: ripple ring 확산 — 더 크고 또렷한 라임 ring */
   @keyframes timeline-ripple {
-    0%   { transform: scale(1); opacity: 0.5; }
-    100% { transform: scale(2.8); opacity: 0; }
+    0%   { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(4); opacity: 0; }
   }
   .timeline-head {
     display: flex; gap: 1.5rem;
@@ -1155,18 +1155,19 @@
   .stack-layer.layer-af { border-left-color: var(--accent); }
   .stack-layer.layer-co { border-left-color: var(--accent-3); }
   .stack-layer.layer-ah { border-left-color: var(--accent-2); }
-  /* 좌측 accent border 위→아래로 흐르는 연출 (절제된 라임/시안/오렌지 흐름) */
+  /* 좌측 accent border 위→아래로 흐르는 연출 (라임/시안/오렌지 흐름·glow 강화) */
   .stack-layer::after {
     content: '';
     position: absolute;
     left: -3px; top: -100%;
     width: 3px; height: 100%;
     background: linear-gradient(to bottom, transparent, var(--accent), transparent);
-    animation: stack-border-flow 3.6s linear infinite;
+    box-shadow: 0 0 8px var(--accent);
+    animation: stack-border-flow 2.2s linear infinite;
     pointer-events: none;
   }
-  .stack-layer.layer-co::after { background: linear-gradient(to bottom, transparent, var(--accent-3), transparent); animation-delay: 1.2s; }
-  .stack-layer.layer-ah::after { background: linear-gradient(to bottom, transparent, var(--accent-2), transparent); animation-delay: 2.4s; }
+  .stack-layer.layer-co::after { background: linear-gradient(to bottom, transparent, var(--accent-3), transparent); box-shadow: 0 0 8px var(--accent-3); animation-delay: 0.73s; }
+  .stack-layer.layer-ah::after { background: linear-gradient(to bottom, transparent, var(--accent-2), transparent); box-shadow: 0 0 8px var(--accent-2); animation-delay: 1.46s; }
   @keyframes stack-border-flow {
     0%   { top: -100%; }
     100% { top: 100%; }
@@ -1191,29 +1192,26 @@
   }
   .stack-arrow-down {
     text-align: center; color: var(--muted);
-    font-family: var(--mono); font-size: 11px; line-height: 1;
-    animation: stack-arrow-flow 1.6s ease-in-out infinite;
+    font-family: var(--mono); font-size: 12px; line-height: 1;
+    animation: stack-arrow-flow 1.4s ease-in-out infinite;
   }
-  /* 레이어 연결 화살표: 부드러운 상하 이동 + 라임 opacity 흐름 (절제) */
+  /* 레이어 연결 화살표: 확실히 보이는 상하 이동(3px) + 라임 opacity 흐름 */
   @keyframes stack-arrow-flow {
-    0%, 100% { transform: translateY(-1px); color: var(--muted); }
-    50%      { transform: translateY(2px); color: var(--accent); }
+    0%, 100% { transform: translateY(-3px); color: var(--muted); opacity: 0.4; }
+    50%      { transform: translateY(3px); color: var(--accent); opacity: 1; }
   }
 
   /* ============ REDUCED MOTION GUARD ============ */
-  /* Large/decorative motion (section reveal, hero typing, count-up) is already
-     suppressed in JS via the REDUCE branch. Essential micro-feedback — the hero
-     cursor blink and hover affordance — is intentionally preserved so the page
-     never feels "dead" for reduced-motion users. */
+  /* 원칙: 콘텐츠의 큰 진입 모션(섹션 reveal·hero 타이핑 wipe·카운트업)만
+     reduced-motion에서 OFF(즉시-최종 상태) — 접근성상 멀미/주의분산 방지.
+     장식적 무한 애니메이션(스택 보더 흐름·연결 화살표·current 마커 pulse/ripple·
+     hero 커서 blink)은 reduced-motion에서도 항상 ON — 운영자가 동적 효과를
+     설정과 무관하게 확인할 수 있도록 의도적으로 유지(미세·터미널 톤). */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto !important; }
     .hero h1.type-init { clip-path: none !important; }
     .reveal-init { opacity: 1 !important; transform: none !important; }
-    /* 장식 모션(스택 연결 흐름·화살표·current 마커 pulse/ripple)은 정적으로 — 최종 상태 유지 */
-    .stack-layer::after { animation: none !important; display: none !important; }
-    .stack-arrow-down { animation: none !important; transform: none !important; }
-    .timeline-item.current::before { animation: none !important; }
-    .timeline-item.current::after { animation: none !important; display: none !important; }
+    /* 장식 무한 애니메이션은 정적화하지 않음 — 항상 동작 유지(의도) */
   }
 </style>
 </head>
@@ -2514,6 +2512,9 @@
       if (!prompt || !title) return;
       var typeTimer = null;
 
+      // 첫 화면(above-the-fold) 보장: hero 제목은 절대 '숨겨진 채' 머물지 않는다.
+      // 제목 wipe는 prompt 타이핑 완료를 기다리지 않고 로드 즉시 시작 → 첫 paint부터 보임.
+      // (이전: prompt 타이핑(~330ms)이 끝난 뒤에야 wipe 시작 → 그 사이 제목이 0폭 clip-path로 공백 = '첫 화면 빈 화면' 버그)
       function replay() {
         if (REDUCE) {
           // immediate final state
@@ -2531,6 +2532,14 @@
         title.classList.add('type-init');
         // force reflow so the title wipe restarts
         void title.offsetWidth;
+        // 제목 wipe 즉시 시작 (prompt 타이핑과 병렬) — 첫 화면 공백 방지
+        title.classList.add('type-play');
+        // 안전망: 어떤 이유로든 wipe가 진행되지 않아도 제목이 끝내 보이도록 보장
+        setTimeout(function () {
+          if (title.classList.contains('type-init')) {
+            title.classList.remove('type-init');
+          }
+        }, 1200);
 
         var i = 0;
         function tick() {
@@ -2538,9 +2547,6 @@
           i++;
           if (i <= full.length) {
             typeTimer = setTimeout(tick, 55);
-          } else {
-            // start title wipe
-            title.classList.add('type-play');
           }
         }
         tick();
