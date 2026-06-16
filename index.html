@@ -1049,6 +1049,137 @@
   .stack-highlight[lang="en"],
   .access-notice[lang="en"] { font-family: var(--serif); }
   .lang-toggle span[data-lang] { user-select: none; }
+
+  /* ============ SCROLL PROGRESS BAR ============ */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    z-index: 200;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    will-change: transform;
+    box-shadow: 0 0 6px var(--accent-dim);
+  }
+
+  /* ============ COPY BUTTON ============ */
+  .copy-btn {
+    font-family: var(--mono);
+    font-size: 10px;
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.5rem;
+    background: transparent;
+    color: var(--ink-dim);
+    border: 1px solid var(--line-strong);
+    border-radius: 2px;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .copy-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
+  .copy-btn.copied { color: var(--accent); border-color: var(--accent-dim); }
+
+  /* ============ REVEAL ON SCROLL (progressive enhancement) ============ */
+  /* JS adds .reveal-init to hide, then .revealed to show. No-JS stays visible. */
+  .reveal-init {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .reveal-init.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============ CARD HOVER LIFT + GLOW ============ */
+  .project:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 18px rgba(212,255,94,0.06);
+  }
+  .project.featured:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px var(--accent-dim) inset, 0 6px 28px rgba(212,255,94,0.08);
+  }
+
+  /* ============ ORCHESTRATION DIAGRAM (D1) ============ */
+  .af-diagram {
+    margin-top: 0.75rem;
+    padding: 1rem;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--accent-dim);
+  }
+  .af-diagram svg { width: 100%; height: auto; display: block; }
+  .af-diagram .diag-legend {
+    margin-top: 0.6rem;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-dim);
+    display: flex; gap: 1.25rem; flex-wrap: wrap;
+  }
+  .af-diagram .diag-legend .lg-dot {
+    display: inline-block; width: 8px; height: 8px;
+    border-radius: 50%; margin-right: 0.35em; vertical-align: middle;
+  }
+  /* draw-in animation hooks (added by JS via .diag-animate) */
+  .af-diagram.diag-animate .diag-node { opacity: 0; }
+  .af-diagram.diag-animate .diag-edge { stroke-dasharray: var(--edge-len, 200); stroke-dashoffset: var(--edge-len, 200); }
+  .af-diagram.diag-animate.diag-play .diag-node {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    transition-delay: var(--node-delay, 0s);
+  }
+  .af-diagram.diag-animate.diag-play .diag-edge {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.6s ease;
+    transition-delay: var(--edge-delay, 0s);
+  }
+
+  /* ============ 3-LAYER STACK DIAGRAM (D2) ============ */
+  .stack-diagram { margin: 1.5rem 0 0.5rem; display: grid; gap: 0.5rem; }
+  .stack-layer {
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    padding: 0.85rem 1.1rem;
+    position: relative;
+  }
+  .stack-layer.layer-af { border-left-color: var(--accent); }
+  .stack-layer.layer-co { border-left-color: var(--accent-3); }
+  .stack-layer.layer-ah { border-left-color: var(--accent-2); }
+  .stack-layer .layer-name {
+    font-family: var(--mono);
+    font-size: 12px; font-weight: 600;
+    color: var(--ink); margin-bottom: 0.2rem;
+  }
+  .stack-layer.layer-af .layer-name { color: var(--accent); }
+  .stack-layer.layer-co .layer-name { color: var(--accent-3); }
+  .stack-layer.layer-ah .layer-name { color: var(--accent-2); }
+  .stack-layer .layer-desc {
+    font-family: var(--ko);
+    font-size: 11.5px; color: var(--ink-soft); line-height: 1.55;
+  }
+  .stack-layer .layer-tag {
+    position: absolute; top: 0.85rem; right: 1.1rem;
+    font-family: var(--mono); font-size: 9px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .stack-arrow-down {
+    text-align: center; color: var(--muted);
+    font-family: var(--mono); font-size: 11px; line-height: 1;
+  }
+
+  /* ============ REDUCED MOTION GUARD ============ */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1406,7 +1537,7 @@
             <li><span class="pattern-tag">B.</span> <strong>project-curator 에이전트 + 4 도구</strong> — setup-new-project / drift-check / migrate / version 인터페이스 정의</li>
             <li><span class="pattern-tag">C.</span> <strong>Evolving Template Architecture</strong> — 모든 자산에 SemVer · MIGRATION · 9 필드 frontmatter 의무 적용</li>
             <li><span class="pattern-tag">D.</span> <strong>master-ecosystem-overview</strong> — 활성 생태계 다중 프로젝트의 다층 정체성 8축 + 유기적 연계 4 관점 매트릭스 + Phase 진화 로드맵을 단일 문서로 정의</li>
-            <li><span class="pattern-tag">E.</span> <strong>PC별 어시스턴트 정체성 운영</strong> — ops1=제니퍼, ops2=Nova처럼 PC별로 어시스턴트 이름을 분리해 멀티 PC 컨텍스트를 명확히</li>
+            <li><span class="pattern-tag">E.</span> <strong>PC별 어시스턴트 정체성 운영</strong> — PC별로 어시스턴트 정체성을 분리해 멀티 PC 컨텍스트를 명확히</li>
             <li><span class="pattern-tag">F.</span> <strong>자체 자산 진화 사례 누적</strong> — 본 cycle만 해도 master-ecosystem v0.2 → v1.0 major 갱신을 PR 머지로 영구 기록</li>
             <li><span class="pattern-tag">G.</span> <strong>접근 통제 정책</strong> — 자산의 차별 가치를 보호하기 위한 의도적 비공개 운영. 진지한 engagement(채용 검토 · 전략 협업)에 한해 선별적 invite 가능</li>
           </ul>
@@ -1415,7 +1546,7 @@
             <li><span class="pattern-tag">B.</span> <strong>project-curator agent + 4 tools</strong> — setup-new-project / drift-check / migrate / version interface definitions</li>
             <li><span class="pattern-tag">C.</span> <strong>Evolving Template Architecture</strong> — every asset must carry SemVer · MIGRATION · 9-field frontmatter</li>
             <li><span class="pattern-tag">D.</span> <strong>master-ecosystem-overview</strong> — one document defining the 8-axis multi-layer identity, 4-perspective interlink matrix, and Phase evolution roadmap across the active project ecosystem</li>
-            <li><span class="pattern-tag">E.</span> <strong>Per-PC assistant identity</strong> — ops1 = Jennifer, ops2 = Nova: assistant names split per machine to keep multi-PC context unambiguous</li>
+            <li><span class="pattern-tag">E.</span> <strong>Per-PC assistant identity</strong> — assistant identities split per machine to keep multi-PC context unambiguous</li>
             <li><span class="pattern-tag">F.</span> <strong>Self-asset evolution log</strong> — this very cycle permanently records the master-ecosystem v0.2 → v1.0 major bump as a merged PR</li>
             <li><span class="pattern-tag">G.</span> <strong>Access-control policy</strong> — deliberately kept private to protect the asset's differentiating value. Selective invite available only for serious engagements (hiring evaluation · strategic collaboration)</li>
           </ul>
