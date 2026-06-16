@@ -182,7 +182,7 @@
   .hero h1 .cursor {
     display: inline-block;
     background: var(--accent);
-    width: 0.6em; height: 1em;
+    width: 0.5em; height: 1em;
     vertical-align: text-bottom;
     margin-left: 0.05em;
     animation: blink 1s step-end infinite;
@@ -1112,40 +1112,6 @@
     box-shadow: 0 0 0 1px var(--accent-dim) inset, 0 6px 28px rgba(212,255,94,0.08);
   }
 
-  /* ============ ORCHESTRATION DIAGRAM (D1) ============ */
-  .af-diagram {
-    margin-top: 0.75rem;
-    padding: 1rem;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-left: 2px solid var(--accent-dim);
-  }
-  .af-diagram svg { width: 100%; height: auto; display: block; }
-  .af-diagram .diag-legend {
-    margin-top: 0.6rem;
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--ink-dim);
-    display: flex; gap: 1.25rem; flex-wrap: wrap;
-  }
-  .af-diagram .diag-legend .lg-dot {
-    display: inline-block; width: 8px; height: 8px;
-    border-radius: 50%; margin-right: 0.35em; vertical-align: middle;
-  }
-  /* draw-in animation hooks (added by JS via .diag-animate) */
-  .af-diagram.diag-animate .diag-node { opacity: 0; }
-  .af-diagram.diag-animate .diag-edge { stroke-dasharray: var(--edge-len, 200); stroke-dashoffset: var(--edge-len, 200); }
-  .af-diagram.diag-animate.diag-play .diag-node {
-    opacity: 1;
-    transition: opacity 0.4s ease;
-    transition-delay: var(--node-delay, 0s);
-  }
-  .af-diagram.diag-animate.diag-play .diag-edge {
-    stroke-dashoffset: 0;
-    transition: stroke-dashoffset 0.6s ease;
-    transition-delay: var(--edge-delay, 0s);
-  }
-
   /* ============ 3-LAYER STACK DIAGRAM (D2) ============ */
   .stack-diagram { margin: 1.5rem 0 0.5rem; display: grid; gap: 0.5rem; }
   .stack-layer {
@@ -1182,13 +1148,14 @@
   }
 
   /* ============ REDUCED MOTION GUARD ============ */
+  /* Large/decorative motion (section reveal, hero typing, count-up) is already
+     suppressed in JS via the REDUCE branch. Essential micro-feedback — the hero
+     cursor blink and hover affordance — is intentionally preserved so the page
+     never feels "dead" for reduced-motion users. */
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-      animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.001ms !important;
-      scroll-behavior: auto !important;
-    }
+    html { scroll-behavior: auto !important; }
+    .hero h1.type-init { clip-path: none !important; }
+    .reveal-init { opacity: 1 !important; transform: none !important; }
   }
 </style>
 </head>
@@ -1500,41 +1467,6 @@
           </div>
         </div>
 
-        <div class="project-field">
-          <div class="field-label"><span lang="ko">orchestration map — chair + 8 masters</span><span lang="en">orchestration map — chair + 8 masters</span></div>
-          <div class="af-diagram" id="afDiagram">
-            <svg viewBox="0 0 320 230" role="img" aria-label="Orchestration node-edge diagram: one central orchestrator connected to eight domain master nodes">
-              <!-- edges (drawn first, under nodes) -->
-              <g stroke="rgba(212,255,94,0.35)" stroke-width="1" fill="none">
-                <line class="diag-edge" x1="160" y1="115" x2="160" y2="35"></line>
-                <line class="diag-edge" x1="160" y1="115" x2="222" y2="58"></line>
-                <line class="diag-edge" x1="160" y1="115" x2="250" y2="115"></line>
-                <line class="diag-edge" x1="160" y1="115" x2="222" y2="172"></line>
-                <line class="diag-edge" x1="160" y1="115" x2="160" y2="195"></line>
-                <line class="diag-edge" x1="160" y1="115" x2="98" y2="172"></line>
-                <line class="diag-edge" x1="160" y1="115" x2="70" y2="115"></line>
-                <line class="diag-edge" x1="160" y1="115" x2="98" y2="58"></line>
-              </g>
-              <!-- spoke (master) nodes -->
-              <g fill="#0d0d0c" stroke="#d4ff5e" stroke-width="1.5">
-                <circle class="diag-node" cx="160" cy="35" r="6"></circle>
-                <circle class="diag-node" cx="222" cy="58" r="6"></circle>
-                <circle class="diag-node" cx="250" cy="115" r="6"></circle>
-                <circle class="diag-node" cx="222" cy="172" r="6"></circle>
-                <circle class="diag-node" cx="160" cy="195" r="6"></circle>
-                <circle class="diag-node" cx="98" cy="172" r="6"></circle>
-                <circle class="diag-node" cx="70" cy="115" r="6"></circle>
-                <circle class="diag-node" cx="98" cy="58" r="6"></circle>
-              </g>
-              <!-- central orchestrator (chair) — label omitted; distinguished by lime fill + larger radius + legend -->
-              <circle class="diag-node diag-chair" cx="160" cy="115" r="11" fill="#d4ff5e" stroke="#0d0d0c" stroke-width="2"></circle>
-            </svg>
-            <div class="diag-legend">
-              <span><span class="lg-dot" style="background:#d4ff5e;"></span><span lang="ko">오케스트레이터 (의장)</span><span lang="en">orchestrator (chair)</span></span>
-              <span><span class="lg-dot" style="background:#0d0d0c;border:1px solid #d4ff5e;"></span><span lang="ko">8 도메인 마스터 (상호-비신뢰 peer)</span><span lang="en">8 domain masters (mutually-untrusted peers)</span></span>
-            </div>
-          </div>
-        </div>
 
         <div class="project-field">
           <div class="field-label">stack</div>
@@ -2515,35 +2447,6 @@
         });
       }
       try { stagger('#projects, .timeline, #stackDiagram'); } catch (e) {}
-    })();
-
-    /* --- 3-1 orchestration diagram draw-in --- */
-    (function () {
-      var diag = document.getElementById('afDiagram');
-      if (!diag) return;
-      // precompute edge lengths for dash animation
-      var edges = diag.querySelectorAll('.diag-edge');
-      var nodes = diag.querySelectorAll('.diag-node');
-      if (REDUCE || !hasIO) return; // show completed immediately
-      diag.classList.add('diag-animate');
-      Array.prototype.forEach.call(edges, function (e, i) {
-        var len = 0;
-        try { len = e.getTotalLength(); } catch (err) { len = 90; }
-        e.style.setProperty('--edge-len', len);
-        e.style.setProperty('--edge-delay', (0.25 + i * 0.05) + 's');
-      });
-      Array.prototype.forEach.call(nodes, function (n, i) {
-        n.style.setProperty('--node-delay', (i * 0.05) + 's');
-      });
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            diag.classList.add('diag-play');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.25 });
-      io.observe(diag);
     })();
 
     /* --- 3-3 hero typing effect --- */
