@@ -339,7 +339,7 @@
     border-color: var(--accent);
     box-shadow: 0 0 12px var(--accent);
     z-index: 1;
-    animation: timeline-pulse 1.8s ease-in-out infinite;
+    animation: timeline-pulse 2s ease-in-out infinite;
   }
   /* current 마커 ripple — 라임 glow가 퍼졌다 사라지는 동적 효과 */
   .timeline-item.current::after {
@@ -349,19 +349,19 @@
     width: 9px; height: 9px;
     border-radius: 50%;
     background: var(--accent);
-    animation: timeline-ripple 1.8s ease-out infinite;
+    animation: timeline-ripple 2s ease-out infinite;
     pointer-events: none;
   }
   .timeline-item.current { border-left-color: var(--accent); }
   /* current dot: glow 강약 pulse — 대비 강화로 또렷하게 */
   @keyframes timeline-pulse {
-    0%, 100% { box-shadow: 0 0 4px var(--accent); }
-    50%      { box-shadow: 0 0 22px var(--accent); }
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.6; transform: scale(0.85); }
   }
   /* current dot: ripple ring 확산 — 더 크고 또렷한 라임 ring */
   @keyframes timeline-ripple {
-    0%   { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(4); opacity: 0; }
+    0%   { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(2.8); opacity: 0; }
   }
   .timeline-head {
     display: flex; gap: 1.5rem;
