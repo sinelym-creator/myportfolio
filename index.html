@@ -191,6 +191,16 @@
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
   }
+  /* hero typing: JS adds .type-init (hidden) then .type-play (wipe in) */
+  .hero h1.type-init {
+    clip-path: inset(0 100% 0 0);
+  }
+  .hero h1.type-init.type-play {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 0.9s steps(24, end);
+  }
+  .hero-prompt.type-init { visibility: hidden; }
+  .hero-prompt.type-init.type-play { visibility: visible; }
   
   .hero-bio {
     font-family: var(--mono);
@@ -1184,6 +1194,9 @@
 </head>
 <body>
 
+<!-- scroll progress indicator -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
 <!-- ============ TERMINAL CHROME ============ -->
 <div class="terminal-chrome">
   <div class="chrome-left">
@@ -1216,9 +1229,9 @@
 
   <!-- ============ HERO ============ -->
   <section class="section hero" id="hero">
-    <div class="hero-prompt">whoami</div>
-    
-    <h1>
+    <div class="hero-prompt" id="heroPrompt" data-type="whoami">whoami</div>
+
+    <h1 id="heroTitle">
       <span class="ko" lang="ko">통합 인텔리전스</span><span lang="en">Integrated Intelligence</span><br>
       <span class="accent">Agent AI</span> <span class="ko" lang="ko">빌더</span><span lang="en">Builder</span><span class="accent-2">.</span><span class="cursor"></span>
     </h1>
@@ -1248,7 +1261,7 @@
     <div class="hero-stats">
       <div class="hero-stat">
         <div class="label">Total Years</div>
-        <div class="val">15<span style="color:var(--accent); font-size:0.6em;">+</span></div>
+        <div class="val"><span class="countup-num">15</span><span style="color:var(--accent); font-size:0.6em;">+</span></div>
         <div class="sub">verified</div>
       </div>
       <div class="hero-stat">
@@ -1294,6 +1307,28 @@
           <h4>After · 2025.11 — now</h4>
           <div class="role"><span lang="ko">통합 인텔리전스 Agent AI 빌더</span><span lang="en">Integrated Intelligence Agent AI Builder</span></div>
           <div class="desc"><span lang="ko">15년 시스템 SW 베이스 위에 Agent AI 운영 환경을 직접 설계·구축. 1인이 다중 도메인(애그리테크 + 스포츠 미디어 AI)을 풀스택으로 동시 운영하면서 외부 다중 벤더 조율과 회귀 baseline 유지까지 지속 운영하는 새로운 직무 정의.</span><span lang="en">On top of a 15-year system SW base, I design and build my own Agent AI ops environment. A new role definition: a single operator running multiple full-stack domains (AgriTech + Sports-Media AI) in parallel, while sustaining external multi-vendor coordination and regression baselines.</span></div>
+        </div>
+      </div>
+
+      <!-- D2 — 3-layer operating stack -->
+      <div class="shift-label" style="margin-top: 2rem;">— operating stack · 3 layers</div>
+      <div class="stack-diagram" id="stackDiagram">
+        <div class="stack-layer layer-af">
+          <span class="layer-tag">orchestration</span>
+          <div class="layer-name">autoflowagent (AF)</div>
+          <div class="layer-desc"><span lang="ko">에이전트 조율 계층 — 멀티에이전트 거버넌스 · 안전 · 통신 · 메모리를 1급 아키텍처로 정의.</span><span lang="en">Agent-coordination layer — multi-agent governance · safety · comms · memory as first-class architecture.</span></div>
+        </div>
+        <div class="stack-arrow-down" aria-hidden="true">↓</div>
+        <div class="stack-layer layer-co">
+          <span class="layer-tag">runtime</span>
+          <div class="layer-name">claude-ops (CO)</div>
+          <div class="layer-desc"><span lang="ko">인프라 · 실행 런타임 계층 — 작업을 라우팅 · 영속화하고 이벤트 기반으로 팬아웃.</span><span lang="en">Infra · execution-runtime layer — routes · persists work and fans out over event streams.</span></div>
+        </div>
+        <div class="stack-arrow-down" aria-hidden="true">↓</div>
+        <div class="stack-layer layer-ah">
+          <span class="layer-tag">rules</span>
+          <div class="layer-name">automation-hub (AH)</div>
+          <div class="layer-desc"><span lang="ko">규칙 · 컨벤션 계층 — 글로벌 지침 · 스킬 · 정책을 SSOT로 정의하고 전 PC·프로젝트에 자동 배포.</span><span lang="en">Rules · conventions layer — global instructions · skills · policies as SSOT, auto-deployed to every PC · project.</span></div>
         </div>
       </div>
     </div>
@@ -1466,6 +1501,43 @@
         </div>
 
         <div class="project-field">
+          <div class="field-label"><span lang="ko">orchestration map — chair + 8 masters</span><span lang="en">orchestration map — chair + 8 masters</span></div>
+          <div class="af-diagram" id="afDiagram">
+            <svg viewBox="0 0 320 230" role="img" aria-label="Orchestration node-edge diagram: one central orchestrator connected to eight domain master nodes">
+              <!-- edges (drawn first, under nodes) -->
+              <g stroke="rgba(212,255,94,0.35)" stroke-width="1" fill="none">
+                <line class="diag-edge" x1="160" y1="115" x2="160" y2="35"></line>
+                <line class="diag-edge" x1="160" y1="115" x2="222" y2="58"></line>
+                <line class="diag-edge" x1="160" y1="115" x2="250" y2="115"></line>
+                <line class="diag-edge" x1="160" y1="115" x2="222" y2="172"></line>
+                <line class="diag-edge" x1="160" y1="115" x2="160" y2="195"></line>
+                <line class="diag-edge" x1="160" y1="115" x2="98" y2="172"></line>
+                <line class="diag-edge" x1="160" y1="115" x2="70" y2="115"></line>
+                <line class="diag-edge" x1="160" y1="115" x2="98" y2="58"></line>
+              </g>
+              <!-- spoke (master) nodes -->
+              <g fill="#0d0d0c" stroke="#d4ff5e" stroke-width="1.5">
+                <circle class="diag-node" cx="160" cy="35" r="6"></circle>
+                <circle class="diag-node" cx="222" cy="58" r="6"></circle>
+                <circle class="diag-node" cx="250" cy="115" r="6"></circle>
+                <circle class="diag-node" cx="222" cy="172" r="6"></circle>
+                <circle class="diag-node" cx="160" cy="195" r="6"></circle>
+                <circle class="diag-node" cx="98" cy="172" r="6"></circle>
+                <circle class="diag-node" cx="70" cy="115" r="6"></circle>
+                <circle class="diag-node" cx="98" cy="58" r="6"></circle>
+              </g>
+              <!-- central orchestrator (chair) -->
+              <circle class="diag-node diag-chair" cx="160" cy="115" r="11" fill="#d4ff5e" stroke="#0d0d0c" stroke-width="2"></circle>
+              <text x="160" y="118" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7" fill="#0d0d0c" font-weight="700">chair</text>
+            </svg>
+            <div class="diag-legend">
+              <span><span class="lg-dot" style="background:#d4ff5e;"></span><span lang="ko">오케스트레이터 (의장)</span><span lang="en">orchestrator (chair)</span></span>
+              <span><span class="lg-dot" style="background:#0d0d0c;border:1px solid #d4ff5e;"></span><span lang="ko">8 도메인 마스터 (상호-비신뢰 peer)</span><span lang="en">8 domain masters (mutually-untrusted peers)</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-field">
           <div class="field-label">stack</div>
           <div class="stack-chips">
             <span class="chip">Claude Code (Opus 4.8)</span>
@@ -1482,10 +1554,10 @@
         <div class="project-field">
           <div class="field-label">live</div>
           <div class="field-content ko" lang="ko">
-            <a href="https://harry.tail488f52.ts.net" style="color: var(--accent);">라이브 시스템 열기 →</a> · Tailscale 연결 시 직접 시연 (개인 시연용 · 외부 공개 아님)
+            <a href="https://harry.tail488f52.ts.net" style="color: var(--accent);">라이브 시스템 열기 →</a><button type="button" class="copy-btn" data-copy="https://harry.tail488f52.ts.net" aria-label="copy live URL" aria-live="polite">copy url</button> · Tailscale 연결 시 직접 시연 (개인 시연용 · 외부 공개 아님)
           </div>
           <div class="field-content" lang="en">
-            <a href="https://harry.tail488f52.ts.net" style="color: var(--accent);">open the live system →</a> · demoed directly over Tailscale (private demo · not publicly exposed)
+            <a href="https://harry.tail488f52.ts.net" style="color: var(--accent);">open the live system →</a><button type="button" class="copy-btn" data-copy="https://harry.tail488f52.ts.net" aria-label="copy live URL" aria-live="polite">copy url</button> · demoed directly over Tailscale (private demo · not publicly exposed)
           </div>
         </div>
 
@@ -2181,7 +2253,7 @@
         </div>
         <div class="access-row">
           <span class="access-key">contact</span>
-          <span class="access-val"><a href="mailto:sinelym@gmail.com">sinelym@gmail.com</a></span>
+          <span class="access-val"><a href="mailto:sinelym@gmail.com">sinelym@gmail.com</a><button type="button" class="copy-btn" data-copy="sinelym@gmail.com" aria-label="copy email" aria-live="polite">copy</button></span>
         </div>
       </div>
 
@@ -2211,6 +2283,7 @@
 
       <div class="contact-actions">
         <a href="mailto:sinelym@gmail.com" class="contact-btn">Email →</a>
+        <button type="button" class="copy-btn" data-copy="sinelym@gmail.com" aria-label="copy email" aria-live="polite" style="margin-left:0; align-self:center;">copy email</button>
         <a href="#" class="contact-btn pending" title="LinkedIn 세팅 완료 후 연동 예정">LinkedIn (pending)</a>
         <a href="#" class="contact-btn pending" title="이력서 PDF 추후 첨부">Resume.pdf (pending)</a>
       </div>
@@ -2257,6 +2330,7 @@
 </main>
 
 <script>
+  /* ---- i18n language toggle (existing) ---- */
   (function () {
     var STORAGE_KEY = 'portfolio.lang';
     var SUPPORTED = ['ko', 'en'];
@@ -2270,6 +2344,10 @@
         el.classList.toggle('active', el.getAttribute('data-lang') === lang);
       });
       try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+      // re-run hero typing so the freshly-visible language types in too
+      if (window.__pf && typeof window.__pf.replayHeroType === 'function') {
+        window.__pf.replayHeroType();
+      }
     }
 
     toggleEls.forEach(function (el) {
@@ -2281,6 +2359,236 @@
     var saved = 'ko';
     try { saved = localStorage.getItem(STORAGE_KEY) || 'ko'; } catch (e) {}
     applyLang(saved);
+  })();
+
+  /* ---- UX enhancements (progressive enhancement; reduced-motion aware) ---- */
+  (function () {
+    var REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var hasIO = 'IntersectionObserver' in window;
+    window.__pf = window.__pf || {};
+
+    /* --- 2-1 scroll progress bar --- */
+    (function () {
+      var bar = document.getElementById('scrollProgress');
+      if (!bar) return;
+      var ticking = false;
+      function update() {
+        var doc = document.documentElement;
+        var max = (doc.scrollHeight - doc.clientHeight) || 1;
+        var ratio = Math.min(1, Math.max(0, (window.scrollY || doc.scrollTop) / max));
+        bar.style.transform = 'scaleX(' + ratio + ')';
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      update();
+    })();
+
+    /* --- 2-4 copy buttons --- */
+    (function () {
+      var btns = document.querySelectorAll('.copy-btn');
+      Array.prototype.forEach.call(btns, function (btn) {
+        var original = btn.textContent;
+        btn.addEventListener('click', function () {
+          var text = btn.getAttribute('data-copy') || '';
+          var done = function () {
+            btn.textContent = 'copied ✓';
+            btn.classList.add('copied');
+            setTimeout(function () {
+              btn.textContent = original;
+              btn.classList.remove('copied');
+            }, 1200);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(function () { fallback(text, done); });
+          } else {
+            fallback(text, done);
+          }
+        });
+      });
+      function fallback(text, cb) {
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'absolute';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          cb();
+        } catch (e) { /* silent */ }
+      }
+    })();
+
+    /* --- 2-3 stat count-up (parses numeric part, keeps prefix/suffix) --- */
+    function animateCount(el) {
+      var raw = el.getAttribute('data-countup');
+      var m = raw.match(/^(\D*)([\d,]*\.?\d+)(\D*)$/);
+      if (!m) { el.textContent = raw; return; }
+      var prefix = m[1], numStr = m[2], suffix = m[3];
+      var hasComma = numStr.indexOf(',') !== -1;
+      var decimals = (numStr.split('.')[1] || '').length;
+      var target = parseFloat(numStr.replace(/,/g, ''));
+      if (isNaN(target)) { el.textContent = raw; return; }
+      var dur = 900, start = null;
+      function fmt(v) {
+        var s = decimals ? v.toFixed(decimals) : String(Math.round(v));
+        if (hasComma) {
+          var parts = s.split('.');
+          parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+          s = parts.join('.');
+        }
+        return prefix + s + suffix;
+      }
+      function step(ts) {
+        if (start === null) start = ts;
+        var p = Math.min(1, (ts - start) / dur);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(target * eased);
+        if (p < 1) window.requestAnimationFrame(step);
+        else el.textContent = fmt(target);
+      }
+      window.requestAnimationFrame(step);
+    }
+
+    (function () {
+      // tag candidate numeric stat values; store original as data-countup
+      var sels = ['.hero-stat .val', '.lab-stat .val', '.metric-value', '.countup-num'];
+      var nodes = document.querySelectorAll(sels.join(','));
+      var targets = [];
+      Array.prototype.forEach.call(nodes, function (el) {
+        // skip nodes that contain i18n spans or markup — only plain-text leaves
+        if (el.children.length > 0) return;
+        var txt = el.textContent.trim();
+        if (!/\d/.test(txt)) return;            // must contain a digit
+        if (!/^\D*[\d,]*\.?\d+\D*$/.test(txt)) return; // single number w/ optional affix
+        el.setAttribute('data-countup', txt);
+        targets.push(el);
+      });
+      if (!targets.length) return;
+      if (REDUCE || !hasIO) {
+        targets.forEach(function (el) { /* leave original text as-is */ });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCount(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      targets.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* --- 2-2 reveal on scroll (progressive enhancement) --- */
+    (function () {
+      var sel = '.section, .project, .timeline-item, .stack-layer';
+      var nodes = document.querySelectorAll(sel);
+      if (!nodes.length) return;
+      if (REDUCE || !hasIO) return; // no-JS / reduced-motion: stay visible
+      var groups = {};
+      Array.prototype.forEach.call(nodes, function (el) {
+        el.classList.add('reveal-init');
+      });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      // light stagger within each section's children
+      Array.prototype.forEach.call(nodes, function (el) {
+        io.observe(el);
+      });
+      // stagger sibling cards/items via transition-delay
+      function stagger(groupSel) {
+        document.querySelectorAll(groupSel).forEach(function (parent, i) {
+          var kids = parent.querySelectorAll(':scope > .project, :scope > .timeline-item, :scope > .stack-layer');
+          Array.prototype.forEach.call(kids, function (k, idx) {
+            k.style.transitionDelay = (Math.min(idx, 6) * 0.06) + 's';
+          });
+        });
+      }
+      try { stagger('#projects, .timeline, #stackDiagram'); } catch (e) {}
+    })();
+
+    /* --- 3-1 orchestration diagram draw-in --- */
+    (function () {
+      var diag = document.getElementById('afDiagram');
+      if (!diag) return;
+      // precompute edge lengths for dash animation
+      var edges = diag.querySelectorAll('.diag-edge');
+      var nodes = diag.querySelectorAll('.diag-node');
+      if (REDUCE || !hasIO) return; // show completed immediately
+      diag.classList.add('diag-animate');
+      Array.prototype.forEach.call(edges, function (e, i) {
+        var len = 0;
+        try { len = e.getTotalLength(); } catch (err) { len = 90; }
+        e.style.setProperty('--edge-len', len);
+        e.style.setProperty('--edge-delay', (0.25 + i * 0.05) + 's');
+      });
+      Array.prototype.forEach.call(nodes, function (n, i) {
+        n.style.setProperty('--node-delay', (i * 0.05) + 's');
+      });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            diag.classList.add('diag-play');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.25 });
+      io.observe(diag);
+    })();
+
+    /* --- 3-3 hero typing effect --- */
+    (function () {
+      var prompt = document.getElementById('heroPrompt');
+      var title = document.getElementById('heroTitle');
+      if (!prompt || !title) return;
+      var typeTimer = null;
+
+      function replay() {
+        if (REDUCE) {
+          // immediate final state
+          prompt.classList.remove('type-init', 'type-play');
+          title.classList.remove('type-init', 'type-play');
+          prompt.textContent = prompt.getAttribute('data-type') || 'whoami';
+          return;
+        }
+        if (typeTimer) { clearTimeout(typeTimer); typeTimer = null; }
+        var full = prompt.getAttribute('data-type') || 'whoami';
+        // reset
+        prompt.classList.add('type-init', 'type-play');
+        prompt.textContent = '';
+        title.classList.remove('type-play');
+        title.classList.add('type-init');
+        // force reflow so the title wipe restarts
+        void title.offsetWidth;
+
+        var i = 0;
+        function tick() {
+          prompt.textContent = full.slice(0, i);
+          i++;
+          if (i <= full.length) {
+            typeTimer = setTimeout(tick, 55);
+          } else {
+            // start title wipe
+            title.classList.add('type-play');
+          }
+        }
+        tick();
+      }
+
+      window.__pf.replayHeroType = replay;
+      replay();
+    })();
   })();
 </script>
 
