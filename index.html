@@ -338,8 +338,31 @@
     background: var(--accent);
     border-color: var(--accent);
     box-shadow: 0 0 12px var(--accent);
+    z-index: 1;
+    animation: timeline-pulse 2s ease-in-out infinite;
+  }
+  /* current 마커 ripple — 라임 glow가 퍼졌다 사라지는 동적 효과 */
+  .timeline-item.current::after {
+    content: '';
+    position: absolute;
+    left: -5px; top: 1.4rem;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: timeline-ripple 2s ease-out infinite;
+    pointer-events: none;
   }
   .timeline-item.current { border-left-color: var(--accent); }
+  /* current dot: glow 강약 pulse */
+  @keyframes timeline-pulse {
+    0%, 100% { box-shadow: 0 0 6px var(--accent); }
+    50%      { box-shadow: 0 0 16px var(--accent); }
+  }
+  /* current dot: ripple ring 확산 */
+  @keyframes timeline-ripple {
+    0%   { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(2.8); opacity: 0; }
+  }
   .timeline-head {
     display: flex; gap: 1.5rem;
     flex-wrap: wrap;
@@ -1090,6 +1113,13 @@
   .copy-btn:hover { color: var(--accent); border-color: var(--accent-dim); }
   .copy-btn.copied { color: var(--accent); border-color: var(--accent-dim); }
 
+  /* AF 라이브 링크 줄: 데스크탑에서 한 줄 유지 (copy 버튼 추가로 인한 줄바꿈 방지).
+     모바일(<=768px)에서는 자연 줄바꿈 허용 — 이 규칙은 769px+에만 적용. */
+  @media (min-width: 769px) {
+    .live-link-row { white-space: nowrap; }
+    .live-link-row .copy-btn { margin-left: 0.35rem; padding: 0.1rem 0.35rem; }
+  }
+
   /* ============ REVEAL ON SCROLL (progressive enhancement) ============ */
   /* JS adds .reveal-init to hide, then .revealed to show. No-JS stays visible. */
   .reveal-init {
@@ -1120,10 +1150,27 @@
     border-left: 3px solid var(--accent);
     padding: 0.85rem 1.1rem;
     position: relative;
+    overflow: hidden;
   }
   .stack-layer.layer-af { border-left-color: var(--accent); }
   .stack-layer.layer-co { border-left-color: var(--accent-3); }
   .stack-layer.layer-ah { border-left-color: var(--accent-2); }
+  /* 좌측 accent border 위→아래로 흐르는 연출 (절제된 라임/시안/오렌지 흐름) */
+  .stack-layer::after {
+    content: '';
+    position: absolute;
+    left: -3px; top: -100%;
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    animation: stack-border-flow 3.6s linear infinite;
+    pointer-events: none;
+  }
+  .stack-layer.layer-co::after { background: linear-gradient(to bottom, transparent, var(--accent-3), transparent); animation-delay: 1.2s; }
+  .stack-layer.layer-ah::after { background: linear-gradient(to bottom, transparent, var(--accent-2), transparent); animation-delay: 2.4s; }
+  @keyframes stack-border-flow {
+    0%   { top: -100%; }
+    100% { top: 100%; }
+  }
   .stack-layer .layer-name {
     font-family: var(--mono);
     font-size: 12px; font-weight: 600;
@@ -1145,6 +1192,12 @@
   .stack-arrow-down {
     text-align: center; color: var(--muted);
     font-family: var(--mono); font-size: 11px; line-height: 1;
+    animation: stack-arrow-flow 1.6s ease-in-out infinite;
+  }
+  /* 레이어 연결 화살표: 부드러운 상하 이동 + 라임 opacity 흐름 (절제) */
+  @keyframes stack-arrow-flow {
+    0%, 100% { transform: translateY(-1px); color: var(--muted); }
+    50%      { transform: translateY(2px); color: var(--accent); }
   }
 
   /* ============ REDUCED MOTION GUARD ============ */
@@ -1156,6 +1209,11 @@
     html { scroll-behavior: auto !important; }
     .hero h1.type-init { clip-path: none !important; }
     .reveal-init { opacity: 1 !important; transform: none !important; }
+    /* 장식 모션(스택 연결 흐름·화살표·current 마커 pulse/ripple)은 정적으로 — 최종 상태 유지 */
+    .stack-layer::after { animation: none !important; display: none !important; }
+    .stack-arrow-down { animation: none !important; transform: none !important; }
+    .timeline-item.current::before { animation: none !important; }
+    .timeline-item.current::after { animation: none !important; display: none !important; }
   }
 </style>
 </head>
@@ -1484,10 +1542,10 @@
 
         <div class="project-field">
           <div class="field-label">live</div>
-          <div class="field-content ko" lang="ko">
+          <div class="field-content live-link-row ko" lang="ko">
             <a href="https://harry.tail488f52.ts.net" style="color: var(--accent);">라이브 시스템 열기 →</a><button type="button" class="copy-btn" data-copy="https://harry.tail488f52.ts.net" aria-label="copy live URL" aria-live="polite">copy url</button> · Tailscale 연결 시 직접 시연 (개인 시연용 · 외부 공개 아님)
           </div>
-          <div class="field-content" lang="en">
+          <div class="field-content live-link-row" lang="en">
             <a href="https://harry.tail488f52.ts.net" style="color: var(--accent);">open the live system →</a><button type="button" class="copy-btn" data-copy="https://harry.tail488f52.ts.net" aria-label="copy live URL" aria-live="polite">copy url</button> · demoed directly over Tailscale (private demo · not publicly exposed)
           </div>
         </div>
@@ -2421,10 +2479,6 @@
       var nodes = document.querySelectorAll(sel);
       if (!nodes.length) return;
       if (REDUCE || !hasIO) return; // no-JS / reduced-motion: stay visible
-      var groups = {};
-      Array.prototype.forEach.call(nodes, function (el) {
-        el.classList.add('reveal-init');
-      });
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
@@ -2433,8 +2487,12 @@
           }
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-      // light stagger within each section's children
+      // 첫 화면(above-the-fold)에 이미 보이는 요소는 reveal 생략(즉시 표시) — 로드 깜빡임 방지.
+      // 스크롤해야 보이는 아래쪽 요소만 reveal-init(opacity:0)로 숨겼다가 관찰.
+      var foldLine = window.innerHeight * 0.9;
       Array.prototype.forEach.call(nodes, function (el) {
+        if (el.getBoundingClientRect().top < foldLine) return; // above-fold: leave visible
+        el.classList.add('reveal-init');
         io.observe(el);
       });
       // stagger sibling cards/items via transition-delay
