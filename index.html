@@ -2484,7 +2484,7 @@
             io.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
       // 첫 화면(above-the-fold)에 이미 보이는 요소는 reveal 생략(즉시 표시) — 로드 깜빡임 방지.
       // 스크롤해야 보이는 아래쪽 요소만 reveal-init(opacity:0)로 숨겼다가 관찰.
       var foldLine = window.innerHeight * 0.9;
@@ -2493,6 +2493,14 @@
         el.classList.add('reveal-init');
         io.observe(el);
       });
+      // 안전망: 모바일 등에서 IO가 등장 트리거를 놓쳐도 콘텐츠가 영구히 숨지 않도록,
+      // 로드 후 일정 시간이 지나면 아직 등장 못 한 요소를 강제 표시(영구 비표시 원천 차단).
+      setTimeout(function () {
+        Array.prototype.forEach.call(
+          document.querySelectorAll('.reveal-init:not(.revealed)'),
+          function (el) { el.classList.add('revealed'); }
+        );
+      }, 3000);
       // stagger sibling cards/items via transition-delay
       function stagger(groupSel) {
         document.querySelectorAll(groupSel).forEach(function (parent, i) {
