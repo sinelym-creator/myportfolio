@@ -22,6 +22,7 @@
 
 | ID | 설명 | 완료일 | 산출물 |
 |----|------|--------|--------|
+| **T-pao-v0.6-overhaul-deploy** | **포트폴리오 전면 개편 + 프로덕션 배포 (세바스 전담 첫 작업)** — featured_work 7카드 재구성(3그룹 맥락분리·최신순): [AI work] autoflowagent 플래그십·automation-hub·claude-ops 신설 / [현재 회사 업무] 스포츠·곤충 간략화+기밀노트 / [시니어 트랙] 엔터프라이즈 SI + **첫 회사 통신인프라 C++ 7.5년 신설 → 15.7년 완성**. 민감내용 제외(회사도메인·상세스택)·pgvector 정정(미확정→일반표현, CO 유지)·tech_stack 보강(NestJS·Next.js·MCP Discord·AF/CO 에이전트플랫폼)·ADR 전문용어 9곳 제거·AF Tailscale 라이브 링크(개인시연)·access scope AF/CO. develop→PR #6→main 머지→배포→라이브 fetch 7카드 검증 ✅ (폐하 윤허 기반 단계 진행) | **2026-06-15** | **PR #6 (`5be5ec9`), https://younguk-lim-portfolio.vercel.app** |
 | **T-pao-i18n-toggle** | **KO/EN 토글 + 영문 풀 번역** — 헤더 KO/EN UI 정적 → 기능화. W3C 표준 `lang` attribute 토글 (html[lang="ko"]/[lang="en"] 셀렉터) + localStorage 영속 + 87 inline 병행 span pairs. index.html 1945 → 2138줄 (+193). 10 섹션 전부 커버 (hero·the_shift·timeline·5 project cards·tech_stack·lab·credentials·external_signals·contact·footer). 라이브 사이트 raw curl + WebFetch 양 언어 정상 노출 검증 ✅ | **2026-05-18** | **PR #4 (`c8ef5aa`), https://younguk-lim-portfolio.vercel.app (i18n live)** |
 | **T-pao-static-v0.5-deploy** | **정적 HTML v0.5 첫 배포** — 사용자 공유 portfolio-final-v0.5.html (1945줄, 다크 + yellow-green accent + 터미널 chrome) GitHub `myportfolio` + Vercel 자동 배포 ✅ | **2026-05-18** | **PR #1 (`068f6f4`), https://younguk-lim-portfolio.vercel.app, AH REGISTRY 6번째 등재** |
 
