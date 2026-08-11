@@ -1,3 +1,13 @@
+---
+asset_class: doc
+description: PAO(myportfolio) 개요 · 포트폴리오 정적 사이트와 배포(Vercel) 안내 · S6=해당 없음(단일 파일 제품 index.html)
+owner: grandmaster
+status: active
+effective_date: 2026-08-11
+lifecycle: 프로젝트 종료 시 archive
+scope: project(pao)
+---
+
 # myportfolio
 
 > 임영욱 (LIM YOUNGUK) — Integrated Intelligence Agent AI Builder
