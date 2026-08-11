@@ -1,0 +1,347 @@
+{
+  "run": {
+    "at": "2026-08-11 22:57 KST",
+    "scope": "claude-infra repo (v0.1)",
+    "files_total": 13,
+    "tracked": 10,
+    "untracked": 4,
+    "unregistered": 1,
+    "unclassified_axis": 1
+  },
+  "entries": [
+    {
+      "path": ".claude/context/checkpoint.md",
+      "axis": "상태",
+      "descriptor": {
+        "asset_class": "checkpoint",
+        "description": "myportfolio 세션 재개점 · 매 마감 시 1갱신",
+        "status": "active",
+        "scope": "project(myportfolio)",
+        "version": null,
+        "asset_type": "standing",
+        "owner": "grandmaster",
+        "lifecycle": "매 세션 마감 시 갱신 · 상한 초과 시 정본으로 밀어내고 포인터만 남긴다"
+      },
+      "validation": {
+        "checked_at": "2026-08-11 22:57 KST",
+        "flags": [],
+        "source": "ops/validator/results-latest.json"
+      },
+      "static_refs": {
+        "trust": "E1",
+        "source": "repo-scan",
+        "value": 3
+      },
+      "dynamic_use": {
+        "trust": "unverified",
+        "note": "not measured - null is not zero",
+        "source": "resolver-query-log",
+        "value": null
+      },
+      "mtime": "2026-08-11T22:56:25+09:00"
+    },
+    {
+      "path": ".claude/context/ssot-map.md",
+      "axis": "문서",
+      "descriptor": {
+        "asset_class": "reference",
+        "description": "PAO(myportfolio) SSOT 위치 맵(S7) · 무엇이 정본이고 어떻게 갱신하나 · S6=해당 없음(단일 파일 제품)",
+        "status": "active",
+        "scope": "project(myportfolio)",
+        "version": null,
+        "asset_type": "standing",
+        "owner": "grandmaster",
+        "lifecycle": "정본 추가·이동·승격 커밋마다 함께 갱신"
+      },
+      "validation": {
+        "checked_at": "2026-08-11 22:57 KST",
+        "flags": [],
+        "source": "ops/validator/results-latest.json"
+      },
+      "static_refs": {
+        "trust": "E1",
+        "source": "repo-scan",
+        "value": 2
+      },
+      "dynamic_use": {
+        "trust": "unverified",
+        "note": "not measured - null is not zero",
+        "source": "resolver-query-log",
+        "value": null
+      },
+      "mtime": "2026-08-11T22:57:19+09:00"
+    },
+    {
+      "path": ".gitignore",
+      "axis": "설정",
+      "descriptor": {
+        "asset_class": "config",
+        "description": "git 추적 제외 규칙(.workspace 등)",
+        "status": "active",
+        "scope": "project(pao)",
+        "version": null,
+        "asset_type": "standing",
+        "owner": "grandmaster",
+        "lifecycle": "스택 변경 시 review"
+      },
+      "validation": null,
+      "static_refs": {
+        "trust": "E1",
+        "source": "repo-scan",
+        "value": 1
+      },
+      "dynamic_use": {
+        "trust": "unverified",
+        "note": "not measured - null is not zero",
+        "source": "resolver-query-log",
+        "value": null
+      },
+      "mtime": "2026-05-18T16:32:22+09:00"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "axis": "상태",
+      "descriptor": {
+        "asset_class": "changelog",
+        "description": "myportfolio 이력 · S2 「완료」 회전분의 행선지(append 전용)",
+        "status": "active",
+        "scope": "project(myportfolio)",
+        "version": null,
+        "asset_type": "standing",
+        "owner": "grandmaster",
+        "lifecycle": "분기별 초과 시 docs/reports/ 절단 이관 review"
+      },
+      "validation": {
+        "checked_at": "2026-08-11 22:57 KST",
+        "flags": [],
+        "source": "ops/validator/results-latest.json"
+      },
+      "static_refs": {
+        "trust": "E1",
+        "source": "repo-scan",
+        "value": 3
+      },
+      "dynamic_use": {
+        "trust": "unverified",
+        "note": "not measured - null is not zero",
+        "source": "resolver-query-log",
+        "value": null
+      },
+      "mtime": "2026-08-11T22:55:35+09:00"
+    },
+    {
+      "path": "CLAUDE.md",
+      "axis": "규범",
+      "descriptor": {
+        "asset_class": "directive",
+        "description": "myportfolio 주법 · 이 프로젝트에서만 참인 규칙(연방 헌법 위)",
+        "status": "active",
+        "scope": "project(myportfolio)",
+        "version": null,
+        "asset_type": "standing",
+        "owner": "grandmaster",
+        "lifecycle": "연방 헌법 개정 시 review · 프로젝트 종료 시 archive"
+      },
+      "validation": {
+        "checked_at": "2026-08-11 22:57 KST",
+        "flags": [],
+        "source": "ops/validator/results-latest.json"
+      },
+      "static_refs": {
+        "trust": "E1",
+        "source": "repo-scan",
+        "value": 3
+      },
+      "dynamic_use": {
+        "trust": "unverified",
+        "note": "not measured - null is not zero",
+        "source": "resolver-query-log",
+        "value": null
+      },
+      "mtime": "2026-08-11T22:56:13+09:00"
+    },
+    {
+      "path": "index.html",
+      "axis": "UNCLASSIFIED",
+      "descriptor": null,
+      "validation": null,
+      "static_refs": {
+        "trust": "E1",
+        "source": "repo-scan",
+        "value": 6
+      },
+      "dynamic_use": {
+        "trust": "unverified",
+        "note": "not measured - null is not zero",
+        "source": "resolver-query-log",
+        "value": null
+      },
+      "mtime": "2026-06-16T13:54:07+09:00"
+    },
+    {
+      "path": "ops/inventory/report-latest.md",
+      "axis": "generated",
+      "descriptor": null,
+      "validation": null,
+      "static_refs": {
+        "trust": "E1",
+        "source": "repo-scan",
+        "value": 0
+      },
+      "dynamic_use": {
+        "trust": "unverified",
+        "note": "not measured - null is not zero",
+        "source": "resolver-query-log",
+        "value": null
+      },
+      "mtime": "2026-08-11T22:56:46+09:00"
+    },
+    {
+      "path": "ops/inventory/snapshot-latest.json",
+      "axis": "generated",
+      "descriptor": null,
+      "validation": null,
+      "static_refs": {
+        "trust": "E1",
+        "source": "repo-scan",
+        "value": 1
+      },
+      "dynamic_use": {
+        "trust": "unverified",
+        "note": "not measured - null is not zero",
+        "source": "resolver-query-log",
+        "value": null
+      },
+      "mtime": "2026-08-11T22:56:46+09:00"
+    },
+    {
+      "path": "ops/validator/report-latest.md",
+      "axis": "generated",
+      "descriptor": null,
+      "validation": null,
+      "static_refs": {
+        "trust": "E1",
+        "source": "repo-scan",
+        "value": 0
+      },
+      "dynamic_use": {
+        "trust": "unverified",
+        "note": "not measured - null is not zero",
+        "source": "resolver-query-log",
+        "value": null
+      },
+      "mtime": "2026-08-11T22:57:35+09:00"
+    },
+    {
+      "path": "ops/validator/results-latest.json",
+      "axis": "generated",
+      "descriptor": null,
+      "validation": null,
+      "static_refs": {
+        "trust": "E1",
+        "source": "repo-scan",
+        "value": 0
+      },
+      "dynamic_use": {
+        "trust": "unverified",
+        "note": "not measured - null is not zero",
+        "source": "resolver-query-log",
+        "value": null
+      },
+      "mtime": "2026-08-11T22:57:35+09:00"
+    },
+    {
+      "path": "PROGRESS.md",
+      "axis": "상태",
+      "descriptor": {
+        "asset_class": "ssot",
+        "description": "PAO(myportfolio) 현황·결정 이력 SSOT · S2 보드(진행중·완료·블로커·해야 할 일)",
+        "status": "active",
+        "scope": "project(pao)",
+        "version": null,
+        "asset_type": "standing",
+        "owner": "grandmaster",
+        "lifecycle": "트랙 종료 시 archive · 성장 게이트 대상(완료 10행 초과분은 CHANGELOG 회전)"
+      },
+      "validation": {
+        "checked_at": "2026-08-11 22:57 KST",
+        "flags": [],
+        "source": "ops/validator/results-latest.json"
+      },
+      "static_refs": {
+        "trust": "E1",
+        "source": "repo-scan",
+        "value": 4
+      },
+      "dynamic_use": {
+        "trust": "unverified",
+        "note": "not measured - null is not zero",
+        "source": "resolver-query-log",
+        "value": null
+      },
+      "mtime": "2026-08-11T22:55:01+09:00"
+    },
+    {
+      "path": "project-map.md",
+      "axis": "상태",
+      "descriptor": {
+        "asset_class": "index",
+        "description": "리포 자산 목차 · Context Map Compiler 생성물(수정은 각 자산 Descriptor에서)",
+        "status": "active",
+        "scope": "global",
+        "version": null,
+        "asset_type": "standing",
+        "owner": "grandmaster",
+        "lifecycle": "매 inventory-scan 연쇄 시 재생성 · 수기 편집은 다음 생성이 덮어씀"
+      },
+      "validation": {
+        "checked_at": "2026-08-11 22:57 KST",
+        "flags": [],
+        "source": "ops/validator/results-latest.json"
+      },
+      "static_refs": {
+        "trust": "E1",
+        "source": "repo-scan",
+        "value": 3
+      },
+      "dynamic_use": {
+        "trust": "unverified",
+        "note": "not measured - null is not zero",
+        "source": "resolver-query-log",
+        "value": null
+      },
+      "mtime": "2026-08-11T22:56:46+09:00"
+    },
+    {
+      "path": "README.md",
+      "axis": "문서",
+      "descriptor": {
+        "asset_class": "doc",
+        "description": "PAO(myportfolio) 개요 · 포트폴리오 정적 사이트와 배포(Vercel) 안내 · S6=해당 없음(단일 파일 제품 index.html)",
+        "status": "active",
+        "scope": "project(pao)",
+        "version": null,
+        "asset_type": "standing",
+        "owner": "grandmaster",
+        "lifecycle": "프로젝트 종료 시 archive"
+      },
+      "validation": {
+        "checked_at": "2026-08-11 22:57 KST",
+        "flags": [],
+        "source": "ops/validator/results-latest.json"
+      },
+      "static_refs": {
+        "trust": "E1",
+        "source": "repo-scan",
+        "value": 1
+      },
+      "dynamic_use": {
+        "trust": "unverified",
+        "note": "not measured - null is not zero",
+        "source": "resolver-query-log",
+        "value": null
+      },
+      "mtime": "2026-08-11T22:52:39+09:00"
+    }
+  ]
+}

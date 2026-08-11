@@ -11,7 +11,7 @@ scope: global
 # project-map — claude-infra 자산 목차
 
 > ⚠ GENERATED — 직접 편집 금지. 수정은 해당 자산의 Descriptor에서.
-> 생성: 2026-08-11 22:53 KST · 원본: ops/inventory/snapshot-latest.json · 자산 9건 (미등록 2)
+> 생성: 2026-08-11 22:57 KST · 원본: ops/inventory/snapshot-latest.json · 자산 13건 (미등록 1)
 
 ## changelog (1)
 
@@ -35,14 +35,17 @@ scope: global
 
 ## index (1)
 
-- project-map.md — myportfolio 자산 목차 · Context Map Compiler 생성물(수기 편집 금지) [active·project(myportfolio)]
+- project-map.md — 리포 자산 목차 · Context Map Compiler 생성물(수정은 각 자산 Descriptor에서) [active·global]
 
 ## reference (1)
 
-- .claude/context/ssot-map.md — myportfolio SSOT 위치 맵(S7) · 무엇이 정본이고 어떻게 갱신하나 [active·project(myportfolio)]
+- .claude/context/ssot-map.md — PAO(myportfolio) SSOT 위치 맵(S7) · 무엇이 정본이고 어떻게 갱신하나 · S6=해당 없음(단일 파일 제품) [active·project(myportfolio)]
 
-## 🔴 미등록 (2) — Descriptor 없음
+## ssot (1)
+
+- PROGRESS.md — PAO(myportfolio) 현황·결정 이력 SSOT · S2 보드(진행중·완료·블로커·해야 할 일) [active·project(pao)]
+
+## 🔴 미등록 (1) — Descriptor 없음
 
 - index.html (axis: UNCLASSIFIED)
-- PROGRESS.md (axis: UNCLASSIFIED)
 

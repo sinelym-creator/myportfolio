@@ -1,0 +1,41 @@
+{
+  "run": {
+    "flags": "V0=0 V1=0 V2=0 V3=0 V4=0 V5=0 V6=0 V7=0 V8=0",
+    "at": "2026-08-11 22:57 KST",
+    "checked": 8
+  },
+  "results": [
+    {
+      "path": ".claude/context/checkpoint.md",
+      "flags": []
+    },
+    {
+      "path": ".claude/context/ssot-map.md",
+      "flags": []
+    },
+    {
+      "path": ".gitignore.desc.yml",
+      "flags": []
+    },
+    {
+      "path": "CHANGELOG.md",
+      "flags": []
+    },
+    {
+      "path": "CLAUDE.md",
+      "flags": []
+    },
+    {
+      "path": "PROGRESS.md",
+      "flags": []
+    },
+    {
+      "path": "project-map.md",
+      "flags": []
+    },
+    {
+      "path": "README.md",
+      "flags": []
+    }
+  ]
+}
