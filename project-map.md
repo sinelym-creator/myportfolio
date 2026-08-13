@@ -11,7 +11,7 @@ scope: global
 # project-map — myportfolio 자산 목차
 
 > ⚠ GENERATED — 직접 편집 금지. 수정은 해당 자산의 Descriptor에서.
-> 생성: 2026-08-13 16:15 KST · 원본: ops/inventory/snapshot-latest.json · 자산 13건 (미등록 1)
+> 생성: 2026-08-13 19:46 KST · 원본: ops/inventory/snapshot-latest.json · 자산 14건 (미등록 2)
 
 ## changelog (1)
 
@@ -45,7 +45,8 @@ scope: global
 
 - PROGRESS.md — PAO(myportfolio) 현황·결정 이력 SSOT · S2 보드(진행중·완료·블로커·해야 할 일) [active·project(pao)]
 
-## 🔴 미등록 (1) — Descriptor 없음
+## 🔴 미등록 (2) — Descriptor 없음
 
+- .github/workflows/019-standard.yml (axis: UNCLASSIFIED)
 - index.html (axis: UNCLASSIFIED)
 
