@@ -1,0 +1,7 @@
+asset_class: config
+description: git 추적 제외 규칙(.workspace 등)
+owner: grandmaster
+status: active
+effective_date: 2026-08-11
+lifecycle: 스택 변경 시 review
+scope: project(pao)
