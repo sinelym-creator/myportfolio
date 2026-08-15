@@ -47,3 +47,4 @@ pwsh C:/Users/sinel/repos/claude-infra/tools/scaffold.ps1 -Class <class> -Name <
 - **경로를 외우지 않는다** — `asset_class`를 고르면 배치는 등록부가 정한다(설계 006 R-1).
 - **빈 폴더를 미리 만들지 않는다** — 디렉터리는 첫 자산이 태어날 때 생긴다(R-2).
 - 새 자산 종류가 필요하면 폴더가 아니라 **등록부에 1줄**을 추가한다(R-3).
+- 🔴 **S8 재생성 배선(019 T5)** — 마감 시 파이프라인(4+1)을 `-RepoRoot .`로 재실행하고 **`git add` 이후 재실행분**을 커밋한다. `project-map.md`·`ops/`는 생성물이다(수기 편집 금지).
