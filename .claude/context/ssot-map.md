@@ -31,4 +31,6 @@ size_limit: 4KB
 
 > 리포 밖 정본 인용은 이 절에만 버전·SHA 병기로 고정한다(본문 산발 인용 금지).
 
+- `claude-infra docs/design/018-project-ssot-standard.md` **v0.5** — 본 리포 칸 구조(7+1)의 규격 · 참조 세대 = infra **develop `0e69361`**(읽은 ref = develop · 그 SHA에서 `version: 0.5` 직독)
+- `claude-infra docs/design/019-project-migration-plan.md` **v0.6** — 018 적용 절차(T0~T7) · 참조 세대 = infra **develop `0e69361`**(동상 · H1·description v0.6 직독)
 - `AH(automation-hub) docs/architecture/master-ecosystem-overview.md` v1.1 §3.5 — PAO 정의 · 참조 세대 = AH main `8693b73`(2026-08-11 census) · ⚠ **AH = 구 정본 리포(ADR-010)** — 승계 완료 시 참조처 재지정 대상

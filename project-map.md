@@ -3,7 +3,7 @@ asset_class: index
 description: 리포 자산 목차 · Context Map Compiler 생성물(수정은 각 자산 Descriptor에서)
 owner: grandmaster
 status: active
-effective_date: 2026-08-13
+effective_date: 2026-08-16
 lifecycle: 매 inventory-scan 연쇄 시 재생성 · 수기 편집은 다음 생성이 덮어씀
 scope: global
 ---
@@ -11,7 +11,7 @@ scope: global
 # project-map — myportfolio 자산 목차
 
 > ⚠ GENERATED — 직접 편집 금지. 수정은 해당 자산의 Descriptor에서.
-> 생성: 2026-08-13 19:46 KST · 원본: ops/inventory/snapshot-latest.json · 자산 14건 (미등록 2)
+> 생성: 2026-08-16 02:07 KST · 원본: ops/inventory/snapshot-latest.json · 자산 14건 (미등록 2)
 
 ## changelog (1)
 

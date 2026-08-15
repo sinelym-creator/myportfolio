@@ -1,4 +1,10 @@
 {
+  "run": {
+    "at": "2026-08-16 02:06 KST",
+    "checked": 8,
+    "flags": "V0=0 V1=0 V2=0 V3=0 V4=0 V5=0 V6=0 V7=0 V8=0 V9=0 V10=0",
+    "excluded": 0
+  },
   "results": [
     {
       "path": ".claude/context/checkpoint.md",
@@ -32,11 +38,5 @@
       "path": "README.md",
       "flags": []
     }
-  ],
-  "run": {
-    "checked": 8,
-    "at": "2026-08-13 19:46 KST",
-    "flags": "V0=0 V1=0 V2=0 V3=0 V4=0 V5=0 V6=0 V7=0 V8=0 V9=0",
-    "excluded": 0
-  }
+  ]
 }
