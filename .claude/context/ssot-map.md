@@ -6,7 +6,7 @@ status: active
 effective_date: 2026-08-11
 lifecycle: 정본 추가·이동·승격 커밋마다 함께 갱신
 scope: project(myportfolio)
-size_limit: 4KB
+size_limit: 6KB
 ---
 
 # SSOT 맵 — myportfolio (S7)
