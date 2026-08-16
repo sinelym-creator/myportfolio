@@ -34,7 +34,7 @@ size_limit: 6KB
 
 > 리포 밖 정본 인용은 이 절에만 버전·SHA 병기로 고정한다(본문 산발 인용 금지).
 
-- `claude-infra docs/design/018-project-ssot-standard.md` **v0.8** — 본 리포 칸 구조(7+1 + ▸로드 선언·▸플랜)의 규격 · 참조 세대 = infra **develop `efada7f`**(그 SHA에서 `version: 0.6` 직독 · D-020 재가분)
+- `claude-infra docs/design/018-project-ssot-standard.md` **v0.8** — 본 리포 칸 구조(7+1 + ▸로드 선언·▸플랜)의 규격 · 참조 세대 = infra **develop `efada7f`**(그 SHA에서 `version: 0.8` 직독 · D-022 재가분)
 - `claude-infra docs/design/019-project-migration-plan.md` **v0.7** — 018 적용 절차(T0~T7 · T5에 로드 선언·플랜 신설 편입) · 참조 세대 = infra **develop `efada7f`**(동상 · description v0.7 직독)
 - `claude-infra docs/decisions/020-standard-amendment-load-declaration-and-plan.md` — 본 리포 두 파일 신설의 근거(소형 리포 최소 규격) · 참조 세대 = infra **develop `efada7f`**
 - `AH(automation-hub) docs/architecture/master-ecosystem-overview.md` v1.1 §3.5 — PAO 정의 · 참조 세대 = AH main `8693b73`(2026-08-11 census) · ⚠ **AH = 구 정본 리포(ADR-010)** — 승계 완료 시 참조처 재지정 대상
