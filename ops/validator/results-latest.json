@@ -1,11 +1,15 @@
 {
   "run": {
-    "at": "2026-08-16 02:06 KST",
-    "checked": 8,
+    "at": "2026-08-17 00:14 KST",
+    "checked": 10,
     "flags": "V0=0 V1=0 V2=0 V3=0 V4=0 V5=0 V6=0 V7=0 V8=0 V9=0 V10=0",
     "excluded": 0
   },
   "results": [
+    {
+      "path": ".claude/context/boot-manifest.json.desc.yml",
+      "flags": []
+    },
     {
       "path": ".claude/context/checkpoint.md",
       "flags": []
@@ -32,6 +36,10 @@
     },
     {
       "path": "project-map.md",
+      "flags": []
+    },
+    {
+      "path": "project-plan.md",
       "flags": []
     },
     {
