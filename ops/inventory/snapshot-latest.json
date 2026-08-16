@@ -1,9 +1,9 @@
 {
   "run": {
-    "at": "2026-08-16 02:06 KST",
+    "at": "2026-08-17 00:14 KST",
     "scope": "myportfolio repo (tool v0.1)",
-    "files_total": 14,
-    "tracked": 15,
+    "files_total": 16,
+    "tracked": 18,
     "untracked": 0,
     "excluded": 0,
     "exclude_source": null,
@@ -11,6 +11,33 @@
     "unclassified_axis": 2
   },
   "entries": [
+    {
+      "path": ".claude/context/boot-manifest.json",
+      "axis": "설정",
+      "descriptor": {
+        "asset_class": "config",
+        "description": "역할별 부팅 로드 세트 선언(018 v0.6 ▸로드 선언 · G2·G5 분모의 원천) · 코드·문면은 이것을 읽는 쪽",
+        "status": "active",
+        "scope": "project(myportfolio)",
+        "version": null,
+        "asset_type": "standing",
+        "owner": "grandmaster",
+        "lifecycle": "로드 세트 변경 커밋에서 함께 갱신 · 오케스트레이터 단독 쓰기"
+      },
+      "validation": null,
+      "static_refs": {
+        "value": 2,
+        "source": "repo-scan",
+        "trust": "E1"
+      },
+      "dynamic_use": {
+        "value": null,
+        "source": "resolver-query-log",
+        "trust": "unverified",
+        "note": "not measured - null is not zero"
+      },
+      "mtime": "2026-08-17T00:11:48+09:00"
+    },
     {
       "path": ".claude/context/checkpoint.md",
       "axis": "상태",
@@ -27,10 +54,10 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-16 02:06 KST"
+        "checked_at": "2026-08-17 00:14 KST"
       },
       "static_refs": {
-        "value": 3,
+        "value": 4,
         "source": "repo-scan",
         "trust": "E1"
       },
@@ -40,7 +67,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T01:46:17+09:00"
+      "mtime": "2026-08-17T00:10:10+09:00"
     },
     {
       "path": ".claude/context/ssot-map.md",
@@ -58,7 +85,7 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-16 02:06 KST"
+        "checked_at": "2026-08-17 00:14 KST"
       },
       "static_refs": {
         "value": 2,
@@ -71,7 +98,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T01:49:57+09:00"
+      "mtime": "2026-08-17T00:12:39+09:00"
     },
     {
       "path": ".github/workflows/019-standard.yml",
@@ -89,7 +116,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T01:46:17+09:00"
+      "mtime": "2026-08-17T00:10:10+09:00"
     },
     {
       "path": ".gitignore",
@@ -116,7 +143,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T01:46:17+09:00"
+      "mtime": "2026-08-17T00:10:10+09:00"
     },
     {
       "path": "CHANGELOG.md",
@@ -134,7 +161,7 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-16 02:06 KST"
+        "checked_at": "2026-08-17 00:14 KST"
       },
       "static_refs": {
         "value": 3,
@@ -147,7 +174,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T01:46:18+09:00"
+      "mtime": "2026-08-17T00:10:10+09:00"
     },
     {
       "path": "CLAUDE.md",
@@ -165,7 +192,7 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-16 02:06 KST"
+        "checked_at": "2026-08-17 00:14 KST"
       },
       "static_refs": {
         "value": 3,
@@ -178,7 +205,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T02:03:14+09:00"
+      "mtime": "2026-08-17T00:10:10+09:00"
     },
     {
       "path": "index.html",
@@ -186,7 +213,7 @@
       "descriptor": null,
       "validation": null,
       "static_refs": {
-        "value": 6,
+        "value": 7,
         "source": "repo-scan",
         "trust": "E1"
       },
@@ -196,7 +223,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T01:46:18+09:00"
+      "mtime": "2026-08-17T00:10:10+09:00"
     },
     {
       "path": "ops/inventory/report-latest.md",
@@ -214,7 +241,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T01:46:19+09:00"
+      "mtime": "2026-08-17T00:14:02+09:00"
     },
     {
       "path": "ops/inventory/snapshot-latest.json",
@@ -232,7 +259,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T01:46:19+09:00"
+      "mtime": "2026-08-17T00:14:02+09:00"
     },
     {
       "path": "ops/validator/report-latest.md",
@@ -250,7 +277,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T02:06:54+09:00"
+      "mtime": "2026-08-17T00:14:19+09:00"
     },
     {
       "path": "ops/validator/results-latest.json",
@@ -268,7 +295,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T02:06:54+09:00"
+      "mtime": "2026-08-17T00:14:19+09:00"
     },
     {
       "path": "PROGRESS.md",
@@ -286,10 +313,10 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-16 02:06 KST"
+        "checked_at": "2026-08-17 00:14 KST"
       },
       "static_refs": {
-        "value": 4,
+        "value": 5,
         "source": "repo-scan",
         "trust": "E1"
       },
@@ -299,7 +326,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T01:46:18+09:00"
+      "mtime": "2026-08-17T00:10:10+09:00"
     },
     {
       "path": "project-map.md",
@@ -317,7 +344,7 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-16 02:06 KST"
+        "checked_at": "2026-08-17 00:14 KST"
       },
       "static_refs": {
         "value": 3,
@@ -330,7 +357,38 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T01:46:19+09:00"
+      "mtime": "2026-08-17T00:14:02+09:00"
+    },
+    {
+      "path": "project-plan.md",
+      "axis": "문서",
+      "descriptor": {
+        "asset_class": "reference",
+        "description": "PAO(myportfolio) 플랜 · 방향 요약 + 확정 작업 계획 단일본 · 오케스트레이터 기본 로드 · 소형 리포 최소 규격(018 v0.6 §6)",
+        "status": "active",
+        "scope": "project(myportfolio)",
+        "version": "0.1",
+        "asset_type": "standing",
+        "owner": "grandmaster",
+        "lifecycle": "세션마다 재작성하지 않는다 · summarizes 대상이 바뀔 때만 갱신"
+      },
+      "validation": {
+        "flags": [],
+        "source": "ops/validator/results-latest.json",
+        "checked_at": "2026-08-17 00:14 KST"
+      },
+      "static_refs": {
+        "value": 2,
+        "source": "repo-scan",
+        "trust": "E1"
+      },
+      "dynamic_use": {
+        "value": null,
+        "source": "resolver-query-log",
+        "trust": "unverified",
+        "note": "not measured - null is not zero"
+      },
+      "mtime": "2026-08-17T00:12:16+09:00"
     },
     {
       "path": "README.md",
@@ -348,10 +406,10 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-16 02:06 KST"
+        "checked_at": "2026-08-17 00:14 KST"
       },
       "static_refs": {
-        "value": 1,
+        "value": 2,
         "source": "repo-scan",
         "trust": "E1"
       },
@@ -361,7 +419,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-16T01:46:18+09:00"
+      "mtime": "2026-08-17T00:10:10+09:00"
     }
   ]
 }

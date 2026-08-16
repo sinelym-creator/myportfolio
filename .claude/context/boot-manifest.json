@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "role_vocab": ["orchestrator", "agent"],
+  "roles_source": "~/.claude/legions/direct-team.json#roster[].role",
+  "load_sets": {
+    "orchestrator": [
+      { "path": "CLAUDE.md",                     "mode": "auto-inject" },
+      { "path": ".claude/context/checkpoint.md", "mode": "full" },
+      { "path": ".claude/context/ssot-map.md",   "mode": "full" },
+      { "path": "project-plan.md",               "mode": "full" }
+    ],
+    "agent": [
+      { "path": "CLAUDE.md",      "mode": "auto-inject" },
+      { "path": "project-map.md", "mode": "pointer" }
+    ]
+  },
+  "budget": { "canon_bytes": 20480, "normalize": "LF" }
+}

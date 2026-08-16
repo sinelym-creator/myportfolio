@@ -1,0 +1,7 @@
+asset_class: config
+description: 역할별 부팅 로드 세트 선언(018 v0.6 ▸로드 선언 · G2·G5 분모의 원천) · 코드·문면은 이것을 읽는 쪽
+owner: grandmaster
+status: active
+effective_date: 2026-08-17
+lifecycle: 로드 세트 변경 커밋에서 함께 갱신 · 오케스트레이터 단독 쓰기
+scope: project(myportfolio)
