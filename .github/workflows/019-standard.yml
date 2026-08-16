@@ -21,21 +21,92 @@ jobs:
     runs-on: [self-hosted, windows]
     timeout-minutes: 20
     steps:
+      # 🔴 fetch-depth: 0 필수 — 기본값 1(얕은 체크아웃)이면 G6이 비교 기준(base)을 해소하지 못한다.
+      #   origin/main도 HEAD~1도 없는 트리에서 `rev-parse`가 인자 문자열을 그대로 뱉었고,
+      #   그것을 sha로 받은 뒤 Substring(0,7)이 예외로 터져 G1~G5 판정이 «한 줄도» 남지 않았다(D-5).
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # 🔴 「검사가 실패했다」와 「검사가 안 돌았다」를 가른다.
       #   도구가 없는 실행기에서 조용히 통과하는 것이 이 배선의 가장 큰 위험이다.
+      # 🔴 도구 «출처» 우선순위(재정 08-14) — ① 명시 지정(env) ② 판정 대상 리포 자신의 tools ③ 러너 디스크 정본.
+      #   ②가 없으면 «도구를 고치는 PR»을 «고치기 전 도구»가 판정한다. 실제로 그렇게 됐다:
+      #   D-3 봉합 PR이 낸 산출물을 봉합 전 컴파일러가 재생성해 G3가 2줄 diff를 냈고, 병합해도 초록이
+      #   되지 않는 상태였다(러너 디스크 정본이 그 커밋과 다른 브랜치였기 때문). 주법 §3
+      #   「자기 적용이 배포보다 먼저다」의 배선 구현이 이 분기다.
+      #   🔴 신뢰 모델 = «자기 리포 PR만 도는 셀프호스트» 전제. **외부 기여(fork PR)를 받는 리포에는 이 배선을
+      #      쓰지 않는다** — 대상 리포의 코드로 판정하면 기여자가 판정기 자신을 바꿔 낼 수 있다.
+      # 🔴 canon = «러너 전용 develop 클론» (폐하 재가 08-16 15:00 `1538427087046582313` · 15:18 「권장안 진행」).
+      #   구판 canon = 오케 세션의 주 체크아웃(`repos\claude-infra\tools`)이었다 — 그 체크아웃이 작업 브랜치에
+      #   올라가 있으면 함대 전체가 «그 브랜치의 게이트»로 판정된다. 실제로 그렇게 됐다(08-16 D0.5: 주 체크아웃
+      #   `docs/project-doc-set`이 develop보다 tools 5커밋 뒤진 채 PAO #13 등을 판정). 전용 클론은 사람이 브랜치를
+      #   옮길 일이 없고, 잡마다 origin/develop을 fetch한 뒤 «읽은 SHA»를 로그에 박아 판정기의 세대를 남긴다.
+      #   클론은 «객체 저장소»로만 쓴다 — 잡은 그 SHA의 tools+등록부를 잡 전용 폴더에 풀어 쓰고, 클론의 HEAD·작업
+      #   트리는 바꾸지 않는다(러너 5대 병렬 = 공유 작업 트리를 잡이 «변경»하면 서로의 판정기를 바꾸는 경합).
+      #   롤백 = 이 블록의 경로 1줄 원복 + 클론 폴더 삭제(라이브 축 · 백업 대상 없음 = 신규 생성물).
       - name: Preflight - tools must exist
         shell: pwsh
         run: |
-          $tools = if ($env:CLAUDE_INFRA_TOOLS) { $env:CLAUDE_INFRA_TOOLS } else { 'C:\Users\sinel\repos\claude-infra\tools' }
+          $canonRepo = 'C:\Users\sinel\repos\claude-infra-canon'
+          if (Test-Path (Join-Path $canonRepo '.git')) {
+            # 🔴 동시성(#59 검문 축 ①) — 러너 5대(pc-sinel-infra/co/gb/pao/pp)가 한 PC에서 «병렬로» 돌 수 있고,
+            #   워크플로 `concurrency:`는 리포 단위라 리포 «간» 직렬화가 안 된다. 그래서 공유 클론의 작업 트리는
+            #   어느 잡도 건드리지 않는다: 공유 클론에는 fetch만 하고(=객체 저장소), 그 SHA의 tools+등록부를
+            #   `git archive`로 잡 전용 폴더(RUNNER_TEMP · 러너마다 다르고 잡 시작·종료 때 비워진다)에 풀어 쓴다.
+            #   checkout이 없으므로 클론 HEAD·작업 트리는 잡 사이에 공유 상태가 아니다.
+            #   fetch 실패(오프라인·ref lock 경합)는 경고 후 «마지막으로 받은 origin/develop»으로 진행한다 —
+            #   어느 쪽이든 «실제로 읽은 SHA»가 아래 한 줄로 로그에 남는다. 그 SHA를 못 구하면 실패다(조용한 폴백 금지).
+            $fetchOut = (git -C $canonRepo fetch -q origin develop 2>&1)
+            if ($LASTEXITCODE -ne 0) { Write-Output "::warning::canon fetch failed (rc=$LASTEXITCODE) - using the last fetched origin/develop :: $fetchOut" }
+            $canonSha = "$(git -C $canonRepo rev-parse --verify --quiet origin/develop 2>$null)".Trim()
+            if ($canonSha -notmatch '^[0-9a-f]{40}$') {
+              Write-Output "::error::canon clone has no usable origin/develop ref ($canonRepo) - the gate generation cannot be determined."
+              exit 1
+            }
+            $canonRef = $canonSha.Substring(0, 7)
+            $canonRoot = Join-Path $env:RUNNER_TEMP "canon-$canonRef-$env:GITHUB_RUN_ID"
+            $canonZip = "$canonRoot.zip"
+            git -C $canonRepo archive --format=zip -o $canonZip $canonSha tools docs/design/asset-classes.yml
+            if ($LASTEXITCODE -ne 0) { Write-Output "::error::canon archive failed (rc=$LASTEXITCODE) at $canonSha"; exit 1 }
+            Expand-Archive -Path $canonZip -DestinationPath $canonRoot -Force
+            Remove-Item -LiteralPath $canonZip -Force -ErrorAction SilentlyContinue   # 풀고 나면 zip은 필요 없다(RUNNER_TEMP 잔존물 0)
+            Write-Output "canon ref = origin/develop @ $canonRef (object store $canonRepo -> job-local $canonRoot)"
+            $canon = Join-Path $canonRoot 'tools'
+            $canonDesc = "origin/develop of claude-infra @ $canonRef (read-only job-local extraction)"
+          }
+          else {
+            # 🔴 전용 클론이 없으면 조용히 옛 경로로 가지 않는다 — 그 사실을 로그에 남기고 폴백 경로를 쓴다.
+            $canonRepo = 'C:\Users\sinel\repos\claude-infra'
+            $canonRef = (git -C $canonRepo rev-parse --abbrev-ref HEAD 2>$null) + '@' + (git -C $canonRepo rev-parse --short HEAD 2>$null)
+            Write-Output "::warning::canon clone missing - falling back to the session checkout $canonRepo (branch-dependent gate: $canonRef)"
+            $canon = Join-Path $canonRepo 'tools'
+            # 🔴 폴백의 canon은 origin/develop이 «아니다» — 아래 tool source 문구가 그 사실을 그대로 말하게 한다(#59 검문 결함 2).
+            $canonDesc = "session checkout $canonRepo @ $canonRef (NOT origin/develop - branch-dependent fallback)"
+          }
+          $own = Join-Path $env:GITHUB_WORKSPACE 'tools'
+          if ($env:CLAUDE_INFRA_TOOLS) {
+            $tools = $env:CLAUDE_INFRA_TOOLS
+            $src = 'env:CLAUDE_INFRA_TOOLS (explicit override)'
+          }
+          elseif (Test-Path (Join-Path $own 'ci-gate.ps1')) {
+            $tools = $own
+            $src = 'target repo itself (this checkout carries the tools - self-application)'
+          }
+          else {
+            # 🔴 폴백을 조용히 쓰지 않는다(025 규율). 러너 디스크의 도구는 «지금 판정 중인 커밋»이 아니라
+            #   그 체크아웃이 올라가 있는 다른 브랜치의 것일 수 있다 — 그 사실을 로그에 남긴다.
+            $tools = $canon
+            $src = "runner disk canon = $canonDesc (this repo carries no tools; the canon is not the commit under test)"
+          }
           $gate = Join-Path $tools 'ci-gate.ps1'
           if (-not (Test-Path $gate)) {
-            Write-Output "::error::ci-gate.ps1 not found at $gate - the runner cannot judge this repo."
+            Write-Output "::error::ci-gate.ps1 not found at $gate (source: $src) - the runner cannot judge this repo."
             exit 1
           }
           "CLAUDE_INFRA_GATE=$gate" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
           Write-Output "gate = $gate"
+          Write-Output "tool source = $src"
 
       - name: 019 standard gate
         shell: pwsh
