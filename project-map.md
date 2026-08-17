@@ -3,7 +3,7 @@ asset_class: index
 description: 리포 자산 목차 · Context Map Compiler 생성물(수정은 각 자산 Descriptor에서)
 owner: grandmaster
 status: active
-effective_date: 2026-08-17
+effective_date: 2026-08-18
 lifecycle: 매 inventory-scan 연쇄 시 재생성 · 수기 편집은 다음 생성이 덮어씀
 scope: global
 ---
@@ -11,41 +11,42 @@ scope: global
 # project-map — myportfolio 자산 목차
 
 > ⚠ GENERATED — 직접 편집 금지. 수정은 해당 자산의 Descriptor에서.
-> 생성: 2026-08-17 22:50 KST · 원본: ops/inventory/snapshot-latest.json · 자산 17건 (미등록 2)
+> 생성: 2026-08-18 00:59 KST · 원본: ops/inventory/snapshot-latest.json · 자산 17건 (미등록 2)
+> tag 생략 기본값 = `status: active` · `scope: project(myportfolio)` — 태그가 없으면 이 두 값이다(생략은 표시 규칙이며 Descriptor는 그대로).
 
 ## changelog (1)
 
-- CHANGELOG.md — myportfolio 이력 · S2 「완료」 회전분의 행선지(append 전용) [active·project(myportfolio)]
+- CHANGELOG.md — myportfolio 이력 · S2 「완료」 회전분의 행선지(append 전용)
 
 ## checkpoint (1)
 
-- .claude/context/checkpoint.md — myportfolio 세션 재개점 · 매 마감 시 1갱신 [active·project(myportfolio)]
+- .claude/context/checkpoint.md — myportfolio 세션 재개점 · 매 마감 시 1갱신
 
 ## config (2)
 
-- .claude/context/boot-manifest.json — 역할별 부팅 로드 세트 선언(018 v0.6 ▸로드 선언 · G2·G5 분모의 원천) · 코드·문면은 이것을 읽는 쪽 [active·project(myportfolio)]
-- .gitignore — git 추적 제외 규칙(.workspace 등) [active·project(pao)]
+- .claude/context/boot-manifest.json — 역할별 부팅 로드 세트 선언(018 v0.6 ▸로드 선언 · G2·G5 분모의 원천) · 코드·문면은 이것을 읽는 쪽
+- .gitignore — git 추적 제외 규칙(.workspace 등) [project(pao)]
 
 ## directive (1)
 
-- CLAUDE.md — myportfolio 주법 · 이 프로젝트에서만 참인 규칙(연방 헌법 위) [active·project(myportfolio)]
+- CLAUDE.md — myportfolio 주법 · 이 프로젝트에서만 참인 규칙(연방 헌법 위)
 
 ## doc (1)
 
-- README.md — PAO(myportfolio) 개요 · 포트폴리오 정적 사이트와 배포(Vercel) 안내 · S6=해당 없음(단일 파일 제품 index.html) [active·project(pao)]
+- README.md — PAO(myportfolio) 개요 · 포트폴리오 정적 사이트와 배포(Vercel) 안내 · S6=해당 없음(단일 파일 제품 index.html) [project(pao)]
 
 ## index (1)
 
-- project-map.md — 리포 자산 목차 · Context Map Compiler 생성물(수정은 각 자산 Descriptor에서) [active·global]
+- project-map.md — 리포 자산 목차 · Context Map Compiler 생성물(수정은 각 자산 Descriptor에서) [global]
 
 ## reference (2)
 
-- .claude/context/ssot-map.md — PAO(myportfolio) SSOT 위치 맵(S7) · 무엇이 정본이고 어떻게 갱신하나 · S6=해당 없음(단일 파일 제품) [active·project(myportfolio)]
-- project-plan.md — PAO(myportfolio) 플랜 · 방향 요약 + 확정 작업 계획 단일본 · 오케스트레이터 기본 로드 · 소형 리포 최소 규격(018 v0.6 §6) [active·project(myportfolio)]
+- .claude/context/ssot-map.md — PAO(myportfolio) SSOT 위치 맵(S7) · 무엇이 정본이고 어떻게 갱신하나 · S6=해당 없음(단일 파일 제품)
+- project-plan.md — PAO(myportfolio) 플랜 · 방향 요약 + 확정 작업 계획 단일본 · 오케스트레이터 기본 로드 · 소형 리포 최소 규격(018 v0.6 §6)
 
 ## ssot (1)
 
-- PROGRESS.md — PAO(myportfolio) 현황·결정 이력 SSOT · S2 보드(진행중·완료·블로커·해야 할 일) [active·project(pao)]
+- PROGRESS.md — PAO(myportfolio) 현황·결정 이력 SSOT · S2 보드(진행중·완료·블로커·해야 할 일) [project(pao)]
 
 ## 🔴 미등록 (2) — Descriptor 없음
 
