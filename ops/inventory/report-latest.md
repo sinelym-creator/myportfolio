@@ -1,6 +1,6 @@
 # Inventory 보고 (v0.1 · 리포 한정 · report-only)
 
-- 실행: 2026-08-17 07:43 KST / 자산: 16 (tracked 18 + untracked 0, 사이드카는 모자산에 흡수)
+- 실행: 2026-08-17 22:50 KST / 자산: 17 (tracked 19 + untracked 0, 사이드카는 모자산에 흡수)
 - Descriptor 미등록: 2건 / 미분류 축: 2건
 
 ## 🔴 미등록 (Descriptor 무)
