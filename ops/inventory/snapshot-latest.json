@@ -1,6 +1,6 @@
 {
   "run": {
-    "at": "2026-08-17 17:13 KST",
+    "at": "2026-08-17 22:50 KST",
     "scope": "myportfolio repo (tool v0.1)",
     "files_total": 17,
     "tracked": 19,
@@ -54,7 +54,7 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-17 17:13 KST"
+        "checked_at": "2026-08-17 22:50 KST"
       },
       "static_refs": {
         "value": 4,
@@ -85,7 +85,7 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-17 17:13 KST"
+        "checked_at": "2026-08-17 22:50 KST"
       },
       "static_refs": {
         "value": 2,
@@ -161,7 +161,7 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-17 17:13 KST"
+        "checked_at": "2026-08-17 22:50 KST"
       },
       "static_refs": {
         "value": 3,
@@ -192,7 +192,7 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-17 17:13 KST"
+        "checked_at": "2026-08-17 22:50 KST"
       },
       "static_refs": {
         "value": 3,
@@ -241,7 +241,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-17T17:00:35+09:00"
+      "mtime": "2026-08-17T22:50:38+09:00"
     },
     {
       "path": "ops/inventory/report-latest.md",
@@ -259,7 +259,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-17T15:58:20+09:00"
+      "mtime": "2026-08-17T17:46:07+09:00"
     },
     {
       "path": "ops/inventory/snapshot-latest.json",
@@ -277,7 +277,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-17T15:58:20+09:00"
+      "mtime": "2026-08-17T17:46:07+09:00"
     },
     {
       "path": "ops/validator/report-latest.md",
@@ -295,7 +295,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-17T17:13:06+09:00"
+      "mtime": "2026-08-17T22:50:39+09:00"
     },
     {
       "path": "ops/validator/results-latest.json",
@@ -313,7 +313,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-17T17:13:06+09:00"
+      "mtime": "2026-08-17T22:50:39+09:00"
     },
     {
       "path": "PROGRESS.md",
@@ -331,7 +331,7 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-17 17:13 KST"
+        "checked_at": "2026-08-17 22:50 KST"
       },
       "static_refs": {
         "value": 5,
@@ -362,7 +362,7 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-17 17:13 KST"
+        "checked_at": "2026-08-17 22:50 KST"
       },
       "static_refs": {
         "value": 3,
@@ -375,7 +375,7 @@
         "trust": "unverified",
         "note": "not measured - null is not zero"
       },
-      "mtime": "2026-08-17T15:58:20+09:00"
+      "mtime": "2026-08-17T17:46:07+09:00"
     },
     {
       "path": "project-plan.md",
@@ -393,7 +393,7 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-17 17:13 KST"
+        "checked_at": "2026-08-17 22:50 KST"
       },
       "static_refs": {
         "value": 2,
@@ -424,7 +424,7 @@
       "validation": {
         "flags": [],
         "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-17 17:13 KST"
+        "checked_at": "2026-08-17 22:50 KST"
       },
       "static_refs": {
         "value": 2,

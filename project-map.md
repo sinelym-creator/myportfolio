@@ -11,7 +11,7 @@ scope: global
 # project-map — myportfolio 자산 목차
 
 > ⚠ GENERATED — 직접 편집 금지. 수정은 해당 자산의 Descriptor에서.
-> 생성: 2026-08-17 17:13 KST · 원본: ops/inventory/snapshot-latest.json · 자산 17건 (미등록 2)
+> 생성: 2026-08-17 22:50 KST · 원본: ops/inventory/snapshot-latest.json · 자산 17건 (미등록 2)
 
 ## changelog (1)
 
