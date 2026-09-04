@@ -1338,7 +1338,7 @@
       <div class="stack-diagram" id="stackDiagram">
         <div class="stack-layer layer-af">
           <span class="layer-tag">orchestration</span>
-          <div class="layer-name">autoflowagent (AF)</div>
+          <div class="layer-name">autoflowagent (AF) <span style="opacity:.65">· 설계 자산</span></div>
           <div class="layer-desc"><span lang="ko">에이전트 조율 계층 — 멀티에이전트 거버넌스 · 안전 · 통신 · 메모리를 1급 아키텍처로 정의.</span><span lang="en">Agent-coordination layer — multi-agent governance · safety · comms · memory as first-class architecture.</span></div>
         </div>
         <div class="stack-arrow-down" aria-hidden="true">↓</div>
@@ -1471,12 +1471,12 @@
             <div class="metric">
               <div class="metric-label"><span lang="ko">E2E · 브라우저</span><span lang="en">E2E · browser</span></div>
               <div class="metric-value ko"><span lang="ko">135 pass / 142 · 120 / 120 칸 오류 0</span><span lang="en">135 pass / 142 · 120 / 120 cells, 0 errors</span></div>
-              <div class="metric-context"><span lang="ko">2026-09-04 인계본 기준 (1440 chromium)</span><span lang="en">Measured on the 2026-09-04 handover build (1440 chromium)</span></div>
+              <div class="metric-context"><span lang="ko">2026-09-04 기준 · 데스크톱 브라우저</span><span lang="en">Measured 2026-09-04 on a desktop browser</span></div>
             </div>
             <div class="metric">
               <div class="metric-label"><span lang="ko">규모</span><span lang="en">Scale</span></div>
               <div class="metric-value ko"><span lang="ko">1,381 커밋 / 613 병합</span><span lang="en">1,381 commits / 613 merges</span></div>
-              <div class="metric-context"><span lang="ko">추적 파일 1,085 · 2026-08-28 시작 · 1명 + AI 3좌석</span><span lang="en">1,085 tracked files · started 2026-08-28 · one person + 3 AI seats</span></div>
+              <div class="metric-context"><span lang="ko">추적 파일 1,085 · 2026-08-28 시작</span><span lang="en">1,085 tracked files · started 2026-08-28</span></div>
             </div>
           </div>
           <div class="access-notice" lang="ko">
@@ -1489,11 +1489,16 @@
 
             <div class="project-field">
           <div class="field-label">live</div>
-          <div class="field-content live-link-row ko" lang="ko">
-            <a href="https://factory-knowledge-twin.vercel.app/overview" style="color: var(--accent);">시연 열기 →</a><button type="button" class="copy-btn" data-copy="https://factory-knowledge-twin.vercel.app/overview" aria-label="copy demo URL" aria-live="polite">copy url</button> · 공개 시연 · 합성 데이터 (화면에도 그렇게 표시됩니다)
+          <div class="contact-actions" style="margin: 0.35rem 0 0.75rem;">
+            <a href="https://factory-knowledge-twin.vercel.app/overview" class="contact-btn" lang="ko">시연 열기 →</a>
+            <a href="https://factory-knowledge-twin.vercel.app/overview" class="contact-btn" lang="en">Open the demo →</a>
+            <button type="button" class="copy-btn" data-copy="https://factory-knowledge-twin.vercel.app/overview" aria-label="copy demo URL" aria-live="polite" style="margin-left:0; align-self:center;">copy url</button>
           </div>
-          <div class="field-content live-link-row" lang="en">
-            <a href="https://factory-knowledge-twin.vercel.app/overview" style="color: var(--accent);">open the demo →</a><button type="button" class="copy-btn" data-copy="https://factory-knowledge-twin.vercel.app/overview" aria-label="copy demo URL" aria-live="polite">copy url</button> · public demo · synthetic data (labelled as such in the UI)
+          <div class="field-content ko" lang="ko">
+            공개 시연입니다 · 합성 데이터로 만든 시제품이며 화면에도 그렇게 표시됩니다.
+          </div>
+          <div class="field-content" lang="en">
+            A public demo — a prototype on synthetic data, labelled as such in the interface.
           </div>
         </div>
 
@@ -1573,7 +1578,7 @@
         </div>
 
             <div class="project-field">
-          <div class="field-label">stack</div>
+          <div class="field-label">components</div>
           <div class="stack-chips">
             <span class="chip"><span lang="ko">Markdown (원본)</span><span lang="en">Markdown (source of truth)</span></span>
             <span class="chip"><span lang="ko">그래프 엔진</span><span lang="en">Graph engine</span></span>
@@ -1632,7 +1637,7 @@
           <div class="metrics">
             <div class="metric">
               <div class="metric-label"><span lang="ko">검증</span><span lang="en">Verification</span></div>
-              <div class="metric-value ko"><span lang="ko">unit ~392 / e2e ~258 green</span><span lang="en">unit ~392 / e2e ~258 green</span></div>
+              <div class="metric-value ko"><span lang="ko">단위 392 / 통합 258 통과</span><span lang="en">단위 392 / 통합 258 통과</span></div>
               <div class="metric-context"><span lang="ko">런타임 사이클로 DB 영속 + NOTIFY 실증</span><span lang="en">Runtime cycle proved DB persistence + NOTIFY</span></div>
             </div>
             <div class="metric">
@@ -1680,10 +1685,10 @@
             <div class="project-field">
           <div class="field-label">context</div>
           <div class="field-content ko" lang="ko">
-            여러 해에 걸쳐 쌓인 Claude Code 운영 자산을 한 저장소로 모은 곳입니다. 지침 · 에이전트 · 스킬 · 템플릿 · 정책을 여기서 관리하고, <strong>커밋하면 모든 PC와 프로젝트로 자동 배포됩니다</strong>. 한 번 쓰고 끝나는 자산이 아니라 버전과 이전 안내를 갖고 계속 자라는 구조입니다.
+            2025년부터 쌓은 Claude Code 운영 자산을 한 저장소로 모은 곳입니다. 지침 · 에이전트 · 스킬 · 템플릿 · 정책을 여기서 관리하고, <strong>커밋하면 모든 PC와 프로젝트로 자동 배포됩니다</strong>. 한 번 쓰고 끝나는 자산이 아니라 버전과 이전 안내를 갖고 계속 자라는 구조입니다.
           </div>
           <div class="field-content" lang="en">
-            A single repository holding years of accumulated Claude Code operating assets — guidelines, agents, skills, templates and policy. <strong>A commit deploys them to every PC and project</strong>. Not a one-off write-up: each asset carries a version and migration notes, and keeps growing.
+            A single repository holding Claude Code operating assets accumulated since 2025 — guidelines, agents, skills, templates and policy. <strong>A commit deploys them to every PC and project</strong>. Not a one-off write-up: each asset carries a version and migration notes, and keeps growing.
           </div>
           <div class="access-notice" lang="ko">
             <strong>// access policy ·</strong> 자산의 가치와 누적성을 보호하기 위해 의도적으로 접근 통제 운영 중이며, <strong>진지한 채용 검토나 협업 engagement에 한해 선별적 접근을 허용</strong>합니다.
@@ -1722,11 +1727,6 @@
               <div class="metric-context"><span lang="ko">1인 단독 운영. 자산의 차별 가치 보호를 위한 의도적 접근 통제 · 진지한 engagement 시 선별적 invite 가능</span><span lang="en">Solo operation. Deliberate access control protects the asset's differentiating value — selective invite available for serious engagement</span></div>
             </div>
             <div class="metric">
-              <div class="metric-label"><span lang="ko">본 cycle major 갱신</span><span lang="en">Major bump this cycle</span></div>
-              <div class="metric-value">master-ecosystem v0.2 → v1.0</div>
-              <div class="metric-context"><span lang="ko">2026-05-18 PR #28 머지 — §1.5 8축 신설 + §3.5 4 관점 매트릭스 + 5 Phase 로드맵</span><span lang="en">PR #28 merged 2026-05-18 — added §1.5 8-axis identity + §3.5 4-perspective matrix + 5-Phase roadmap</span></div>
-            </div>
-            <div class="metric">
               <div class="metric-label"><span lang="ko">메타 시너지</span><span lang="en">Meta synergy</span></div>
               <div class="metric-value ko"><span lang="ko">이 사이트 = 자산의 첫 공개 산출물</span><span lang="en">This site = the asset's first public deliverable</span></div>
               <div class="metric-context"><span lang="ko">비공개 자산이 살아 움직이는 모습을 사이트 자체가 시연</span><span lang="en">The site itself demonstrates the private asset in motion</span></div>
@@ -1756,8 +1756,8 @@
         <span class="project-title"><span lang="ko">autoflowagent (AF) — 멀티에이전트 오케스트레이션 프레임워크 · 통합 Agent AI 운영 환경</span><span lang="en">autoflowagent (AF) — A Multi-Agent Orchestration Framework · Integrated Agent AI Ops</span></span>
         <div class="project-meta">
           <span class="slot">slot · agent-ai-platform</span>
-          <span class="period">2025.11 — now</span>
-          <span class="status in-progress">in-progress</span>
+          <span class="period">2025.11 — 2026.09</span>
+          <span class="status">discontinued</span>
         </div>
       </div>
       <div class="project-body">
@@ -1765,10 +1765,10 @@
             <div class="project-field">
           <div class="field-label">context</div>
           <div class="field-content ko" lang="ko">
-            자율 AI 에이전트들이 한 프로젝트의 개발 전 과정을 함께 수행하도록 만든 틀입니다. 오케스트레이터 1기와 도메인 담당 8기가 서로를 무조건 믿지 않는 동료로 협업합니다. 핵심은 LLM 호출이 아니라, <strong>에이전트를 어떻게 깨우고 인증하고 기억시킬지를 설계하는 일</strong>입니다.
+            자율 AI 에이전트들이 한 프로젝트의 개발 전 과정을 함께 수행하도록 만든 틀입니다. 오케스트레이터 1기와 도메인 담당 8기가 서로를 무조건 믿지 않는 동료로 협업합니다. 핵심은 LLM 호출이 아니라, <strong>에이전트를 어떻게 깨우고 인증하고 기억시킬지를 설계하는 일</strong>입니다. <strong>2026-09 에 중단했고, 여기서 만든 패턴은 FKT · PP 로 이어졌습니다.</strong>
           </div>
           <div class="field-content" lang="en">
-            A framework where autonomous agents carry a project's whole development cycle together — one orchestrator and eight domain agents working as mutually untrusting peers. The work is not calling an LLM; it is <strong>designing how agents wake, authenticate, communicate and remember</strong>.
+            A framework where autonomous agents carry a project's whole development cycle together — one orchestrator and eight domain agents working as mutually untrusting peers. The work is not calling an LLM; it is <strong>designing how agents wake, authenticate, communicate and remember</strong>. <strong>Stopped in 2026-09; the patterns built here carried into FKT and PP.</strong>
           </div>
         </div>
 
@@ -1834,7 +1834,7 @@
         <div class="project-field">
           <div class="field-label">stack</div>
           <div class="stack-chips">
-            <span class="chip">Claude Code (Opus 4.8)</span>
+            <span class="chip">Claude Code</span>
             <span class="chip">MCP — herald (custom)</span>
             <span class="chip">Agent SDK</span>
             <span class="chip">NestJS</span>
@@ -1865,7 +1865,7 @@
         <div class="project-field">
           <div class="field-label">summary</div>
           <div class="field-content ko" lang="ko">
-            대학 스포츠 영상을 수집 · 가공 · 서비스하는 AI 미디어 플랫폼. 본인 역할 — <strong>PM 겸 핵심 인코딩 서비스 단독 개발자</strong>로, 4인 팀 리딩과 코어 개발 · DB 설계를 동시 수행. 현재 회사 진행 업무로, 상세 기술스택 · 사양은 공개에서 제외한다.
+            대학 스포츠 영상을 수집 · 가공 · 서비스하는 AI 미디어 플랫폼. 본인 역할 — <strong>PM 겸 핵심 인코딩 서비스 단독 개발자</strong>로, 4인 팀 리딩과 코어 개발 · DB 설계를 동시 수행. 현재 회사 진행 업무로, 상세 기술스택 · 사양은 공개에서 제외합니다.
           </div>
           <div class="field-content" lang="en">
             An AI media platform that captures · processes · serves collegiate sports video. My role — <strong>PM and sole developer of the core encoding service</strong>, leading a 4-person team while writing core code and designing the DB. As current company work, detailed tech stack · specifics are kept out of public copy.
@@ -1894,7 +1894,7 @@
         <div class="project-field">
           <div class="field-label">summary</div>
           <div class="field-content ko" lang="ko">
-            산업용 곤충 사육 · 생산을 위한 통합 관제 솔루션을 <strong>1인이 기획부터 유지보수까지 전 과정 단독 운영</strong>. 현재 회사 진행 업무로, 상세 사양 · 기술스택 · 공정 내용은 공개에서 제외한다.
+            산업용 곤충 사육 · 생산을 위한 통합 관제 솔루션을 <strong>1인이 기획부터 유지보수까지 전 과정 단독 운영</strong>. 현재 회사 진행 업무로, 상세 사양 · 기술스택 · 공정 내용은 공개에서 제외합니다.
           </div>
           <div class="field-content" lang="en">
             An integrated control solution for industrial insect breeding · production, <strong>run solo end-to-end from planning through maintenance</strong>. As current company work, detailed specs · tech stack · process content are kept out of public copy.
@@ -2165,7 +2165,7 @@
       <div class="stack-group ai">
         <div class="stack-group-title">— ai workflow ⭐</div>
         <div class="stack-item">
-          <span class="stack-name">Claude Code (Opus 4.8)</span>
+          <span class="stack-name">Claude Code</span>
           <span class="stack-detail"><span class="level">expert</span></span>
         </div>
         <div class="stack-item">
@@ -2236,10 +2236,6 @@
       </p>
       
       <div class="lab-stats">
-        <div class="lab-stat">
-          <div class="label">Phase</div>
-          <div class="val">0 / 5</div>
-        </div>
         <div class="lab-stat">
           <div class="label">Last Agent Edit</div>
           <div class="val">2026-09-04</div>
@@ -2351,7 +2347,7 @@
     </div>
     
     <div class="contact">
-      <div class="contact-prompt">say_hi --serious-only</div>
+      <div class="contact-prompt">say_hi --recruiters-welcome</div>
       
       <p class="contact-msg ko" lang="ko">
         정적인 SW가 아니라 계속 굴러가는 시스템을 만드는 일에 시간을 쓰고 있습니다. 시니어 IC · Tech Lead · AI Engineering Lead 어느 쪽이든 <strong>본질이 맞으면 검토합니다</strong>. 회사의 다음 시스템도 같은 방식으로 만들고 운영할 팀이라면 반갑습니다.
@@ -2382,10 +2378,6 @@
           <div class="pref-label">— region</div>
           <div class="pref-val">KR primary · Global open</div>
         </div>
-        <div>
-          <div class="pref-label">— not interested</div>
-          <div class="pref-val ko">Cold mail · Template offers</div>
-        </div>
       </div>
     </div>
   </section>
@@ -2393,7 +2385,7 @@
   <!-- ============ FOOTER ============ -->
   <footer>
     <div class="footer-meta">
-      <div><span lang="ko">~/portfolio · 임영욱 · v0.6 · built with AgentFolio (in-progress)</span><span lang="en">~/portfolio · LIM YOUNGUK · v0.6 · built with AgentFolio (in-progress)</span></div>
+      <div><span lang="ko">~/portfolio · 임영욱 · v0.6 · built with AgentFolio</span><span lang="en">~/portfolio · LIM YOUNGUK · v0.6 · built with AgentFolio</span></div>
       <div class="footer-edit">last sync: 2026-09-04 · agent-assisted</div>
     </div>
     <div class="keyboard-hint">
