@@ -1424,131 +1424,245 @@
     </div>
 
     <div class="field-label" style="margin: 1.5rem 0 0.75rem; opacity: 0.75;">// <span lang="ko">AI work — 최신순</span><span lang="en">AI work — newest first</span></div>
-
-    <!-- ★ SLOT 1 — FEATURED (autoflowagent · AI work, newest) -->
+    <!-- SLOT — factory-knowledge-twin (shipped product, newest) -->
     <div class="project featured">
       <div class="project-head">
-        <span class="project-title"><span lang="ko">autoflowagent (AF) — 멀티에이전트 오케스트레이션 프레임워크 · 통합 Agent AI 운영 환경</span><span lang="en">autoflowagent (AF) — A Multi-Agent Orchestration Framework · Integrated Agent AI Ops</span></span>
+        <span class="project-title"><span lang="ko">factory-knowledge-twin (FKT) — 공장 지식 트윈 · 근거가 붙은 AI 운영 콘솔</span><span lang="en">factory-knowledge-twin (FKT) — Factory Knowledge Twin · An Evidence-Gated AI Ops Console</span></span>
         <div class="project-meta">
-          <span class="slot">slot · agent-ai-platform</span>
-          <span class="period">2025.11 — now</span>
-          <span class="status in-progress">in-progress</span>
+          <span class="slot">slot · shipped-product</span>
+          <span class="period">2026.08 — now</span>
+          <span class="status shipped">shipped · public demo</span>
         </div>
       </div>
       <div class="project-body">
 
-        <div class="project-field">
+            <div class="project-field">
           <div class="field-label">context</div>
           <div class="field-content ko" lang="ko">
-            자율 AI 에이전트들이 한 프로젝트의 개발 전 과정을 함께 수행하도록 만든 틀입니다. 오케스트레이터 1기와 도메인 담당 8기가 서로를 무조건 믿지 않는 동료로 협업합니다. 핵심은 LLM 호출이 아니라, <strong>에이전트를 어떻게 깨우고 인증하고 기억시킬지를 설계하는 일</strong>입니다.
+            설비에 이상이 생기면 AI 에이전트가 센서 · 문서 · 지식그래프를 정해진 절차로 조사해 <strong>근거가 붙은 원인 후보와 작업지시 초안</strong>을 만들고, 최종 판단은 사람이 승인합니다. 1명 + AI 3좌석이 7일 만에 완주한 시제품입니다.
           </div>
           <div class="field-content" lang="en">
-            A framework where autonomous agents carry a project's whole development cycle together — one orchestrator and eight domain agents working as mutually untrusting peers. The work is not calling an LLM; it is <strong>designing how agents wake, authenticate, communicate and remember</strong>.
+            When equipment misbehaves, agents investigate sensors, documents and a knowledge graph in a fixed order, produce <strong>evidence-backed causes and a draft work order</strong>, and a person approves the final call. A working prototype finished in seven days by one person and three AI seats.
           </div>
         </div>
 
-        <div class="project-field">
-          <div class="field-label">problem</div>
-          <div class="field-content ko" lang="ko">
-            (1) 자율 에이전트를 안전하게 협업시킬 거버넌스가 없습니다 — <strong>권한 · 신원 · 루프 · 감사</strong>. (2) 에이전트 사이의 통신을 신뢰 경계 위에서 설계해야 합니다. (3) 작업 소유권이 겹치면 중복 실행이 납니다. (4) 세션이 끊겨도 기억이 남아야 합니다.
-          </div>
-          <div class="field-content" lang="en">
-            (1) No governance for making autonomous agents collaborate safely — <strong>permission, identity, loops, audit</strong>. (2) Agent-to-agent communication has to sit on a trust boundary. (3) Overlapping ownership causes duplicate execution. (4) Memory has to outlive the session.
-          </div>
-        </div>
-
-        <div class="project-field">
-          <div class="field-label">approach — 7 patterns</div>
-          <div class="field-content ko" lang="ko" style="margin-bottom: 0.5rem;">
-            위협모델 기반의 문서화된 설계 결정 34건 위에 설계한 핵심 7 패턴:
-          </div>
-          <div class="field-content" lang="en" style="margin-bottom: 0.5rem;">
-            7 core patterns, built on 34 documented design decisions (threat-model-based):
-          </div>
+            <div class="project-field">
+          <div class="field-label">approach</div>
           <ul class="pattern-list" lang="ko">
-            <li><span class="pattern-tag">A.</span> <strong>기본은 «거부»</strong> — 권한을 막아 두고 필요한 것만 기한을 정해 엽니다. 거부한 기록도 남깁니다.</li>
-            <li><span class="pattern-tag">B.</span> <strong>권한은 교집합까지만</strong> — 거쳐 온 모든 단계가 함께 허용한 만큼만 갖습니다. 푸는 건 사람만.</li>
-            <li><span class="pattern-tag">C.</span> <strong>서로 믿지 않는 동료</strong> — 신원은 서버가 확정합니다. 말할 권리와 실행할 권리를 나눴습니다.</li>
-            <li><span class="pattern-tag">D.</span> <strong>얇은 게이트웨이</strong> — 판단하지 않고 전달만 합니다. 도구 11개 · 토큰은 요청마다 다시 읽어 끊김 없이 교체.</li>
-            <li><span class="pattern-tag">E.</span> <strong>작업 큐</strong> — 하나가 집으면 남이 못 집고, 시한이 지나면 회수합니다. 늦은 일꾼의 덮어쓰기도 막습니다.</li>
-            <li><span class="pattern-tag">F.</span> <strong>파일이 원본</strong> — 검색 색인은 파일에서 다시 만드는 사본입니다. 한 방향이라 어긋나지 않습니다.</li>
-            <li><span class="pattern-tag">G.</span> <strong>끊겨도 잇는 층</strong> — 연결이 죽으면 다시 붙고, 그사이 놓친 것은 순번으로 따라잡습니다.</li>
+            <li><span class="pattern-tag">A.</span> <strong>근거를 «게이트»로</strong> — 그 조사의 근거 목록 밖 인용은 전량 거부합니다.</li>
+            <li><span class="pattern-tag">B.</span> <strong>조사는 정해진 순서로만</strong> — 계획 → 수치 → 문서 → 관계 → 종합.</li>
+            <li><span class="pattern-tag">C.</span> <strong>표가 원본, 그래프는 사본</strong> — 엔티티 16 · 관계 25. 오래된 데이터는 화면에서 경고합니다.</li>
           </ul>
           <ul class="pattern-list" lang="en">
-            <li><span class="pattern-tag">A.</span> <strong>Deny by default</strong> — Permissions stay shut; each grant is explicit and expires. Denials are recorded too.</li>
-            <li><span class="pattern-tag">B.</span> <strong>Intersected permission</strong> — A request carries only what every step in its chain allows. Only a human clears it.</li>
-            <li><span class="pattern-tag">C.</span> <strong>Mutually untrusting peers</strong> — The server settles identity. The right to speak is not the right to act.</li>
-            <li><span class="pattern-tag">D.</span> <strong>A thin gateway</strong> — It relays, it doesn't judge. 11 tools; tokens reloaded per request for zero-downtime rotation.</li>
-            <li><span class="pattern-tag">E.</span> <strong>Work queue</strong> — One claim locks out the rest, leases expire and reclaim, and a late worker cannot overwrite.</li>
-            <li><span class="pattern-tag">F.</span> <strong>Files are the source</strong> — The search index is a copy rebuilt from them — one-way, so it cannot drift.</li>
-            <li><span class="pattern-tag">G.</span> <strong>Reconnect layer</strong> — Dropped connections re-authenticate and catch up by sequence number.</li>
+            <li><span class="pattern-tag">A.</span> <strong>Evidence as a gate</strong> — Citations outside that investigation's evidence list are refused.</li>
+            <li><span class="pattern-tag">B.</span> <strong>A fixed investigation order</strong> — Plan, readings, documents, relations, synthesis.</li>
+            <li><span class="pattern-tag">C.</span> <strong>Tables are the source</strong> — The graph is a copy — 16 entities, 25 relations; stale data is flagged.</li>
           </ul>
-          <div class="tech-decision" lang="ko">
-            <strong>// key technical decisions</strong> Interactive 전용 · 다중 LLM 중립 North Star · 위협모델 기반 설계 결정 34건 문서화 · 시스템이 자기 자신을 dogfooding (AF를 만드는 에이전트 팀이 AF의 패턴 위에서 동작)
+        </div>
+
+            <div class="project-field">
+          <div class="field-label">result</div>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-label"><span lang="ko">골든 시나리오</span><span lang="en">Golden scenarios</span></div>
+              <div class="metric-value ko"><span lang="ko">10 / 10 완주 · 오류 0</span><span lang="en">10 / 10 completed · 0 errors</span></div>
+              <div class="metric-context"><span lang="ko">계약 테스트 74 / 74 · 예외 시나리오 23 / 25</span><span lang="en">Contract tests 74 / 74 · exception scenarios 23 / 25</span></div>
+            </div>
+            <div class="metric">
+              <div class="metric-label"><span lang="ko">E2E · 브라우저</span><span lang="en">E2E · browser</span></div>
+              <div class="metric-value ko"><span lang="ko">135 pass / 142 · 120 / 120 칸 오류 0</span><span lang="en">135 pass / 142 · 120 / 120 cells, 0 errors</span></div>
+              <div class="metric-context"><span lang="ko">2026-09-04 인계본 기준 (1440 chromium)</span><span lang="en">Measured on the 2026-09-04 handover build (1440 chromium)</span></div>
+            </div>
+            <div class="metric">
+              <div class="metric-label"><span lang="ko">규모</span><span lang="en">Scale</span></div>
+              <div class="metric-value ko"><span lang="ko">1,381 커밋 / 613 병합</span><span lang="en">1,381 commits / 613 merges</span></div>
+              <div class="metric-context"><span lang="ko">추적 파일 1,085 · 2026-08-28 시작 · 1명 + AI 3좌석</span><span lang="en">1,085 tracked files · started 2026-08-28 · one person + 3 AI seats</span></div>
+            </div>
           </div>
-          <div class="tech-decision" lang="en">
-            <strong>// key technical decisions</strong> Interactive-only · multi-LLM-neutral North Star · 34 documented threat-model design decisions · the system dogfoods itself (the agent fleet that builds AF runs on AF's own patterns)
+          <div class="access-notice" lang="ko">
+            <strong>안 잰 것</strong> — KPI · P50/P95 · 벤치마크 미측. 실기기 · 실사용자 · 실공장 데이터는 0이고 <strong>합성 데이터</strong>로 만든 시제품이라, 실제 공장의 ROI 로 환산하지 않습니다. 증명하는 것은 「절차 · 근거 · 검증 규율을 갖춘 제품을 만들 수 있는가」입니다.
+          </div>
+          <div class="access-notice" lang="en">
+            <strong>Not measured</strong> — no KPI, P50/P95 or benchmark figures. Zero real devices, real users or real factory data: this is a prototype on <strong>synthetic data</strong>, so nothing here converts into a factory's ROI. What it demonstrates is whether a product can be built with procedure, evidence and verification discipline.
           </div>
         </div>
 
-        <div class="project-field">
-          <div class="field-label">result</div>
+            <div class="project-field">
+          <div class="field-label">live</div>
+          <div class="field-content live-link-row ko" lang="ko">
+            <a href="https://factory-knowledge-twin.vercel.app/overview" style="color: var(--accent);">시연 열기 →</a><button type="button" class="copy-btn" data-copy="https://factory-knowledge-twin.vercel.app/overview" aria-label="copy demo URL" aria-live="polite">copy url</button> · 공개 시연 · 합성 데이터 (화면에도 그렇게 표시됩니다)
+          </div>
+          <div class="field-content live-link-row" lang="en">
+            <a href="https://factory-knowledge-twin.vercel.app/overview" style="color: var(--accent);">open the demo →</a><button type="button" class="copy-btn" data-copy="https://factory-knowledge-twin.vercel.app/overview" aria-label="copy demo URL" aria-live="polite">copy url</button> · public demo · synthetic data (labelled as such in the UI)
+          </div>
+        </div>
+
+            <div class="project-field">
+          <div class="field-label">stack</div>
+          <div class="stack-chips">
+            <span class="chip">Next.js</span>
+            <span class="chip">FastAPI</span>
+            <span class="chip">LangGraph</span>
+            <span class="chip">PostgreSQL + pgvector</span>
+            <span class="chip">Neo4j</span>
+            <span class="chip">Playwright</span>
+            <span class="chip">GitHub Actions</span>
+            <span class="chip">Vercel</span>
+          </div>
+        </div>
+
+          </div>
+    </div>
+
+    <!-- SLOT — Project-Persona (memory engine, private) -->
+    <div class="project">
+      <div class="project-head">
+        <span class="project-title"><span lang="ko">Project-Persona (PP) — 기억을 독립 제품으로 떼어낸 기억 엔진</span><span lang="en">Project-Persona (PP) — A Memory Engine Split Out as Its Own Product</span></span>
+        <div class="project-meta">
+          <span class="slot">slot · memory-engine</span>
+          <span class="period">2026.07 — now</span>
+          <span class="status in-progress">design complete · private</span>
+        </div>
+      </div>
+      <div class="project-body">
+
+            <div class="project-field">
+          <div class="field-label">context</div>
           <div class="field-content ko" lang="ko">
-            거버넌스 · 안전 · 조율 · 기억을 아키텍처로 설계하고 결정 34건을 기록했습니다. NestJS + PostgreSQL 백엔드와 도구 11개가 가동 중이며, 이 환경이 여러 프로젝트의 병행 운영을 실제로 떠받치고 있습니다.
+            에이전트 · 프로젝트 · 조직 · 개인 등 어떤 «주인»이든 그가 가진 기억을 마크다운 파일과 그래프 엔진으로 저장 · 검색 · 연상 · 융합하고, 서명과 소유권 증명을 붙여 <strong>주인이 들고 나갈 수 있는 자산</strong>으로 만드는 독립 제품입니다.
           </div>
           <div class="field-content" lang="en">
-            Governance, safety, orchestration and memory designed as architecture, with <strong>34 decisions on record</strong>. A NestJS + PostgreSQL backend and 11 tools are running, and this environment is what actually carries several projects at once.
+            A standalone product that stores, searches, associates and merges memory — for any owner: an agent, a project, an organisation, a person — in Markdown files backed by a graph engine, with signatures and proof of ownership attached so that <strong>the owner can take it with them</strong>.
+          </div>
+        </div>
+
+            <div class="project-field">
+          <div class="field-label">approach</div>
+          <ul class="pattern-list" lang="ko">
+            <li><span class="pattern-tag">A.</span> <strong>경계가 전부입니다</strong> — 프레임워크의 기능으로 두면 기억이 거기 묶여 넘어가지 못합니다.</li>
+            <li><span class="pattern-tag">B.</span> <strong>원본은 마크다운</strong> — 기억 1건 = 파일 1개. 사람이 직접 열어 읽고 고칩니다.</li>
+            <li><span class="pattern-tag">C.</span> <strong>기억이 주인을 가집니다</strong> — 서명과 소유권 증명을 붙여, 들고 나갈 수 있게 했습니다.</li>
+          </ul>
+          <ul class="pattern-list" lang="en">
+            <li><span class="pattern-tag">A.</span> <strong>The boundary is the design</strong> — Kept inside a framework, memory stays bound to it.</li>
+            <li><span class="pattern-tag">B.</span> <strong>Markdown is the source</strong> — One memory, one file, readable and editable by hand.</li>
+            <li><span class="pattern-tag">C.</span> <strong>Memory has an owner</strong> — Signatures and proof of ownership make it portable.</li>
+          </ul>
+        </div>
+
+            <div class="project-field">
+          <div class="field-label">result</div>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-label"><span lang="ko">단계</span><span lang="en">Stage</span></div>
+              <div class="metric-value ko"><span lang="ko">설계 — 제품 정의 확보</span><span lang="en">Design — product definition settled</span></div>
+              <div class="metric-context"><span lang="ko">결정 문서 6건 · 비공개는 의도된 선택</span><span lang="en">6 decision documents · private by deliberate choice</span></div>
+            </div>
+            <div class="metric">
+              <div class="metric-label"><span lang="ko">규모</span><span lang="en">Scale</span></div>
+              <div class="metric-value ko"><span lang="ko">187 커밋 / 17 병합</span><span lang="en">187 commits / 17 merges</span></div>
+              <div class="metric-context"><span lang="ko">추적 파일 390 · 2026-07-03 ~ 08-21</span><span lang="en">390 tracked files · 2026-07-03 to 08-21</span></div>
+            </div>
+          </div>
+          <div class="access-notice" lang="ko">
+            <strong>안 잰 것</strong> — PP 자체의 구현 · 성능 실측은 없습니다. 모태인 AF 의 파일럿 수치를 PP 의 성과처럼 옮겨 적지 않았습니다.
+          </div>
+          <div class="access-notice" lang="en">
+            <strong>Not measured</strong> — no implementation or performance figures for PP itself. Pilot numbers from AF, which it grew out of, are not restated here as PP results.
+          </div>
+        </div>
+
+            <div class="project-field">
+          <div class="field-label">stack</div>
+          <div class="stack-chips">
+            <span class="chip"><span lang="ko">Markdown (원본)</span><span lang="en">Markdown (source of truth)</span></span>
+            <span class="chip"><span lang="ko">그래프 엔진</span><span lang="en">Graph engine</span></span>
+            <span class="chip"><span lang="ko">서명 · 소유권 증명</span><span lang="en">Signature · proof of ownership</span></span>
+            <span class="chip"><span lang="ko">검색 · 연상 · 융합</span><span lang="en">Search · association · merge</span></span>
+          </div>
+        </div>
+
+          </div>
+    </div>
+
+    <!-- SLOT — claude-ops (CO · AI work) -->
+    <div class="project">
+      <div class="project-head">
+        <span class="project-title"><span lang="ko">claude-ops (CO) — Claude Code 에이전트 브로커 · 실행 컨트롤 플레인</span><span lang="en">claude-ops (CO) — A Broker / Execution Control-plane for Claude Code Agent Fleets</span></span>
+        <div class="project-meta">
+          <span class="slot">slot · agent-control-plane</span>
+          <span class="period">2026</span>
+          <span class="status in-progress">impl complete · tested</span>
+        </div>
+      </div>
+      <div class="project-body">
+
+            <div class="project-field">
+          <div class="field-label">context</div>
+          <div class="field-content ko" lang="ko">
+            AI 코딩 세션 여러 개를 위한 자작 브로커입니다. 채팅 한 줄로 끝나던 작업을 상태가 남는 흐름으로 바꿔, 작업을 세션에 넘기고 결과를 이벤트로 되받습니다. <strong>특정 AI 회사에 묶이지 않도록 설계했습니다</strong>. (역할 구분 — automation-hub = 규칙 / autoflowagent = 조율 / claude-ops = 실행)
+          </div>
+          <div class="field-content" lang="en">
+            A broker for a fleet of AI coding sessions. It turns a single chat channel into a stateful order-and-task flow: work is dispatched to sessions and results come back as events. Designed so that <strong>no AI vendor is baked in</strong>. (automation-hub defines the rules, autoflowagent coordinates, claude-ops runs the work.)
+          </div>
+        </div>
+
+            <div class="project-field">
+          <div class="field-label">approach</div>
+          <ul class="pattern-list" lang="ko">
+            <li><span class="pattern-tag">A.</span> <strong>특정 AI 회사에 안 묶이게</strong> — 엔진은 갈아 끼울 수 있는 계약 뒤에 둡니다.</li>
+            <li><span class="pattern-tag">B.</span> <strong>띄워 두는 대신 «가져가게»</strong> — 백그라운드 세션이 금방 죽는 것을 실험으로 확인하고 바꿨습니다.</li>
+            <li><span class="pattern-tag">C.</span> <strong>물어보러 가지 않습니다</strong> — 일이 생기면 DB가 알려 주고 그때만 움직입니다.</li>
+          </ul>
+          <ul class="pattern-list" lang="en">
+            <li><span class="pattern-tag">A.</span> <strong>Not tied to one AI vendor</strong> — Engines sit behind a swappable contract.</li>
+            <li><span class="pattern-tag">B.</span> <strong>Pulled, not spawned</strong> — Background sessions proved short-lived in testing.</li>
+            <li><span class="pattern-tag">C.</span> <strong>No polling</strong> — The database announces work, and only then does it move.</li>
+          </ul>
+        </div>
+
+            <div class="project-field">
+          <div class="field-label">result</div>
+          <div class="field-content ko" lang="ko">
+            브로커 코어 구현 완료 · 테스트 통과(<strong>단위 392 / 통합 258</strong>). 서버 부팅 → DB 영속 → 알림까지 전 구간을 실제로 돌려 확인했습니다.
+          </div>
+          <div class="field-content" lang="en">
+            Broker core complete, tests green (<strong>392 unit / 258 e2e</strong>). The full path — boot, database persistence, event notification — was exercised end to end.
           </div>
           <div class="metrics">
             <div class="metric">
-              <div class="metric-label"><span lang="ko">에이전트 조직</span><span lang="en">Agent org</span></div>
-              <div class="metric-value ko"><span lang="ko">오케스트레이터 + 8 도메인 마스터</span><span lang="en">Orchestrator + 8 domain masters</span></div>
-              <div class="metric-context"><span lang="ko">거버넌스된 상호-비신뢰 peer로 협업</span><span lang="en">Collaborating as governed, mutually-untrusted peers</span></div>
+              <div class="metric-label"><span lang="ko">검증</span><span lang="en">Verification</span></div>
+              <div class="metric-value ko"><span lang="ko">unit ~392 / e2e ~258 green</span><span lang="en">unit ~392 / e2e ~258 green</span></div>
+              <div class="metric-context"><span lang="ko">런타임 사이클로 DB 영속 + NOTIFY 실증</span><span lang="en">Runtime cycle proved DB persistence + NOTIFY</span></div>
             </div>
             <div class="metric">
-              <div class="metric-label"><span lang="ko">설계 깊이</span><span lang="en">Design depth</span></div>
-              <div class="metric-value"><span lang="ko">설계 결정 34건</span><span lang="en">34 design decisions</span></div>
-              <div class="metric-context"><span lang="ko">위협모델 · 권한 · 통신 · 메모리 의사결정 기록</span><span lang="en">Threat-model · permission · comms · memory decision records</span></div>
+              <div class="metric-label"><span lang="ko">인터페이스</span><span lang="en">Interfaces</span></div>
+              <div class="metric-value ko"><span lang="ko">MCP 12 도구 · REST(OpenAPI)</span><span lang="en">MCP 12 tools · REST (OpenAPI)</span></div>
+              <div class="metric-context"><span lang="ko">에이전트↔브로커 표준 계약</span><span lang="en">Standards-based agent↔broker contract</span></div>
             </div>
             <div class="metric">
-              <div class="metric-label"><span lang="ko">운영 백엔드</span><span lang="en">Operating backend</span></div>
-              <div class="metric-value ko"><span lang="ko">NestJS + Postgres 36모델 · MCP 전령 11도구</span><span lang="en">NestJS + Postgres 36 models · MCP herald 11 tools</span></div>
-              <div class="metric-context"><span lang="ko">봇간 통신 체계 운영 중</span><span lang="en">Bot-to-bot comms operational</span></div>
-            </div>
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">AI/AX 핵심 역량</span><span lang="en">Core AI/AX capability</span></div>
-              <div class="metric-value ko"><span lang="ko">멀티에이전트 거버넌스 · 안전 · 오케스트레이션 · 메모리</span><span lang="en">Multi-agent governance · safety · orchestration · memory</span></div>
-              <div class="metric-context"><span lang="ko">Agent-AI Platform / AI Eng Lead 직무의 희귀 역량</span><span lang="en">A rare skill set for Agent-AI Platform / AI Eng Lead roles</span></div>
+              <div class="metric-label"><span lang="ko">핵심 설계</span><span lang="en">Core design</span></div>
+              <div class="metric-value ko"><span lang="ko">provider-neutral · 이벤트 기반 dispatch-pull</span><span lang="en">provider-neutral · event-driven dispatch-pull</span></div>
+              <div class="metric-context"><span lang="ko">LLM 벤더 forward-compat · 능동 폴링 제로</span><span lang="en">LLM-vendor forward-compat · zero active polling</span></div>
             </div>
           </div>
         </div>
 
-
-        <div class="project-field">
+            <div class="project-field">
           <div class="field-label">stack</div>
           <div class="stack-chips">
-            <span class="chip">Claude Code (Opus 4.8)</span>
-            <span class="chip">MCP — herald (custom)</span>
-            <span class="chip">Agent SDK</span>
-            <span class="chip">NestJS</span>
-            <span class="chip">Prisma · PostgreSQL</span>
+            <span class="chip">NestJS 10</span>
             <span class="chip">TypeScript</span>
-            <span class="chip">Event-sourced design</span>
-            <span class="chip">Discord / Telegram bots</span>
+            <span class="chip">Prisma · PostgreSQL 17</span>
+            <span class="chip">pgvector</span>
+            <span class="chip">LISTEN / NOTIFY</span>
+            <span class="chip">MCP (stdio · JSON-RPC 2.0)</span>
+            <span class="chip">BullMQ + Redis</span>
+            <span class="chip">Socket.IO</span>
           </div>
         </div>
 
-        <div class="project-field">
-          <div class="field-label">live</div>
-          <div class="field-content live-link-row ko" lang="ko">
-            <a href="https://harry.tail488f52.ts.net" style="color: var(--accent);">라이브 시스템 열기 →</a><button type="button" class="copy-btn" data-copy="https://harry.tail488f52.ts.net" aria-label="copy live URL" aria-live="polite">copy url</button> · Tailscale 연결 시 직접 시연 (개인 시연용 · 외부 공개 아님)
           </div>
-          <div class="field-content live-link-row" lang="en">
-            <a href="https://harry.tail488f52.ts.net" style="color: var(--accent);">open the live system →</a><button type="button" class="copy-btn" data-copy="https://harry.tail488f52.ts.net" aria-label="copy live URL" aria-live="polite">copy url</button> · demoed directly over Tailscale (private demo · not publicly exposed)
-          </div>
-        </div>
-
-      </div>
     </div>
 
     <!-- SLOT C — Proprietary Meta-Asset (Agent-Friendly Env) -->
@@ -1563,7 +1677,7 @@
       </div>
       <div class="project-body">
 
-        <div class="project-field">
+            <div class="project-field">
           <div class="field-label">context</div>
           <div class="field-content ko" lang="ko">
             여러 해에 걸쳐 쌓인 Claude Code 운영 자산을 한 저장소로 모은 곳입니다. 지침 · 에이전트 · 스킬 · 템플릿 · 정책을 여기서 관리하고, <strong>커밋하면 모든 PC와 프로젝트로 자동 배포됩니다</strong>. 한 번 쓰고 끝나는 자산이 아니라 버전과 이전 안내를 갖고 계속 자라는 구조입니다.
@@ -1579,35 +1693,17 @@
           </div>
         </div>
 
-        <div class="project-field">
-          <div class="field-label">problem</div>
-          <div class="field-content ko" lang="ko">
-            1인이 여러 프로젝트를 운영할 때 (1) 지침이 자동으로 퍼지지 않으면 <strong>프로젝트마다 규칙이 갈라집니다</strong>. (2) 한 번 쓴 자산이 진화하지 않으면 뒤처집니다. (3) 여러 프로젝트를 한눈에 보는 문서가 없으면 판단이 어렵습니다. (4) 쌓인 자산이 무분별하게 노출되면 그 가치를 잃습니다.
-          </div>
-          <div class="field-content" lang="en">
-            For one operator running many projects: (1) guidelines that don't propagate <strong>leave every project on different rules</strong>; (2) an asset that never evolves falls behind; (3) without one document covering all projects, cross-project decisions are hard; (4) accumulated assets lose their value if exposed indiscriminately.
-          </div>
-        </div>
-
-        <div class="project-field">
+            <div class="project-field">
           <div class="field-label">approach</div>
           <ul class="pattern-list" lang="ko">
             <li><span class="pattern-tag">A.</span> <strong>규칙을 한 곳에</strong> — 커밋하면 모든 PC와 프로젝트로 자동으로 퍼집니다.</li>
-            <li><span class="pattern-tag">B.</span> <strong>전담 에이전트 + 도구 4개</strong> — 새 프로젝트 세팅 · 어긋남 검사 · 이전 · 버전.</li>
-            <li><span class="pattern-tag">C.</span> <strong>버전과 «바뀐 것 안내»를 의무화</strong> — 한 번 쓰고 잊히는 문서를 없앴습니다.</li>
-            <li><span class="pattern-tag">D.</span> <strong>여러 프로젝트를 한 문서로</strong> — 방향과 서로의 연결, 단계별 계획을 한곳에서 봅니다.</li>
-            <li><span class="pattern-tag">E.</span> <strong>PC마다 다른 정체성</strong> — 어느 PC에서 일하는지가 흐려지지 않습니다.</li>
-            <li><span class="pattern-tag">F.</span> <strong>진화 이력을 남김</strong> — 자산이 어떻게 바뀌어 왔는지가 저장소 이력에 그대로 남습니다.</li>
-            <li><span class="pattern-tag">G.</span> <strong>의도적 비공개</strong> — 쌓인 것 자체가 차별점이라, 검토 단계에서만 범위를 정해 엽니다.</li>
+            <li><span class="pattern-tag">B.</span> <strong>버전과 «바뀐 것 안내»를 의무화</strong> — 한 번 쓰고 잊히는 문서를 없앴습니다.</li>
+            <li><span class="pattern-tag">C.</span> <strong>의도적 비공개</strong> — 쌓인 것 자체가 차별점이라, 검토 단계에서만 범위를 정해 엽니다.</li>
           </ul>
           <ul class="pattern-list" lang="en">
-            <li><span class="pattern-tag">A.</span> <strong>One place for the rules</strong> — A commit propagates to every PC and project automatically.</li>
-            <li><span class="pattern-tag">B.</span> <strong>A curator agent + 4 tools</strong> — New-project setup, drift check, migration, versioning.</li>
-            <li><span class="pattern-tag">C.</span> <strong>Versions and migration notes required</strong> — No asset is written once and forgotten.</li>
-            <li><span class="pattern-tag">D.</span> <strong>Many projects, one document</strong> — Direction, how they connect, and the phased plan in one place.</li>
-            <li><span class="pattern-tag">E.</span> <strong>A distinct identity per PC</strong> — It never blurs which machine the work is happening on.</li>
-            <li><span class="pattern-tag">F.</span> <strong>Evolution stays on record</strong> — How each asset changed is kept in the repository history.</li>
-            <li><span class="pattern-tag">G.</span> <strong>Private by design</strong> — What has accumulated is the differentiator; it opens by scope, at review stage.</li>
+            <li><span class="pattern-tag">A.</span> <strong>One place for the rules</strong> — A commit propagates to every PC and project.</li>
+            <li><span class="pattern-tag">B.</span> <strong>Versions and migration notes required</strong> — No asset is written once and forgotten.</li>
+            <li><span class="pattern-tag">C.</span> <strong>Private by design</strong> — What accumulated is the differentiator; it opens by scope.</li>
           </ul>
         </div>
         
@@ -1654,265 +1750,115 @@
       </div>
     </div>
 
-    <!-- SLOT — claude-ops (CO · AI work) -->
+    <!-- SLOT — autoflowagent (framework, oldest of the AI group) -->
     <div class="project">
       <div class="project-head">
-        <span class="project-title"><span lang="ko">claude-ops (CO) — Claude Code 에이전트 브로커 · 실행 컨트롤 플레인</span><span lang="en">claude-ops (CO) — A Broker / Execution Control-plane for Claude Code Agent Fleets</span></span>
+        <span class="project-title"><span lang="ko">autoflowagent (AF) — 멀티에이전트 오케스트레이션 프레임워크 · 통합 Agent AI 운영 환경</span><span lang="en">autoflowagent (AF) — A Multi-Agent Orchestration Framework · Integrated Agent AI Ops</span></span>
         <div class="project-meta">
-          <span class="slot">slot · agent-control-plane</span>
-          <span class="period">2026</span>
-          <span class="status in-progress">impl complete · tested</span>
+          <span class="slot">slot · agent-ai-platform</span>
+          <span class="period">2025.11 — now</span>
+          <span class="status in-progress">in-progress</span>
         </div>
       </div>
       <div class="project-body">
 
-        <div class="project-field">
+            <div class="project-field">
           <div class="field-label">context</div>
           <div class="field-content ko" lang="ko">
-            AI 코딩 세션 여러 개를 위한 자작 브로커입니다. 채팅 한 줄로 끝나던 작업을 상태가 남는 흐름으로 바꿔, 작업을 세션에 넘기고 결과를 이벤트로 되받습니다. <strong>특정 AI 회사에 묶이지 않도록 설계했습니다</strong>. (역할 구분 — automation-hub = 규칙 / autoflowagent = 조율 / claude-ops = 실행)
+            자율 AI 에이전트들이 한 프로젝트의 개발 전 과정을 함께 수행하도록 만든 틀입니다. 오케스트레이터 1기와 도메인 담당 8기가 서로를 무조건 믿지 않는 동료로 협업합니다. 핵심은 LLM 호출이 아니라, <strong>에이전트를 어떻게 깨우고 인증하고 기억시킬지를 설계하는 일</strong>입니다.
           </div>
           <div class="field-content" lang="en">
-            A broker for a fleet of AI coding sessions. It turns a single chat channel into a stateful order-and-task flow: work is dispatched to sessions and results come back as events. Designed so that <strong>no AI vendor is baked in</strong>. (automation-hub defines the rules, autoflowagent coordinates, claude-ops runs the work.)
+            A framework where autonomous agents carry a project's whole development cycle together — one orchestrator and eight domain agents working as mutually untrusting peers. The work is not calling an LLM; it is <strong>designing how agents wake, authenticate, communicate and remember</strong>.
           </div>
         </div>
 
-        <div class="project-field">
-          <div class="field-label">approach</div>
+            <div class="project-field">
+          <div class="field-label">approach — 7 patterns</div>
+          <div class="field-content ko" lang="ko" style="margin-bottom: 0.5rem;">
+            위협모델 기반의 문서화된 설계 결정 34건 위에 설계한 핵심 7 패턴:
+          </div>
+          <div class="field-content" lang="en" style="margin-bottom: 0.5rem;">
+            7 core patterns, built on 34 documented design decisions (threat-model-based):
+          </div>
           <ul class="pattern-list" lang="ko">
-            <li><span class="pattern-tag">A.</span> <strong>특정 AI 회사에 안 묶이게</strong> — 엔진은 갈아 끼울 수 있는 계약 뒤에 두고, 코드에 이름을 박지 않았습니다.</li>
-            <li><span class="pattern-tag">B.</span> <strong>띄워 두는 대신 «가져가게»</strong> — 백그라운드 세션이 금방 죽는 것을 실험으로 확인하고 구조를 바꿨습니다.</li>
-            <li><span class="pattern-tag">C.</span> <strong>표준 계약으로 연결</strong> — 에이전트와 브로커 사이를 표준 프로토콜로 잇습니다. 따로 물어보러 가지 않습니다.</li>
-            <li><span class="pattern-tag">D.</span> <strong>이벤트로 퍼뜨리기</strong> — 일이 생기면 DB가 알려 주고 그때만 움직입니다.</li>
-            <li><span class="pattern-tag">E.</span> <strong>원본을 둘로 나눔</strong> — 사람이 만든 산출물은 파일, 운영 상태는 DB. 매일 어긋남을 맞춥니다.</li>
-            <li><span class="pattern-tag">F.</span> <strong>입구는 여럿, 코어는 하나</strong> — 같은 서비스를 여러 방식으로 부르고, 저장소는 갈아 끼웁니다.</li>
+            <li><span class="pattern-tag">A.</span> <strong>기본은 «거부»</strong> — 막아 두고 필요한 것만 기한을 정해 엽니다. 거부한 기록도 남깁니다.</li>
+            <li><span class="pattern-tag">B.</span> <strong>권한은 교집합까지만</strong> — 거쳐 온 모든 단계가 함께 허용한 만큼만 갖습니다.</li>
+            <li><span class="pattern-tag">C.</span> <strong>말할 권리 ≠ 실행할 권리</strong> — 신원은 서버가 확정하고, 실행 여부도 서버가 정합니다.</li>
           </ul>
           <ul class="pattern-list" lang="en">
-            <li><span class="pattern-tag">A.</span> <strong>Not tied to one AI vendor</strong> — Engines sit behind a swappable contract; no engine name is hard-coded.</li>
-            <li><span class="pattern-tag">B.</span> <strong>Pulled, not spawned</strong> — Background sessions proved short-lived in testing, so the model was rebuilt around pull.</li>
-            <li><span class="pattern-tag">C.</span> <strong>A standard contract</strong> — Agent and broker speak a standard protocol. Nothing goes asking on a timer.</li>
-            <li><span class="pattern-tag">D.</span> <strong>Event fan-out</strong> — The database announces work; the system moves only then.</li>
-            <li><span class="pattern-tag">E.</span> <strong>Two sources of truth</strong> — Human output lives in files, operating state in the database, reconciled daily.</li>
-            <li><span class="pattern-tag">F.</span> <strong>Many entry points, one core</strong> — The same service is reachable several ways; storage is swappable.</li>
+            <li><span class="pattern-tag">A.</span> <strong>Deny by default</strong> — Permissions stay shut; each grant is explicit and expires.</li>
+            <li><span class="pattern-tag">B.</span> <strong>Intersected permission</strong> — Only what every step in the chain allows.</li>
+            <li><span class="pattern-tag">C.</span> <strong>Speaking is not acting</strong> — The server settles identity and decides execution.</li>
           </ul>
+          <div class="tech-decision" lang="ko">
+            <strong>// key technical decisions</strong> Interactive 전용 · 다중 LLM 중립 North Star · 위협모델 기반 설계 결정 34건 문서화 · 시스템이 자기 자신을 dogfooding (AF를 만드는 에이전트 팀이 AF의 패턴 위에서 동작)
+          </div>
+          <div class="tech-decision" lang="en">
+            <strong>// key technical decisions</strong> Interactive-only · multi-LLM-neutral North Star · 34 documented threat-model design decisions · the system dogfoods itself (the agent fleet that builds AF runs on AF's own patterns)
+          </div>
         </div>
 
-        <div class="project-field">
+            <div class="project-field">
           <div class="field-label">result</div>
           <div class="field-content ko" lang="ko">
-            브로커 코어 구현 완료 · 테스트 통과(<strong>단위 392 / 통합 258</strong>). 서버 부팅 → DB 영속 → 알림까지 전 구간을 실제로 돌려 확인했습니다.
+            거버넌스 · 안전 · 조율 · 기억을 아키텍처로 설계하고 결정 34건을 기록했습니다. NestJS + PostgreSQL 백엔드와 도구 11개가 가동 중이며, 이 환경이 여러 프로젝트의 병행 운영을 실제로 떠받치고 있습니다.
           </div>
           <div class="field-content" lang="en">
-            Broker core complete, tests green (<strong>392 unit / 258 e2e</strong>). The full path — boot, database persistence, event notification — was exercised end to end.
+            Governance, safety, orchestration and memory designed as architecture, with <strong>34 decisions on record</strong>. A NestJS + PostgreSQL backend and 11 tools are running, and this environment is what actually carries several projects at once.
           </div>
           <div class="metrics">
             <div class="metric">
-              <div class="metric-label"><span lang="ko">검증</span><span lang="en">Verification</span></div>
-              <div class="metric-value ko"><span lang="ko">unit ~392 / e2e ~258 green</span><span lang="en">unit ~392 / e2e ~258 green</span></div>
-              <div class="metric-context"><span lang="ko">런타임 사이클로 DB 영속 + NOTIFY 실증</span><span lang="en">Runtime cycle proved DB persistence + NOTIFY</span></div>
+              <div class="metric-label"><span lang="ko">에이전트 조직</span><span lang="en">Agent org</span></div>
+              <div class="metric-value ko"><span lang="ko">오케스트레이터 + 8 도메인 마스터</span><span lang="en">Orchestrator + 8 domain masters</span></div>
+              <div class="metric-context"><span lang="ko">거버넌스된 상호-비신뢰 peer로 협업</span><span lang="en">Collaborating as governed, mutually-untrusted peers</span></div>
             </div>
             <div class="metric">
-              <div class="metric-label"><span lang="ko">인터페이스</span><span lang="en">Interfaces</span></div>
-              <div class="metric-value ko"><span lang="ko">MCP 12 도구 · REST(OpenAPI)</span><span lang="en">MCP 12 tools · REST (OpenAPI)</span></div>
-              <div class="metric-context"><span lang="ko">에이전트↔브로커 표준 계약</span><span lang="en">Standards-based agent↔broker contract</span></div>
+              <div class="metric-label"><span lang="ko">설계 깊이</span><span lang="en">Design depth</span></div>
+              <div class="metric-value"><span lang="ko">설계 결정 34건</span><span lang="en">34 design decisions</span></div>
+              <div class="metric-context"><span lang="ko">위협모델 · 권한 · 통신 · 메모리 의사결정 기록</span><span lang="en">Threat-model · permission · comms · memory decision records</span></div>
             </div>
             <div class="metric">
-              <div class="metric-label"><span lang="ko">핵심 설계</span><span lang="en">Core design</span></div>
-              <div class="metric-value ko"><span lang="ko">provider-neutral · 이벤트 기반 dispatch-pull</span><span lang="en">provider-neutral · event-driven dispatch-pull</span></div>
-              <div class="metric-context"><span lang="ko">LLM 벤더 forward-compat · 능동 폴링 제로</span><span lang="en">LLM-vendor forward-compat · zero active polling</span></div>
+              <div class="metric-label"><span lang="ko">운영 백엔드</span><span lang="en">Operating backend</span></div>
+              <div class="metric-value ko"><span lang="ko">NestJS + Postgres 36모델 · MCP 전령 11도구</span><span lang="en">NestJS + Postgres 36 models · MCP herald 11 tools</span></div>
+              <div class="metric-context"><span lang="ko">봇간 통신 체계 운영 중</span><span lang="en">Bot-to-bot comms operational</span></div>
+            </div>
+            <div class="metric">
+              <div class="metric-label"><span lang="ko">AI/AX 핵심 역량</span><span lang="en">Core AI/AX capability</span></div>
+              <div class="metric-value ko"><span lang="ko">멀티에이전트 거버넌스 · 안전 · 오케스트레이션 · 메모리</span><span lang="en">Multi-agent governance · safety · orchestration · memory</span></div>
+              <div class="metric-context"><span lang="ko">Agent-AI Platform / AI Eng Lead 직무의 희귀 역량</span><span lang="en">A rare skill set for Agent-AI Platform / AI Eng Lead roles</span></div>
             </div>
           </div>
         </div>
 
+    
         <div class="project-field">
           <div class="field-label">stack</div>
           <div class="stack-chips">
-            <span class="chip">NestJS 10</span>
+            <span class="chip">Claude Code (Opus 4.8)</span>
+            <span class="chip">MCP — herald (custom)</span>
+            <span class="chip">Agent SDK</span>
+            <span class="chip">NestJS</span>
+            <span class="chip">Prisma · PostgreSQL</span>
             <span class="chip">TypeScript</span>
-            <span class="chip">Prisma · PostgreSQL 17</span>
-            <span class="chip">pgvector</span>
-            <span class="chip">LISTEN / NOTIFY</span>
-            <span class="chip">MCP (stdio · JSON-RPC 2.0)</span>
-            <span class="chip">BullMQ + Redis</span>
-            <span class="chip">Socket.IO</span>
+            <span class="chip">Event-sourced design</span>
+            <span class="chip">Discord / Telegram bots</span>
           </div>
         </div>
 
-      </div>
-    </div>
-
-
-    <!-- SLOT — factory-knowledge-twin (shipped product, newest) -->
-    <div class="project">
-      <div class="project-head">
-        <span class="project-title"><span lang="ko">factory-knowledge-twin (FKT) — 공장 지식 트윈 · 근거가 붙은 AI 운영 콘솔</span><span lang="en">factory-knowledge-twin (FKT) — Factory Knowledge Twin · An Evidence-Gated AI Ops Console</span></span>
-        <div class="project-meta">
-          <span class="slot">slot · shipped-product</span>
-          <span class="period">2026.08 — now</span>
-          <span class="status shipped">shipped · public demo</span>
-        </div>
-      </div>
-      <div class="project-body">
-
-        <div class="project-field">
-          <div class="field-label">context</div>
-          <div class="field-content ko" lang="ko">
-            설비에 이상이 생기면 AI 에이전트가 센서 · 문서 · 지식그래프를 정해진 절차로 조사해 <strong>근거가 붙은 원인 후보와 작업지시 초안</strong>을 만들고, 최종 판단은 사람이 승인합니다. 1명 + AI 3좌석이 7일 만에 완주한 시제품입니다.
-          </div>
-          <div class="field-content" lang="en">
-            When equipment misbehaves, agents investigate sensors, documents and a knowledge graph in a fixed order, produce <strong>evidence-backed causes and a draft work order</strong>, and a person approves the final call. A working prototype finished in seven days by one person and three AI seats.
-          </div>
-        </div>
-
-        <div class="project-field">
-          <div class="field-label">approach</div>
-          <ul class="pattern-list" lang="ko">
-            <li><span class="pattern-tag">A.</span> <strong>근거를 «권고»가 아니라 «게이트»로</strong> — 인용이 그 조사의 근거 목록 밖이면 전량 거부하고 화면에 띄웁니다. LLM 제품의 실패는 대개 「그럴듯한 답」에서 나오기 때문입니다.</li>
-            <li><span class="pattern-tag">B.</span> <strong>조사는 정해진 순서로만</strong> — 계획 → 수치 → 문서 → 관계 → 종합 → 작업지시 초안.</li>
-            <li><span class="pattern-tag">C.</span> <strong>표가 원본, 그래프는 사본</strong> — 엔티티 16 · 관계 25. 오래된 데이터는 화면에서 경고합니다.</li>
-            <li><span class="pattern-tag">D.</span> <strong>검색 3방식</strong> — 의미 / 조건 결합 / 관계 추적(최대 6단계).</li>
-            <li><span class="pattern-tag">E.</span> <strong>사용자 문장이 질의문이 되는 경로 0개</strong> — 사람이 쓴 말이 그대로 데이터 질의로 내려가지 않습니다.</li>
-            <li><span class="pattern-tag">F.</span> <strong>우회는 조용히 넘어가지 않습니다</strong> — 통신이 끊겨 대체 경로를 타면 배지로 알리고, 기록 재생인지 실시간인지도 항상 표시합니다.</li>
-          </ul>
-          <ul class="pattern-list" lang="en">
-            <li><span class="pattern-tag">A.</span> <strong>Evidence as a gate, not a suggestion</strong> — a citation outside that investigation's evidence list is refused outright and surfaced on screen. LLM products usually fail at the plausible-sounding answer.</li>
-            <li><span class="pattern-tag">B.</span> <strong>Investigation runs in a fixed order</strong> — plan, readings, documents, relations, synthesis, draft work order.</li>
-            <li><span class="pattern-tag">C.</span> <strong>Tables are the source, the graph is a copy</strong> — 16 entities, 25 relations. Stale data is flagged in the interface.</li>
-            <li><span class="pattern-tag">D.</span> <strong>Three retrieval modes</strong> — semantic, filtered, and relation-walking up to six hops.</li>
-            <li><span class="pattern-tag">E.</span> <strong>Zero paths from user text to a data query</strong> — what a person types never becomes the query itself.</li>
-            <li><span class="pattern-tag">F.</span> <strong>Fallbacks are never silent</strong> — a degraded path raises a badge, and replay versus live is always shown.</li>
-          </ul>
-        </div>
-
-        <div class="project-field">
-          <div class="field-label">result</div>
-          <div class="metrics">
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">골든 시나리오</span><span lang="en">Golden scenarios</span></div>
-              <div class="metric-value ko"><span lang="ko">10 / 10 완주 · 오류 0</span><span lang="en">10 / 10 completed · 0 errors</span></div>
-              <div class="metric-context"><span lang="ko">계약 테스트 74 / 74 · 예외 시나리오 23 / 25</span><span lang="en">Contract tests 74 / 74 · exception scenarios 23 / 25</span></div>
-            </div>
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">E2E · 브라우저</span><span lang="en">E2E · browser</span></div>
-              <div class="metric-value ko"><span lang="ko">135 pass / 142 · 120 / 120 칸 오류 0</span><span lang="en">135 pass / 142 · 120 / 120 cells, 0 errors</span></div>
-              <div class="metric-context"><span lang="ko">2026-09-04 인계본 기준 (1440 chromium)</span><span lang="en">Measured on the 2026-09-04 handover build (1440 chromium)</span></div>
-            </div>
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">규모</span><span lang="en">Scale</span></div>
-              <div class="metric-value ko"><span lang="ko">1,381 커밋 / 613 병합</span><span lang="en">1,381 commits / 613 merges</span></div>
-              <div class="metric-context"><span lang="ko">추적 파일 1,085 · 2026-08-28 시작 · 1명 + AI 3좌석</span><span lang="en">1,085 tracked files · started 2026-08-28 · one person + 3 AI seats</span></div>
-            </div>
-          </div>
-          <div class="access-notice" lang="ko">
-            <strong>안 잰 것</strong> — KPI · P50/P95 · 벤치마크 미측. 실기기 · 실사용자 · 실공장 데이터는 0이고 <strong>합성 데이터</strong>로 만든 시제품이라, 실제 공장의 ROI 로 환산하지 않습니다. 증명하는 것은 「절차 · 근거 · 검증 규율을 갖춘 제품을 만들 수 있는가」입니다.
-          </div>
-          <div class="access-notice" lang="en">
-            <strong>Not measured</strong> — no KPI, P50/P95 or benchmark figures. Zero real devices, real users or real factory data: this is a prototype on <strong>synthetic data</strong>, so nothing here converts into a factory's ROI. What it demonstrates is whether a product can be built with procedure, evidence and verification discipline.
-          </div>
-        </div>
-
-        <div class="project-field">
+            <div class="project-field">
           <div class="field-label">live</div>
           <div class="field-content live-link-row ko" lang="ko">
-            <a href="https://factory-knowledge-twin.vercel.app/overview" style="color: var(--accent);">시연 열기 →</a><button type="button" class="copy-btn" data-copy="https://factory-knowledge-twin.vercel.app/overview" aria-label="copy demo URL" aria-live="polite">copy url</button> · 공개 시연 · 합성 데이터 (화면에도 그렇게 표시됩니다)
+            <a href="https://harry.tail488f52.ts.net" style="color: var(--accent);">라이브 시스템 열기 →</a><button type="button" class="copy-btn" data-copy="https://harry.tail488f52.ts.net" aria-label="copy live URL" aria-live="polite">copy url</button> · Tailscale 연결 시 직접 시연 (개인 시연용 · 외부 공개 아님)
           </div>
           <div class="field-content live-link-row" lang="en">
-            <a href="https://factory-knowledge-twin.vercel.app/overview" style="color: var(--accent);">open the demo →</a><button type="button" class="copy-btn" data-copy="https://factory-knowledge-twin.vercel.app/overview" aria-label="copy demo URL" aria-live="polite">copy url</button> · public demo · synthetic data (labelled as such in the UI)
+            <a href="https://harry.tail488f52.ts.net" style="color: var(--accent);">open the live system →</a><button type="button" class="copy-btn" data-copy="https://harry.tail488f52.ts.net" aria-label="copy live URL" aria-live="polite">copy url</button> · demoed directly over Tailscale (private demo · not publicly exposed)
           </div>
         </div>
 
-        <div class="project-field">
-          <div class="field-label">stack</div>
-          <div class="stack-chips">
-            <span class="chip">Next.js</span>
-            <span class="chip">FastAPI</span>
-            <span class="chip">LangGraph</span>
-            <span class="chip">PostgreSQL + pgvector</span>
-            <span class="chip">Neo4j</span>
-            <span class="chip">Playwright</span>
-            <span class="chip">GitHub Actions</span>
-            <span class="chip">Vercel</span>
           </div>
-        </div>
-
-      </div>
     </div>
 
-    <!-- SLOT — Project-Persona (memory engine, private) -->
-    <div class="project">
-      <div class="project-head">
-        <span class="project-title"><span lang="ko">Project-Persona (PP) — 기억을 독립 제품으로 떼어낸 기억 엔진</span><span lang="en">Project-Persona (PP) — A Memory Engine Split Out as Its Own Product</span></span>
-        <div class="project-meta">
-          <span class="slot">slot · memory-engine</span>
-          <span class="period">2026.07 — now</span>
-          <span class="status in-progress">design complete · private</span>
-        </div>
-      </div>
-      <div class="project-body">
-
-        <div class="project-field">
-          <div class="field-label">context</div>
-          <div class="field-content ko" lang="ko">
-            에이전트 · 프로젝트 · 조직 · 개인 등 어떤 «주인»이든 그가 가진 기억을 마크다운 파일과 그래프 엔진으로 저장 · 검색 · 연상 · 융합하고, 서명과 소유권 증명을 붙여 <strong>주인이 들고 나갈 수 있는 자산</strong>으로 만드는 독립 제품입니다.
-          </div>
-          <div class="field-content" lang="en">
-            A standalone product that stores, searches, associates and merges memory — for any owner: an agent, a project, an organisation, a person — in Markdown files backed by a graph engine, with signatures and proof of ownership attached so that <strong>the owner can take it with them</strong>.
-          </div>
-        </div>
-
-        <div class="project-field">
-          <div class="field-label">approach</div>
-          <ul class="pattern-list" lang="ko">
-            <li><span class="pattern-tag">A.</span> <strong>경계를 어디에 긋느냐가 전부입니다</strong> — 프레임워크의 한 기능으로 두면 기억이 거기 묶여 다른 소유 단위로 넘어갈 수 없습니다. 그래서 독립 제품으로 떼어냈습니다.</li>
-            <li><span class="pattern-tag">B.</span> <strong>주인을 가리지 않습니다</strong> — 에이전트 · 프로젝트 · 조직 · 개인, 무엇이든 기억의 소유 단위가 됩니다.</li>
-            <li><span class="pattern-tag">C.</span> <strong>원본은 사람이 읽는 형식</strong> — 기억 1건 = 마크다운 파일 1개. 직접 열어 읽고 고칠 수 있습니다.</li>
-            <li><span class="pattern-tag">D.</span> <strong>그래프는 원본에서 만듭니다</strong> — 저장 · 검색 · 연상 · 합치기를 그래프 엔진이 맡고, 파일이 언제나 원본입니다.</li>
-            <li><span class="pattern-tag">E.</span> <strong>기억이 주인을 가집니다</strong> — 서명과 소유권 증명을 붙여, 플랫폼에 딸린 부속물이 되지 않게 했습니다.</li>
-          </ul>
-          <ul class="pattern-list" lang="en">
-            <li><span class="pattern-tag">A.</span> <strong>Where the boundary sits is the whole design</strong> — kept as a feature inside a framework, memory stays bound to it and cannot move to another owner. So it was split out as its own product.</li>
-            <li><span class="pattern-tag">B.</span> <strong>Owner-agnostic</strong> — an agent, a project, an organisation or a person can all be the unit that owns memory.</li>
-            <li><span class="pattern-tag">C.</span> <strong>The source is human-readable</strong> — one memory is one Markdown file, openable and editable by hand.</li>
-            <li><span class="pattern-tag">D.</span> <strong>The graph is built from the source</strong> — storage, search, association and merging run on a graph engine, while the files stay authoritative.</li>
-            <li><span class="pattern-tag">E.</span> <strong>Memory has an owner</strong> — signatures and proof of ownership keep it from becoming an accessory of the platform.</li>
-          </ul>
-        </div>
-
-        <div class="project-field">
-          <div class="field-label">result</div>
-          <div class="metrics">
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">단계</span><span lang="en">Stage</span></div>
-              <div class="metric-value ko"><span lang="ko">설계 — 제품 정의 확보</span><span lang="en">Design — product definition settled</span></div>
-              <div class="metric-context"><span lang="ko">결정 문서 6건 · 비공개는 의도된 선택</span><span lang="en">6 decision documents · private by deliberate choice</span></div>
-            </div>
-            <div class="metric">
-              <div class="metric-label"><span lang="ko">규모</span><span lang="en">Scale</span></div>
-              <div class="metric-value ko"><span lang="ko">187 커밋 / 17 병합</span><span lang="en">187 commits / 17 merges</span></div>
-              <div class="metric-context"><span lang="ko">추적 파일 390 · 2026-07-03 ~ 08-21</span><span lang="en">390 tracked files · 2026-07-03 to 08-21</span></div>
-            </div>
-          </div>
-          <div class="access-notice" lang="ko">
-            <strong>안 잰 것</strong> — PP 자체의 구현 · 성능 실측은 없습니다. 모태인 AF 의 파일럿 수치를 PP 의 성과처럼 옮겨 적지 않았습니다.
-          </div>
-          <div class="access-notice" lang="en">
-            <strong>Not measured</strong> — no implementation or performance figures for PP itself. Pilot numbers from AF, which it grew out of, are not restated here as PP results.
-          </div>
-        </div>
-
-        <div class="project-field">
-          <div class="field-label">stack</div>
-          <div class="stack-chips">
-            <span class="chip"><span lang="ko">Markdown (원본)</span><span lang="en">Markdown (source of truth)</span></span>
-            <span class="chip"><span lang="ko">그래프 엔진</span><span lang="en">Graph engine</span></span>
-            <span class="chip"><span lang="ko">서명 · 소유권 증명</span><span lang="en">Signature · proof of ownership</span></span>
-            <span class="chip"><span lang="ko">검색 · 연상 · 융합</span><span lang="en">Search · association · merge</span></span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="field-label" style="margin: 1.5rem 0 0.75rem; opacity: 0.75;">// <span lang="ko">현재 회사 업무</span><span lang="en">current company work</span></div>
+<div class="field-label" style="margin: 1.5rem 0 0.75rem; opacity: 0.75;">// <span lang="ko">현재 회사 업무</span><span lang="en">current company work</span></div>
 
     <!-- SLOT — Sports Media AI (brief, company work) -->
     <div class="project">
@@ -1997,16 +1943,6 @@
         </div>
 
         <div class="project-field">
-          <div class="field-label">problem</div>
-          <div class="field-content ko" lang="ko">
-            사업마다 발주자 · 규모 · 기술 · 팀 구성이 다른데, 한 사람이 다영역을 <strong>일관된 품질과 장기 안정성</strong>으로 끌고 가야 했습니다. PM과 아키텍처와 개발 사이를 어떻게 나눠 맡느냐가 문제였습니다.
-          </div>
-          <div class="field-content" lang="en">
-            Every project brought a different client, scale, stack and team, yet one senior had to carry all of them at <strong>consistent quality and long-term stability</strong> — which meant deciding, each time, how to split PM, architecture and development.
-          </div>
-        </div>
-
-        <div class="project-field">
           <div class="field-label">approach</div>
           <div class="field-content ko" lang="ko" style="margin-bottom: 0.5rem;">
             사업 성격에 맞게 역할을 의도적으로 분산:
@@ -2015,16 +1951,14 @@
             Deliberately split roles based on project shape:
           </div>
           <ul class="pattern-list" lang="ko">
-            <li><span class="pattern-tag">a.</span> <strong>대규모 보안 통합 SI (SCADA)</strong> — 총괄 개발 PM · 10인 팀 리딩. 아키텍처를 직접 설계하고 구현했습니다.</li>
-            <li><span class="pattern-tag">b.</span> <strong>데이터센터 운영 포털</strong> — 기획 · 설계 + 총괄 PM. 24/7 무중단과 권한 구조 설계.</li>
-            <li><span class="pattern-tag">c.</span> <strong>종합병원 정보 시스템 (8년 운영)</strong> — 전체 총괄 PM 겸 통합 개발. 무중단 운영과 장기 유지보수.</li>
-            <li><span class="pattern-tag">d.</span> <strong>빌딩 · 시설 안내 솔루션 (다중 사이트 · 8년)</strong> — 1인이 개발 · 배포 · 현장 구축까지.</li>
+            <li><span class="pattern-tag">a.</span> <strong>대규모 보안 통합 SI (SCADA)</strong> — 총괄 개발 PM · 10인 팀 리딩 · 아키텍처 직접 설계.</li>
+            <li><span class="pattern-tag">b.</span> <strong>데이터센터 운영 포털</strong> — 기획 · 설계 + 총괄 PM · 24/7 무중단과 권한 구조.</li>
+            <li><span class="pattern-tag">c.</span> <strong>종합병원 · 빌딩 시설 (각 8년 운영)</strong> — 총괄 PM 겸 통합 개발, 그리고 1인 현장 배포까지.</li>
           </ul>
           <ul class="pattern-list" lang="en">
-            <li><span class="pattern-tag">a.</span> <strong>Large security-domain SI (SCADA)</strong> — Lead development PM, 10-person team. Architecture designed and built directly.</li>
-            <li><span class="pattern-tag">b.</span> <strong>Enterprise data-centre portal</strong> — Planning and design plus lead PM. 24/7 uptime and an access model.</li>
-            <li><span class="pattern-tag">c.</span> <strong>Hospital information system (8 years live)</strong> — Lead PM and integration developer. Uninterrupted operation, long maintenance.</li>
-            <li><span class="pattern-tag">d.</span> <strong>Building and facility guidance (multi-site, 8 years)</strong> — Built, deployed and installed on site by one person.</li>
+            <li><span class="pattern-tag">a.</span> <strong>Large security-domain SI (SCADA)</strong> — Lead PM, 10-person team, architecture built directly.</li>
+            <li><span class="pattern-tag">b.</span> <strong>Enterprise data-centre portal</strong> — Planning, design and lead PM; 24/7 uptime and access model.</li>
+            <li><span class="pattern-tag">c.</span> <strong>Hospital and building systems (8 years each)</strong> — Lead PM and integration dev, and solo on-site delivery.</li>
           </ul>
           <div class="tech-decision" lang="ko" style="margin-top: 0.75rem;">
             추가 사업 7건 + BEMS · 스마트 협업 시스템에서도 PM 또는 통합 개발 역할 수행. 직위 진화 <strong>과장 → 차장 → 부장</strong>은 단일 회사 내 시니어 리더십 트랙으로 검증.
