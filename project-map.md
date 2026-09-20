@@ -3,7 +3,7 @@ asset_class: index
 description: 리포 자산 목차 · Context Map Compiler 생성물(수정은 각 자산 Descriptor에서)
 owner: grandmaster
 status: active
-effective_date: 2026-08-18
+effective_date: 2026-09-20
 lifecycle: 매 inventory-scan 연쇄 시 재생성 · 수기 편집은 다음 생성이 덮어씀
 scope: global
 ---
@@ -11,7 +11,7 @@ scope: global
 # project-map — myportfolio 자산 목차
 
 > ⚠ GENERATED — 직접 편집 금지. 수정은 해당 자산의 Descriptor에서.
-> 생성: 2026-08-18 00:59 KST · 원본: ops/inventory/snapshot-latest.json · 자산 17건 (미등록 2)
+> 생성: 2026-09-20 13:47 KST · 원본: ops/inventory/snapshot-latest.json · 자산 19건 (미등록 3)
 > tag 생략 기본값 = `status: active` · `scope: project(myportfolio)` — 태그가 없으면 이 두 값이다(생략은 표시 규칙이며 Descriptor는 그대로).
 
 ## changelog (1)
@@ -48,8 +48,9 @@ scope: global
 
 - PROGRESS.md — PAO(myportfolio) 현황·결정 이력 SSOT · S2 보드(진행중·완료·블로커·해야 할 일) [project(pao)]
 
-## 🔴 미등록 (2) — Descriptor 없음
+## 🔴 미등록 (3) — Descriptor 없음
 
+- .claude/context/gate-grades.txt (axis: UNCLASSIFIED)
 - .github/workflows/019-standard.yml (axis: UNCLASSIFIED)
 - index.html (axis: UNCLASSIFIED)
 

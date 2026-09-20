@@ -1,14 +1,19 @@
 {
   "run": {
-    "at": "2026-08-18 00:59 KST",
+    "at": "2026-09-20 13:47 KST",
     "scope": "myportfolio repo (tool v0.1)",
-    "files_total": 17,
-    "tracked": 19,
+    "files_total": 19,
+    "tracked": 21,
     "untracked": 0,
     "excluded": 0,
     "exclude_source": null,
-    "unregistered": 2,
-    "unclassified_axis": 2
+    "unregistered": 3,
+    "unclassified_axis": 3,
+    "unregistered_paths": [
+      ".claude/context/gate-grades.txt",
+      ".github/workflows/019-standard.yml",
+      "index.html"
+    ]
   },
   "entries": [
     {
@@ -35,8 +40,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:41:11+09:00"
+      }
     },
     {
       "path": ".claude/context/checkpoint.md",
@@ -53,8 +57,7 @@
       },
       "validation": {
         "flags": [],
-        "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-18 00:59 KST"
+        "source": "ops/validator/results-latest.json"
       },
       "static_refs": {
         "value": 4,
@@ -66,8 +69,24 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
+      }
+    },
+    {
+      "path": ".claude/context/gate-grades.txt",
+      "axis": "UNCLASSIFIED",
+      "descriptor": null,
+      "validation": null,
+      "static_refs": {
+        "value": 2,
+        "source": "repo-scan",
+        "trust": "E1"
       },
-      "mtime": "2026-08-18T00:41:11+09:00"
+      "dynamic_use": {
+        "value": null,
+        "source": "resolver-query-log",
+        "trust": "unverified",
+        "note": "not measured - null is not zero"
+      }
     },
     {
       "path": ".claude/context/ssot-map.md",
@@ -84,8 +103,7 @@
       },
       "validation": {
         "flags": [],
-        "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-18 00:59 KST"
+        "source": "ops/validator/results-latest.json"
       },
       "static_refs": {
         "value": 2,
@@ -97,8 +115,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:41:11+09:00"
+      }
     },
     {
       "path": ".github/workflows/019-standard.yml",
@@ -115,8 +132,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:41:11+09:00"
+      }
     },
     {
       "path": ".gitignore",
@@ -142,8 +158,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:41:12+09:00"
+      }
     },
     {
       "path": "CHANGELOG.md",
@@ -160,8 +175,7 @@
       },
       "validation": {
         "flags": [],
-        "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-18 00:59 KST"
+        "source": "ops/validator/results-latest.json"
       },
       "static_refs": {
         "value": 3,
@@ -173,8 +187,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:41:12+09:00"
+      }
     },
     {
       "path": "CLAUDE.md",
@@ -191,8 +204,7 @@
       },
       "validation": {
         "flags": [],
-        "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-18 00:59 KST"
+        "source": "ops/validator/results-latest.json"
       },
       "static_refs": {
         "value": 3,
@@ -204,8 +216,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:41:12+09:00"
+      }
     },
     {
       "path": "index.html",
@@ -222,8 +233,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:41:12+09:00"
+      }
     },
     {
       "path": "ops/branch-cleanup/20260817-myportfolio-t6-branches.tsv",
@@ -240,8 +250,24 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
+      }
+    },
+    {
+      "path": "ops/branch-cleanup/20260818-myportfolio-t6-branches-r2.tsv",
+      "axis": "generated",
+      "descriptor": null,
+      "validation": null,
+      "static_refs": {
+        "value": 0,
+        "source": "repo-scan",
+        "trust": "E1"
       },
-      "mtime": "2026-08-18T00:41:16+09:00"
+      "dynamic_use": {
+        "value": null,
+        "source": "resolver-query-log",
+        "trust": "unverified",
+        "note": "not measured - null is not zero"
+      }
     },
     {
       "path": "ops/inventory/report-latest.md",
@@ -258,8 +284,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:59:41+09:00"
+      }
     },
     {
       "path": "ops/inventory/snapshot-latest.json",
@@ -276,8 +301,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:59:41+09:00"
+      }
     },
     {
       "path": "ops/validator/report-latest.md",
@@ -294,8 +318,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:59:53+09:00"
+      }
     },
     {
       "path": "ops/validator/results-latest.json",
@@ -312,8 +335,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:59:53+09:00"
+      }
     },
     {
       "path": "PROGRESS.md",
@@ -330,8 +352,7 @@
       },
       "validation": {
         "flags": [],
-        "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-18 00:59 KST"
+        "source": "ops/validator/results-latest.json"
       },
       "static_refs": {
         "value": 5,
@@ -343,8 +364,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:41:12+09:00"
+      }
     },
     {
       "path": "project-map.md",
@@ -361,8 +381,7 @@
       },
       "validation": {
         "flags": [],
-        "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-18 00:59 KST"
+        "source": "ops/validator/results-latest.json"
       },
       "static_refs": {
         "value": 3,
@@ -374,8 +393,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:59:41+09:00"
+      }
     },
     {
       "path": "project-plan.md",
@@ -392,8 +410,7 @@
       },
       "validation": {
         "flags": [],
-        "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-18 00:59 KST"
+        "source": "ops/validator/results-latest.json"
       },
       "static_refs": {
         "value": 2,
@@ -405,8 +422,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:41:12+09:00"
+      }
     },
     {
       "path": "README.md",
@@ -423,8 +439,7 @@
       },
       "validation": {
         "flags": [],
-        "source": "ops/validator/results-latest.json",
-        "checked_at": "2026-08-18 00:59 KST"
+        "source": "ops/validator/results-latest.json"
       },
       "static_refs": {
         "value": 2,
@@ -436,8 +451,7 @@
         "source": "resolver-query-log",
         "trust": "unverified",
         "note": "not measured - null is not zero"
-      },
-      "mtime": "2026-08-18T00:41:12+09:00"
+      }
     }
   ]
 }

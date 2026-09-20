@@ -15,6 +15,27 @@ on:
   push:
     branches: [main, develop]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+
+# 🔴 러너의 pwsh 는 «프로필을 읽는다» — 그리고 이 머신의 프로필 L1 이 라이브 런처를 닷소싱하고
+#   그 런처가 `Set-StrictMode -Version Latest` 를 켠다. 그래서 CI 세션만 strict 였고,
+#   `-NoProfile` 로 돌린 로컬은 아니었다. 같은 커밋이 두 곳에서 «다른 언어»로 돈 것이다
+#   (09-06 실측: 미수정 3 It 이 러너에서만 3회 연속 FAIL · 로컬 671/671 PASS).
+#   CI 는 개발자 홈 프로필에 기대면 안 된다 — 그 파일이 바뀌면 남의 커밋이 조용히 빨개진다.
+# 🔴 내장 `shell: pwsh` 가 자동으로 붙여 주던 프롤로그·에필로그를 «그대로 복제»한다.
+#   🔴 러너는 이 문자열을 .NET String.Format 으로 `{0}` 치환한다 — 그래서 «리터럴» 중괄호는
+#   `{{` `}}` 로 이스케이프해야 한다. 안 하면 스텝 «진입 전»에 죽는다(실측: `Input string was not
+#   in a correct format. Failure to parse near offset 117`). YAML 파싱 검증은 이 층을 못 본다.
+#   커스텀 쉘 문자열로 바꾸면 그 둘이 사라지므로, -NoProfile 만 더하고 나머지는 손대지 않는다:
+#     프롤로그 = $ErrorActionPreference = 'stop'   에필로그 = 종료코드 전파
+# 🔴 이후 pwsh 가 아닌 run 스텝을 추가하면 그 스텝이 자기 `shell:` 을 선언해야 한다(여기를 덮는다).
+defaults:
+  run:
+    shell: pwsh -NoProfile -Command "$ErrorActionPreference = 'stop'; . '{0}'; if ((Test-Path -LiteralPath variable:/LASTEXITCODE)) {{ exit $LASTEXITCODE }}"
+
 jobs:
   standard:
     name: 019 gate (5 checks)
@@ -46,7 +67,6 @@ jobs:
       #   트리는 바꾸지 않는다(러너 5대 병렬 = 공유 작업 트리를 잡이 «변경»하면 서로의 판정기를 바꾸는 경합).
       #   롤백 = 이 블록의 경로 1줄 원복 + 클론 폴더 삭제(라이브 축 · 백업 대상 없음 = 신규 생성물).
       - name: Preflight - tools must exist
-        shell: pwsh
         run: |
           $canonRepo = 'C:\Users\sinel\repos\claude-infra-canon'
           if (Test-Path (Join-Path $canonRepo '.git')) {
@@ -109,13 +129,43 @@ jobs:
           Write-Output "tool source = $src"
 
       - name: 019 standard gate
-        shell: pwsh
+        # 카드 #243 — PR 이벤트 = -PrMode(생성물은 PR에서 제외 · 커밋본 대조는 develop/main push에서만).
+        #   판별은 여기 «선언»에서 한다 — 스크립트가 이벤트 env를 읽으면 같은 잡의 Pester 스위트까지 뒤집힌다(리바이 98 E1).
         run: |
-          & $env:CLAUDE_INFRA_GATE -RepoRoot $env:GITHUB_WORKSPACE
+          if ('${{ github.event_name }}' -eq 'pull_request') {
+            & $env:CLAUDE_INFRA_GATE -RepoRoot $env:GITHUB_WORKSPACE -PrMode
+          } else {
+            & $env:CLAUDE_INFRA_GATE -RepoRoot $env:GITHUB_WORKSPACE
+          }
           exit $LASTEXITCODE
 
-      # 게이트가 재생성한 산출물은 검사용 부산물이다 — 커밋 대상이 아님을 로그에 남긴다.
+      # 카드 #281 — 추적 파일 전역을 git grep 으로 읽는 잠금(relic-link)은 문면 1줄 수정에도 깨진다(#579 러너 RED).
+      #   tools 잡(수십 분) 끝에서야 보이던 것을 이 잡(수 분)에서 먼저 본다. tools 잡의 전건 실행에서도 빼지 않는다.
+      #   🔴 이 파일은 5리포 공유 표준의 사본이다 — 잠금 파일이 없는 리포에서는 «건너뜀»을 로그에 남기고 통과한다.
+      - name: Relic-link lock (Pester) - blocking
+        if: always()
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $suite = Join-Path $env:GITHUB_WORKSPACE 'tools/relic-link.Tests.ps1'
+          if (-not (Test-Path -LiteralPath $suite)) { Write-Output "::notice::relic-link lock: not carried by this repo - skipped (not a pass of the lock)"; exit 0 }
+          Set-StrictMode -Version Latest
+          Import-Module Pester -MinimumVersion 5.0 -ErrorAction Stop
+          $cfg = New-PesterConfiguration
+          $cfg.Run.Path = $suite
+          $cfg.Run.PassThru = $true
+          $cfg.Output.Verbosity = 'Normal'
+          $r = Invoke-Pester -Configuration $cfg
+          if ($null -eq $r -or $r.TotalCount -eq 0) { Write-Output "::error::relic-link lock discovered no tests - the lock did not run (this is not a pass)"; exit 1 }
+          Write-Output "relic-link $($r.PassedCount)/$($r.TotalCount) passed - failed=$($r.FailedCount)"
+          if ($r.FailedCount -gt 0) {
+            foreach ($t in $r.Failed) { Write-Output "::error::$($t.ExpandedPath) :: $("$($t.ErrorRecord.Exception.Message)" -replace '\r?\n', ' ')" }
+            exit 1
+          }
+
+      # 게이트는 재생성분을 진입 시점 바이트로 스스로 되돌린다(D-15 ⓒ) — 그래서 여기 잡히는 drift는
+      # 「게이트가 만든 부산물」이 아니라 게이트 «밖»의 변화다. 실측 = 연속 3회 실행 전부 6/6 · 매회 뒤 0.
+      # 🔴 그래도 아직 «판정»으로 올리지 않는다: 이 워크플로는 5리포 공유 표준이고, 도구 세대가
+      #   구판인 리포에서는 게이트가 여전히 산출물을 남긴다. 차단은 나중이다(주법 3 · 관측 → 분류 → 등록 → 차단).
       - name: Show working tree drift (informational)
         if: always()
-        shell: pwsh
         run: git status --short
