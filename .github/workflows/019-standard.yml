@@ -67,7 +67,7 @@ jobs:
             $canonRef = $canonSha.Substring(0, 7)
             $canonRoot = Join-Path $env:RUNNER_TEMP "canon-$canonRef-$env:GITHUB_RUN_ID"
             $canonZip = "$canonRoot.zip"
-            git -C $canonRepo archive --format=zip -o $canonZip $canonSha tools docs/design/asset-classes.yml
+            git -C $canonRepo archive --format=zip -o $canonZip $canonSha tools docs/design/asset-classes.yml engine/context-graph/src
             if ($LASTEXITCODE -ne 0) { Write-Output "::error::canon archive failed (rc=$LASTEXITCODE) at $canonSha"; exit 1 }
             Expand-Archive -Path $canonZip -DestinationPath $canonRoot -Force
             Remove-Item -LiteralPath $canonZip -Force -ErrorAction SilentlyContinue   # 풀고 나면 zip은 필요 없다(RUNNER_TEMP 잔존물 0)
